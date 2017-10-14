@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="transparent_50">#7f000000</color>
+    <color name="transparent_80">#cc000000</color>
+    <color name="red">#ff0000</color>
+    <color name="green">#00ff00</color>
+    <color name="blue">#009eff</color>
+    <color name="blue_light">#32affe</color>
+    <color name="blue_drak">#0063ff</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_tran">#80000000</color>
+    <color name="black_light">#999999</color>
+    <color name="text_color_shadow">#80ffffff</color>
+    <color name="text_color_highlight">#ffff7e00</color>
+    <color name="text_color_link">#ff307ab3</color>
+    <color name="text_color_primary">@android:color/white</color>
+    <color name="text_color_secondary">#66000000</color>
+    <color name="text_color_inverse">@android:color/white</color>
+    <color name="tab_normal">#99FFFFFF</color>
+    <color name="tab_pressed">#FFFFFFFF</color>
+    <color name="text_sign_in">#ffa400</color>
+    <color name="text_sign_in_number">#ff4a58</color>
+    <color name="sign_in_number">#00f6ff</color>
+    <!-- 淡灰色 -->
+    <color name="gray">#ebebeb</color>
+    <color name="white_50">#ffffffff</color>
+    <color name="common_text_color">#FFFFFFFF</color>
+    <color name="text_color_white_80">#CCFFFFFF</color>
+    <color name="titletext_unsel_color">#465872</color>
+    <color name="titletext_sel_color">#32affe</color>
+
+    <color name="titletext_sub_unsel_color">@color/comm_hint</color>
+    <color name="titletext_sub_focus_color">@color/comm_light</color>
+    <color name="titletext_sub_sel_color">@color/comm_light</color>
+
+    <color name="bg_popwin_out">#4c000000</color>
+    <color name="bg_popwin_in">#e5100b1c</color>
+    <color name="stroke_blue_line">#08235a</color>
+    <color name="bg_icon">#2B304C</color>
+    <color name="rank_division">#4b678c</color>
+
+    <color name="bar_color">#0b9ee8</color>
+
+</resources>

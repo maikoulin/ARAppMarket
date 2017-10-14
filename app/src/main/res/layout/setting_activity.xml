@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/simpleDraweeView_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/main_tabs_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.winhearts.arappmarket.view.CommonTitle xmlns:app="http://schemas.android.com/apk/res/com.winhearts.arappmarket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title_name="个人中心" />
+
+        <com.winhearts.arappmarket.view.HorizontalLayout
+            android:id="@+id/vl_setting_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="60dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="30dp" />
+
+    </LinearLayout>
+</FrameLayout>

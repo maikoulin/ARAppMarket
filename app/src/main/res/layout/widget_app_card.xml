@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:duplicateParentState="true">
+
+    <RelativeLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/appcard_bg_selector"
+        android:duplicateParentState="true"
+        android:focusable="false"
+        android:gravity="center">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/rv_app_card_icon"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="left"
+            fresco:actualImageScaleType="fitXY"
+            fresco:viewAspectRatio="1.00" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toEndOf="@+id/rv_app_card_icon"
+            android:layout_toRightOf="@+id/rv_app_card_icon"
+            android:duplicateParentState="true"
+            android:orientation="vertical">
+
+            <com.winhearts.arappmarket.view.MarqueeTextView
+                android:id="@+id/tv_app_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:duplicateParentState="true"
+                android:ellipsize="end"
+                android:ems="5"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxEms="5"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_app_card_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:ems="7"
+                android:singleLine="true"
+                android:textColor="#8fffffff"
+                android:textSize="16sp"
+                android:visibility="gone"
+                />
+
+            <com.winhearts.arappmarket.view.ScoreView
+                android:id="@+id/sv_app_card_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/rv_app_card_tag"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+</merge>

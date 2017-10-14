@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:focusable="false"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_recommend_app_icon"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        fresco:actualImageScaleType="fitXY"
+        fresco:placeholderImage="@drawable/background_app_icon"
+        fresco:placeholderImageScaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_recommend_app_size"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/sdv_recommend_app_icon"
+        android:layout_centerHorizontal="true"
+        android:background="#34aef1"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_recommend_app_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icon_recommend_app_select"/>
+
+    <TextView
+        android:id="@+id/tv_recommend_app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sdv_recommend_app_icon"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</RelativeLayout>

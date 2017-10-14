@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:duplicateParentState="true">
+
+    <RelativeLayout
+        android:id="@+id/app_item_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/appcard_bg_selector"
+        android:duplicateParentState="true">
+
+        <ImageView
+            android:id="@+id/iv_my_app_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/myapp_bg_new_app" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/rv_app_card_icon"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            fresco:actualImageScaleType="fitXY"
+            fresco:placeholderImage="@drawable/background_app_icon"
+            fresco:placeholderImageScaleType="fitXY" />
+
+        <com.winhearts.arappmarket.view.MarqueeTextView
+            android:id="@+id/tv_app_card_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rv_app_card_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:textColor="#E0E0E0"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/app_card_menu"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/my_app_card_menu_shape"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_app_card_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_app_menu_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/update_my_app"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_app_card_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_app_menu_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/comment_my_app"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_app_card_uninstall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_app_menu_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/uninstall_my_app"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/app_card_download_menu"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@drawable/my_app_card_menu_shape"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_app_card_download_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_app_menu_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/continue_my_app"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <com.winhearts.arappmarket.view.PackageAppDownloadScrollbar
+            android:id="@+id/ps_my_app_bar"
+            style="@style/ProgressBar_packageApp_download"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_app_card_download_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_app_menu_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+    </LinearLayout>
+</FrameLayout>

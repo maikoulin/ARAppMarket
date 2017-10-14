@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="380dp"
+    android:background="@drawable/common_bg_dialog"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="false"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    android:paddingTop="20dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_app_detail_reply_type_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false">
+
+        <TextView
+            android:id="@+id/tv_reply_nickname_and_reply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_reply_time_and_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_reply_nickname_and_reply"
+            android:layout_marginTop="8dp"
+            android:textColor="#c1c1c1"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_app_detail_reply_type_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false">
+
+        <TextView
+            android:id="@+id/tv_reply_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_reply_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tv_reply_name"
+            android:layout_marginLeft="25dp"
+            android:layout_toEndOf="@id/tv_reply_name"
+            android:layout_toRightOf="@id/tv_reply_name"
+            android:textColor="#c1c1c1"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_reply_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_reply_name"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edt_reply_content"
+        android:layout_width="360dp"
+        android:layout_height="150dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/shape_reply_corners_bg"
+        android:gravity="top|left"
+        android:hint="回复评论"
+        android:padding="6dp"
+        android:textColor="@color/white"
+        android:textColorHint="#999999" />
+
+    <ImageView
+        android:id="@+id/iv_reply_code"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/edt_reply_content"
+        android:background="@color/white"
+        android:contentDescription="回复二维码" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/iv_reply_code"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:text="扫码编写长评论"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_reply_submit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edt_reply_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/com_btn_blue_focus_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+    <com.winhearts.arappmarket.view.LoadAndErrorView
+        android:id="@+id/view_reply_load_and_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/my_app_broadside_menu_selector"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="40dp"
+    android:paddingTop="40dp">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_recommend_app_icon"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        fresco:actualImageScaleType="fitXY"
+        fresco:placeholderImage="@drawable/background_app_icon"
+        fresco:placeholderImageScaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/iv_recommend_app_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-15dp"
+        android:src="@drawable/icon_recommend_app_select"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_recommend_app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sdv_recommend_app_icon"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+</RelativeLayout>

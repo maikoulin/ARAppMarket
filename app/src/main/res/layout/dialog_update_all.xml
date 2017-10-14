@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:background="@drawable/common_bg_dialog"
+    android:focusable="false"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:text="更新全部应用？"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:focusable="false"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_dialog_update_all_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/myapp_top_menu_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/confirm"
+            android:textSize="@dimen/btn_text_size_common" />
+
+        <TextView
+            android:id="@+id/tv_dialog_update_all_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/myapp_top_menu_selector"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

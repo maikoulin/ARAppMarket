@@ -1,0 +1,105 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.winhearts.arappmarket"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    //删掉不必要的so文件
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a'
+            universalApk false
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    //签名
+    signingConfigs {
+        debug {
+
+        }
+        release {
+
+        }
+    }
+
+    productFlavors {
+
+        apptest {
+            buildConfigField "String", "AMS", "\"https://172.16.13.36:9912\""
+            buildConfigField "String", "VMS", "\"http://172.16.13.36:9001\""
+            buildConfigField "String", "ACT", "\"https://172.16.13.36:9927\""
+            buildConfigField "String", "PROJECT", "\"apptest\""
+        }
+    }
+
+    buildTypes {
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+//            versionNameSuffix "_debug"
+            //是否混淆
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles 'proguard-rules.pro'
+        }
+
+
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //签名
+            signingConfig signingConfigs.release
+            // 是否进行混淆 对应老版本的runProguard
+            minifyEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            // 混淆文件的位置 <sdk目录>/tools/proguard/proguard-android.txt和app/proguard-rules.pro
+            //proguardFiles 一个文件的时候用proguardFile
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFile 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.squareup.okio:okio:1.9.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.7.5'
+    compile 'com.facebook.fresco:fresco:0.14.1'
+    compile 'com.facebook.fresco:animated-gif:0.14.1'
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+}

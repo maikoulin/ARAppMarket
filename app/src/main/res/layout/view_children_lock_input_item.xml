@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/common_bg_dialog">
+
+
+    <ImageView
+        android:id="@+id/iv_children_lock_input_item_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/children_lock_input_item_up_bg_selector"
+        android:visibility="invisible" />
+
+    <TextSwitcher
+        android:id="@+id/ts_children_lock_input_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:background="@drawable/children_lock_input_item_bg_selector"
+        android:focusable="true"></TextSwitcher>
+
+    <ImageView
+        android:id="@+id/iv_children_lock_input_item_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-5dp"
+        android:src="@drawable/children_lock_input_item_down_bg_selector"
+        android:visibility="invisible" />
+</merge>

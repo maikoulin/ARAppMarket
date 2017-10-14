@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_message_center"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2.1">
+
+        <TextView
+            android:id="@+id/tv_message_center_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="40dp"
+            android:text="消息中心"
+            android:textColor="#ffffff"
+            android:textSize="40sp" />
+
+        <!--先暂时这样写，后面新需求时再改成列表项-->
+        <TextView
+            android:id="@+id/tv_comment_reply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_message_center_title"
+            android:drawableLeft="@drawable/icon_comment_reply"
+            android:drawablePadding="12dp"
+            android:drawableRight="@drawable/icon_message_center_menu_item_p"
+            android:paddingLeft="60dp"
+            android:text="评论回复"
+            android:textColor="#409eff"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_message_center_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="7.9"
+        android:background="@drawable/bg_message_center_content"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:paddingTop="40dp" />
+
+</LinearLayout>

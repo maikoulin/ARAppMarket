@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/sd_topic_list_icon_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sd_topic_list_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp" />
+
+
+    <com.winhearts.arappmarket.view.MarqueeTextView
+        android:id="@+id/tv_topic_list_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:ellipsize="end"
+        android:ems="8"
+        android:focusable="false"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxEms="8"
+        android:singleLine="true"
+        android:text="应用名称"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+</merge>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frlt_app_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/simpleDraweeView_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#9f000000" />
+
+    <com.winhearts.arappmarket.view.HorizontalScrollPageView
+        android:id="@+id/hsv_app_detail_content"
+        android:layout_width="2300dp"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:focusable="false"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:id="@+id/ll_app_detail_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp"
+            android:paddingTop="60dp">
+
+            <com.winhearts.arappmarket.view.AppDetailMessageView
+                android:id="@+id/message_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/ll_app_detail_evaluate"
+                android:layout_width="350dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/message_view"
+                android:layout_toRightOf="@id/message_view"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_evaluate_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:drawableLeft="@drawable/app_detail_bg_title"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/app_detail_bg_title"
+                    android:minHeight="60dp"
+                    android:paddingTop="30dp"
+                    android:text="@string/app_detail_comment"
+                    android:textColor="#ffffff"
+                    android:textSize="24sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="330dp"
+                        android:layout_height="478dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/app_item_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_app_detail_evaluate"
+                            android:layout_width="match_parent"
+                            android:layout_height="400dp"
+                            android:focusable="false" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_app_detail_my_evaluate"
+                                android:layout_width="140dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginStart="30dp"
+                                android:background="@drawable/myapp_top_menu_selector"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:nextFocusDown="@id/tv_app_detail_my_evaluate"
+                                android:text="@string/app_detail_my_comment"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tv_app_detail_more_evaluate"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="170dp"
+                                android:layout_marginStart="170dp"
+                                android:background="@drawable/myapp_top_menu_selector"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:nextFocusDown="@id/tv_app_detail_more_evaluate"
+                                android:text="@string/app_detail_check_comment"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_evaluate_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-325dp"
+                android:layout_marginStart="-325dp"
+                android:layout_marginTop="100dp"
+                android:layout_toEndOf="@id/message_view"
+                android:layout_toRightOf="@id/message_view"
+                android:background="@drawable/bg_evaluate_hint"
+                android:focusable="false"
+                android:gravity="center"
+                android:text="  点击评论可以回复了哦!  "
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/rl_app_detail_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/ll_app_detail_evaluate"
+                android:layout_toRightOf="@id/ll_app_detail_evaluate">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:drawableLeft="@drawable/app_detail_bg_title"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/app_detail_bg_title"
+                    android:gravity="bottom"
+                    android:minHeight="60dp"
+                    android:paddingTop="30dp"
+                    android:text="@string/app_detail_other_person_download"
+                    android:textColor="#ffffff"
+                    android:textSize="24sp" />
+
+                <com.winhearts.arappmarket.view.HorizontalLayout
+                    android:id="@+id/vl_app_detail_other_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="53dp"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </com.winhearts.arappmarket.view.HorizontalScrollPageView>
+</FrameLayout>

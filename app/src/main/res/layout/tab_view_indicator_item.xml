@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_tab_indicator"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/tab_bg_selector"
+    android:gravity="center_vertical"
+    android:textColor="@drawable/main_color_tab_selector"
+    android:textSize="@dimen/nav_tab_text_size" />

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="@dimen/install_dialog_w"
+        android:layout_height="@dimen/install_dialog_h"
+        android:background="@drawable/bg_install_hint_dialog"
+        android:focusable="false"
+        android:paddingBottom="20dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sd_dialog_install_hint_icon"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="40dp"
+            fresco:actualImageScaleType="fitXY" />
+
+
+        <TextView
+            android:id="@+id/tv_install_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="32dp"
+            android:layout_toRightOf="@+id/sd_dialog_install_hint_icon"
+            android:focusable="false"
+            android:lineSpacingExtra="10dp"
+            android:text="应用安装完成,\n可前往我的应用打开使用"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_dialog_install_hint_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sd_dialog_install_hint_icon"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="22dp"
+            android:layout_toLeftOf="@+id/ll_dialog_install_hint_btn_wrap"
+            android:ellipsize="end"
+            android:focusable="false"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_dialog_install_hint_btn_wrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tv_install_hint"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="52dp"
+            android:layout_marginTop="14dp"
+            android:focusable="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_dialog_install_hint_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/myapp_top_menu_selector"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/app_immediate_open"
+                android:textSize="@dimen/btn_text_size_common" />
+
+            <TextView
+                android:id="@+id/tv_dialog_install_hint_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/myapp_top_menu_selector"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/app_cancel_open"
+                android:textSize="@dimen/btn_text_size_common" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

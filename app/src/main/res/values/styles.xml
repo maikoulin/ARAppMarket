@@ -1,0 +1,174 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="@android:style/Theme" />
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
+    </style>
+
+    <style name="TransTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
+    </style>
+    <style name="MainTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@drawable/background</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
+    </style>
+
+    <style name="LoadTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@drawable/load_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
+    </style>
+
+    <style name="TvDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/tranparent_selector</item>
+    </style>
+
+    <!-- 字体 -->
+    <style name="TextAppearance">
+        <item name="android:textColorHighlight">@color/text_color_highlight</item>
+        <item name="android:textColorLink">@color/text_color_link</item>
+        <item name="android:shadowColor">@color/text_color_shadow</item>
+        <item name="android:shadowDx">1.0</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">1.0</item>
+    </style>
+
+    <style name="TextAppearance.Primary"> <!-- 需要反色 -->
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">@dimen/text_font_size_huge</item>
+    </style>
+
+    <style name="dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity上 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+
+    <style name="ProgressBar_packageApp_download">
+        <item name="android:maxHeight">50dip</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progress_horizontal_normal</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+    </style>
+
+    <style name="App_Detail_ProgressBar_packageApp_download">
+        <item name="android:maxHeight">50dip</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progress_horizontal_normal</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+    </style>
+
+    <style name="PayBtnEmpty">
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:minHeight">80dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/app_text_18size</item>
+        <item name="android:background">@drawable/com_btn_blue_focus_selector</item>
+    </style>
+
+    <style name="PayBtnFull">
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:minHeight">80dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/app_text_18size</item>
+        <item name="android:background">@drawable/com_btn_blue_focus_selector</item>
+    </style>
+
+    <style name="AccountEdit">
+        <item name="android:textColorHighlight">@color/blue_light</item>
+        <item name="android:textColorHint">@color/text_color_shadow</item>
+        <item name="android:textColor">@color/white</item>
+
+        <item name="android:paddingLeft">35dp</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+    </style>
+
+    <style name="AccountTextTip">
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_mini</item>
+
+    </style>
+
+    <style name="CommTtitleName">
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">30sp</item>
+
+    </style>
+
+    <!-- 背后半透明 -->
+    <style name="dialog_half_transparent" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <!-- 悬浮 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 被盖界面半透明 -->
+    </style>
+
+    <!-- Activity透明主题 -->
+    <style name="activityTransTheme" parent="@android:style/Theme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation</item>
+    </style>
+
+    <style name="Animation">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+    <!-- 以下的解决了activity弹出弹入的问题  -->
+    <style name="activity_slide" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/activity_slide_item</item>
+    </style>
+    <!-- activity底部弹出和退出动画-->
+    <style name="activity_slide_item">
+        <item name="android:windowEnterAnimation">@anim/activity_slide_in_from_bottom</item>
+        <!-- 从下面弹出时的动画 -->
+        <item name="android:windowExitAnimation">@anim/activity_slide_out_from_bottom</item>
+        <!-- 从上面下滑到底部时的动画 -->
+    </style>
+</resources>

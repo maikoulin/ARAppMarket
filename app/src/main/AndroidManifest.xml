@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.winhearts.arappmarket">
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--&lt;!&ndash; 显示系统窗口权限 &ndash;&gt;-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!--&lt;!&ndash; 在 屏幕最顶部显示addview&ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--静默卸载-->
+    <uses-permission android:name="android.permission.DELETE_PACKAGES" />
+    <!-- 静默安装 -->
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <!-- 版本小于18才需要这个权限 -->
+    <!--android:persistent="true"-->
+    <application
+        android:name="com.winhearts.arappmarket.activity.VpnStoreApplication"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.winhearts.arappmarket.activity.SettingActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.BaseActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.LoadActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="arappmarket.winhearts.com"
+                    android:pathPrefix="/LoadActivity"
+                    android:scheme="wscontent" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.winhearts.arappmarket.activity.LoadActivity1"
+            android:screenOrientation="landscape"
+            android:theme="@style/LoadTheme">
+            <intent-filter android:priority="-500">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="app"
+                    android:pathPrefix="/appmanager"
+                    android:scheme="wscontent" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.winhearts.arappmarket.activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.AppDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <intent-filter android:priority="-500">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="arappmarket.winhearts.com"
+                    android:pathPrefix="/appDetailActivity"
+                    android:scheme="wscontent" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.winhearts.arappmarket.activity.PicBrowseActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.TopicActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+
+            <intent-filter android:priority="-500">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="app"
+                    android:pathPrefix="/album"
+                    android:scheme="wscontent" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.winhearts.arappmarket.activity.SearchActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.AppCategoryActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.ActActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.AdvertisementActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:taskAffinity="com.winhearts.arappmarket.AdvertisementActivity"
+            android:theme="@style/activity_slide" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.TopicListActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.RankListActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.MessageCenterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <service
+            android:name="com.winhearts.arappmarket.service.PollingService"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="com.winhearts.vpnService" />
+            </intent-filter>
+        </service>
+        <!-- android:process=":activity" -->
+        <!-- 会导致开机启动，改成动态注册-->
+        <receiver android:name="com.winhearts.arappmarket.receiver.NetworkStateMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.winhearts.arappmarket.receiver.BootCompletedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!--<action android:name="andriod.intent.action.VpnRestartService" />-->
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.winhearts.arappmarket.receiver.ShutdownReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.winhearts.arappmarket.service.DownloadService"
+            android:enabled="true"
+            android:priority="1000" />
+        <service android:name="com.winhearts.arappmarket.service.InstallHintService" />
+
+        <activity
+            android:name="com.winhearts.arappmarket.activity.AccountLoginActivity"
+            android:screenOrientation="landscape"
+            android:taskAffinity="com.winhearts.arappmarket.activity.AccountLoginActivity"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.AccountSubmitActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.AccountSubmit2Activity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name="com.winhearts.arappmarket.activity.AccountManagerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/MainTheme">
+            <intent-filter android:priority="-500">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="arappmarket.winhearts.com"
+                    android:pathPrefix="/AccountManagerActivity"
+                    android:scheme="wscontent" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.winhearts.arappmarket.activity.TransitActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/TransTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="arappmarket.winhearts.com"
+                    android:pathPrefix="/TransitActivity"
+                    android:scheme="wscontent" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.winhearts.arappmarket.receiver.AppDetailReceiver"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="com.winhearts.APP_DETAIL_RECEIVER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.winhearts.arappmarket.receiver.AppInstallReceiver">
+            <intent-filter android:priority="1000">
+                <!-- 一个新应用包已经安装在设备上，数据包括包名（监听所在的app，新安装时，不能接收到这个广播） -->
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <!-- 一个新版本的应用安装到设备，替换之前已经存在的版本  替换时会先收到卸载的再收到替换的， 替换自身也能收到-->
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <!-- 一个已存在的应用程序包已经从设备上移除，包括包名（卸载监听所在的app，则无法接收到） -->
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

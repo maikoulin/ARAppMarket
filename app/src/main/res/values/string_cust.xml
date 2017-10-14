@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <string name="account_unit_login"><u>盒子一键登录</u></string>
+    <string name="account_login">登录</string>
+    <string name="account_sumit"><u>注册</u></string>
+    <string name="account_bind_phone"><u>立即绑定</u></string>
+    <string name="account_bind_phone_hint">绑定手机号后，账号可以在其他盒子上登录使用哦~</string>
+    <string name="account_accept_protol">我已同意<u>网宿用户注册协议</u></string>
+
+    <string name="account_key_tips">密码不合法：请输入6&#8211;16位的字符，可使用数字、字母、符号，区分大小写</string>
+    <string name="account_name_hint">输入手机号</string>
+    <string name="account_key_hint">输入密码</string>
+    <string name="account_code_hint">输入验证码</string>
+
+
+</resources>

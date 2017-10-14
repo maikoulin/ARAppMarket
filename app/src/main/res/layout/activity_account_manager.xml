@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/simpleDraweeView_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/mode_account_title" />
+
+    <android.view.ViewStub
+        android:id="@+id/ly_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/common_error" />
+
+    <LinearLayout
+        android:id="@+id/ll_account_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:focusable="false"
+            android:src="@drawable/account_icon_user" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_account_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:ems="8"
+                android:focusable="false"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/comm_text_size_little" />
+
+            <TextView
+                android:id="@+id/tv_account_ws_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:focusable="false"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/comm_text_size_little" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="绑定手机:  "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/comm_text_size_little" />
+
+                <TextView
+                    android:id="@+id/tv_account_phone_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/com_text_selector"
+                    android:gravity="center"
+                    android:nextFocusDown="@+id/btn_account_changes"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@drawable/com_txt_focus_blue_white_selector"
+                    android:textSize="@dimen/comm_text_size_little" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_account_phone_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="31"
+            android:focusable="false"
+            android:gravity="end"
+            android:text="@string/account_bind_phone_hint"
+            android:textColor="#7fffffff"
+            android:textSize="@dimen/app_text_16size" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:focusable="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_account_changes"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/com_btn_blue_focus_selector"
+                android:text="切换用户"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/iv_account_lock_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:src="@drawable/children_lock_icon_bg_selector" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/mode_load"
+        layout="@layout/common_loading"
+        android:visibility="gone" />
+</RelativeLayout>

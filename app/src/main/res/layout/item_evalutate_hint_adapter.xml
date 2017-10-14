@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_evaluate_hint_item"
+    android:layout_width="246dp"
+    android:layout_height="50dp"
+    android:clickable="true"
+    android:clipChildren="false"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <ImageView
+        android:id="@+id/iv_evaluate_hint_item"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:scaleType="center"
+        android:src="@drawable/icon_evaluate_hint_sel"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_evaluate_hint_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="评价反馈"
+        android:textColor="@color/common_text_color"
+        android:textSize="20sp" />
+</RelativeLayout>

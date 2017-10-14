@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/common_bg_dialog"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_clean_space_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/clear_master"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/clear_hint"
+        android:textColor="#c1c1c1"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_cleanspace_memory_usage"
+            android:drawablePadding="20dp"
+            android:drawableStart="@drawable/ic_cleanspace_memory_usage"
+            android:gravity="center_vertical"
+            android:text="@string/memory_usage"
+            android:textSize="20sp" />
+
+        <com.winhearts.arappmarket.view.CleanSpaceProView
+            android:id="@+id/proview_schedule_memory_usage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="5dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/proview_schedule_memory_usage"
+            android:layout_marginTop="28dp"
+            android:drawableLeft="@drawable/ic_cleanspace_cache_garbage"
+            android:drawablePadding="20dp"
+            android:drawableStart="@drawable/ic_cleanspace_cache_garbage"
+            android:gravity="center_vertical"
+            android:text="@string/cache_garbage"
+            android:textSize="20sp" />
+
+        <com.winhearts.arappmarket.view.CleanSpaceProView
+            android:id="@+id/proview_schedule_cache_garbage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/proview_schedule_memory_usage"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="33dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/proview_schedule_cache_garbage"
+            android:layout_marginTop="28dp"
+            android:drawableLeft="@drawable/ic_cleanspace_invalid_apk"
+            android:drawablePadding="20dp"
+            android:drawableStart="@drawable/ic_cleanspace_invalid_apk"
+            android:gravity="center_vertical"
+            android:text="@string/invalid_apk"
+            android:textSize="20sp" />
+
+        <com.winhearts.arappmarket.view.CleanSpaceProView
+            android:id="@+id/proview_schedule_invalid_apk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/proview_schedule_cache_garbage"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="33dp" />
+
+    </RelativeLayout>
+</LinearLayout>

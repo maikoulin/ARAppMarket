@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sd_topic_list_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.winhearts.arappmarket.view.CommonTitle xmlns:app="http://schemas.android.com/apk/res/com.winhearts.arappmarket"
+        android:id="@+id/common_title_topic_list_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_name="更多专题" />
+
+    <RelativeLayout
+        android:id="@+id/rl_topic_list_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/common_title_topic_list_name"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/tv_topic_list_page_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="80dp"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/iv_topic_list_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/down_pull"
+            android:visibility="invisible" />
+
+
+        <com.winhearts.arappmarket.view.VerticalViewPager
+            android:id="@+id/vp_topic_list_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/iv_app_category_more"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:focusable="false"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+</RelativeLayout>

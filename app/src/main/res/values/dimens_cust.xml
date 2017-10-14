@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--app弹出打开-->
+    <dimen name="packageapp_dialog_width_4">840dp</dimen>
+    <dimen name="packageapp_dialog_width_1">220dp</dimen>
+    <dimen name="packageapp_cardview_width">200dp</dimen>
+    <dimen name="packageapp_cardview_height">300dp</dimen>
+
+
+    <dimen name="common_title">32sp</dimen>
+</resources>

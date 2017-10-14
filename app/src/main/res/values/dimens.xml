@@ -1,0 +1,151 @@
+<resources>
+
+    <dimen name="text_font_size_huge">21sp</dimen>
+
+    <!-- menu -->
+    <dimen name="menu_title_text_size">@dimen/text_size_50</dimen>
+    <dimen name="menu_item_text_size">@dimen/text_size_38</dimen>
+    <dimen name="menu_cursor_width">252dp</dimen>
+    <dimen name="menu_cursor_height">145dp</dimen>
+    <dimen name="menu_cursor_margin_left">-22.5dp</dimen>
+    <dimen name="menu_cursor_margin_top">205dp</dimen>
+    <dimen name="menu_title_margin_left">105dp</dimen>
+    <dimen name="menu_title_margin_top">73.5dp</dimen>
+    <dimen name="menu_title_bottom_line_width">155dp</dimen>
+    <dimen name="menu_title_bottom_line_height">1.5dp</dimen>
+    <dimen name="menu_title_bottom_margin_top">8.5dp</dimen>
+    <dimen name="main_menu_panel_width">155dp</dimen>
+    <dimen name="main_menu_panel_height">385dp</dimen>
+    <dimen name="main_menu_panel_margin_top">120dp</dimen>
+    <dimen name="main_menu_listview_margin_left">11.5dp</dimen>
+    <dimen name="main_menu_listview_margin_top">-100dp</dimen>
+    <dimen name="main_menu_listview_height">475dp</dimen>
+    <dimen name="main_menu_mask_height">64dp</dimen>
+    <dimen name="menu_divider_width">131.5dp</dimen>
+    <dimen name="menu_divider_height">0.5dp</dimen>
+    <dimen name="menu_divider_margin_left">15dp</dimen>
+    <dimen name="menu_icon_width">64dp</dimen>
+    <dimen name="menu_icon_height">64dp</dimen>
+    <dimen name="menu_item_margin_left">4dp</dimen>
+    <dimen name="menu_top_space">224dp</dimen>
+    <dimen name="nav_tab_text_size">@dimen/text_size_42</dimen>
+    <dimen name="nav_tab_second_text_size">@dimen/text_size_42</dimen>
+    <dimen name="tab_recommend_margin_left">30dp</dimen>
+    <dimen name="tab_highlight_height">58dp</dimen>
+    <dimen name="nav_bar_margin_top">13dp</dimen>
+    <dimen name="tab_content_container_margin_top">26dp</dimen>
+    <dimen name="metro_offside">80dp</dimen>
+    <dimen name="fading_edge">80dp</dimen>
+    <dimen name="title_bar_left_margin">22.5dp</dimen>
+    <dimen name="title_bar_top_margin">24.5dp</dimen>
+    <dimen name="title_divider_left_margin">6dp</dimen>
+    <dimen name="title_divider_top_margin">-1dp</dimen>
+    <dimen name="ACCOUNT_ITEM_SIZE">93dp</dimen>
+    <dimen name="ITEM_DIVIDE_SIZE_1">4dp</dimen>
+    <dimen name="account_top_margin">65dp</dimen>
+    <dimen name="mine_view_left_margin">3dp</dimen>
+    <dimen name="mine_mirror_view_width">201dp</dimen>
+    <dimen name="mine_mirror_view_height">100dp</dimen>
+    <dimen name="MIRROR_HEIGHTER">93dp</dimen>
+    <dimen name="ITEM_DIVIDE_SIZE">4dp</dimen>
+    <dimen name="text_tab_padding">5dp</dimen>
+    <dimen name="ITEM_V_WIDTH">134dp</dimen>
+    <dimen name="ITEM_V_HEIGHT">202dp</dimen>
+    <dimen name="ITEM_H_WIDTH">202dp</dimen>
+    <dimen name="ITEM_H_HEIGHT">100dp</dimen>
+    <dimen name="ITEM_NORMAL_SIZE">100dp</dimen>
+    <dimen name="OPERATOR_MARGIN">3.5dp</dimen>
+    <dimen name="metro_item_padding">1.5dp</dimen>
+    <dimen name="metro_item_recommend_text_height">120dp</dimen>
+    <dimen name="detail_y_distance">282dp</dimen>
+    <dimen name="mirror_ref_height">36dp</dimen>
+    <dimen name="user_view_padding">4dp</dimen>
+    <dimen name="MAX_PIVOT_X">203dp</dimen>
+    <dimen name="MAX_PIVOT_Y">100dp</dimen>
+    <dimen name="item_v_margin_bottom">20dp</dimen>
+    <dimen name="tab_left_offset">50dp</dimen>
+    <dimen name="tab_left_offset_1">60dp</dimen>
+    <dimen name="animation_offset_y">16dp</dimen>
+
+    <!-- common text-size -->
+    <dimen name="comm_text_size_large">36sp</dimen>
+    <dimen name="comm_text_size_big">33sp</dimen>
+    <dimen name="comm_text_size_small">27sp</dimen>
+    <dimen name="comm_text_size_middle">25sp</dimen>
+    <dimen name="comm_text_size_little">24sp</dimen>
+    <dimen name="comm_text_size_mini">21sp</dimen>
+    <dimen name="text_size_large">36sp</dimen>
+    <dimen name="text_size_big">33sp</dimen>
+    <dimen name="text_size_small">27sp</dimen>
+    <dimen name="text_size_middle">25sp</dimen>
+    <dimen name="text_size_little">24sp</dimen>
+    <dimen name="text_size_mini">21sp</dimen>
+    <dimen name="btn_text_size_common">20sp</dimen>
+    <dimen name="edit_text_size">16sp</dimen>
+    <!-- textsize -->
+    <dimen name="dip_size_2dp">2dp</dimen>
+    <dimen name="dip_size_6dp">6dp</dimen>
+    <dimen name="dip_size_8dp">8dp</dimen>
+    <dimen name="dip_size_20dp">20dp</dimen>
+    <dimen name="dip_size_large">120dp</dimen>
+    <dimen name="dip_size_big">100dp</dimen>
+    <dimen name="dip_size_middle">75dp</dimen>
+    <dimen name="dip_size_small">50dp</dimen>
+    <dimen name="dip_size_smaller">30dp</dimen>
+    <dimen name="dip_size_little">25dp</dimen>
+    <dimen name="dip_size_littler">15dp</dimen>
+    <dimen name="dip_size_mini">10dp</dimen>
+    <dimen name="dip_size_tiny">5dp</dimen>
+    <dimen name="content_text_size">24sp</dimen>
+    <dimen name="app_download_size">16dp</dimen>
+    <dimen name="app_text_size">24sp</dimen>
+    <dimen name="app_install_size">19dp</dimen>
+    <dimen name="app_text_14size">14sp</dimen>
+    <dimen name="app_text_16size">16sp</dimen>
+    <dimen name="app_text_18size">18sp</dimen>
+    <dimen name="app_text_19size">19sp</dimen>
+    <dimen name="app_text_20size">20sp</dimen>
+    <dimen name="app_text_22size">22sp</dimen>
+    <dimen name="app_text_25size">25sp</dimen>
+
+    <!-- app_detail -->
+    <dimen name="dip_pic_width">386dp</dimen>
+    <dimen name="dip_pic_hight">210dp</dimen>
+    <dimen name="dip_piclist_width">260dp</dimen>
+    <dimen name="dip_btn_width">180dp</dimen>
+    <dimen name="dip_btn_hight">70dp</dimen>
+    <dimen name="dip_pragress_width">160dp</dimen>
+    <dimen name="dip_pragress_hight">8dp</dimen>
+    <dimen name="dip_abstract_hight">120dp</dimen>
+    <dimen name="dip_ico_width">100dp</dimen>
+    <dimen name="dip_ico_hight">100dp</dimen>
+    <dimen name="padding_left">13dp</dimen>
+    <dimen name="pull_list_padding">20dp</dimen>
+    <dimen name="pull_list_margin">20dp</dimen>
+
+    <!-- 进度条 -->
+    <dimen name="process_bar_height">10dp</dimen>
+
+    <!-- 广告-->
+    <dimen name="ad_height">240dp</dimen>
+    <dimen name="ad_width">400dp</dimen>
+
+    <dimen name="divider_grid_height">12dp</dimen>
+
+    <!--主页中内容的两边边距-->
+    <dimen name="main_marginLeft">60dp</dimen>
+    <dimen name="main_marginRight">60dp</dimen>
+
+    <dimen name="exit_dialog_w">702dp</dimen>
+    <dimen name="exit_dialog_h">404dp</dimen>
+
+    <dimen name="install_dialog_w">574dp</dimen>
+    <dimen name="install_dialog_h">230dp</dimen>
+
+    <dimen name="evaluate_hint_dialog_w">412dp</dimen>
+    <dimen name="evaluate_dialog_w">628dp</dimen>
+
+    <dimen name="evaluate_zxing_img_w">116dp</dimen>
+    <dimen name="reply_zxing_img_w">100dp</dimen>
+</resources>
+

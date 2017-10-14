@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/simpleDraweeView_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/mode_account_title" />
+
+    <LinearLayout
+        android:layout_width="470dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_account_phone"
+            style="@style/AccountTextTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="15dp"
+            android:text="手机号码:" />
+
+        <EditText
+            android:id="@+id/edt_account_id"
+            style="@style/AccountEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/com_edit_focus_selector"
+            android:hint="@string/account_name_hint"
+            android:inputType="phone"
+            android:selectAllOnFocus="true">
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btn_account_seccode"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/com_btn_blue_focus_selector"
+            android:gravity="center"
+            android:text="发送验证码"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_text_size_common" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_account_accept"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/account_tv_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:focusable="true"
+                android:text="@string/account_accept_protol"
+                android:textSize="@dimen/app_text_16size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

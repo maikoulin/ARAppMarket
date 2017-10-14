@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rank_backgroud"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="false"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_rank_title_name"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rank_bg_title_blue"
+        android:gravity="center"
+        android:text="应用排行"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <com.winhearts.arappmarket.view.RankElementsItemView
+        android:id="@+id/ll_rank_first"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_below="@+id/tv_rank_title_name"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_rank_first_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rank_bg_title_blue_down"
+            android:focusable="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/first_place" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sd_rank_first"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="12dp"
+                fresco:actualImageScaleType="fitXY"
+                fresco:placeholderImage="@drawable/background_app_icon" />
+
+            <com.winhearts.arappmarket.view.MarqueeTextView
+                android:id="@+id/tv_rank_first"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </com.winhearts.arappmarket.view.RankElementsItemView>
+
+    <com.winhearts.arappmarket.view.RankElementsItemView
+        android:id="@+id/ll_rank_second"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_below="@+id/ll_rank_first"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="17dp"
+            android:src="@drawable/second_place" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sd_rank_second"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="19dp"
+            fresco:actualImageScaleType="fitXY"
+            fresco:placeholderImage="@drawable/background_app_icon" />
+
+        <com.winhearts.arappmarket.view.MarqueeTextView
+            android:id="@+id/tv_rank_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:marqueeRepeatLimit="marquee_forever"
+
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </com.winhearts.arappmarket.view.RankElementsItemView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/ll_rank_second"
+        android:background="@color/rank_division" />
+
+    <com.winhearts.arappmarket.view.RankElementsItemView
+        android:id="@+id/ll_rank_third"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_below="@+id/ll_rank_second"
+        android:layout_marginTop="1dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="17dp"
+            android:src="@drawable/third_place" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sd_rank_third"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="19dp"
+            fresco:actualImageScaleType="fitXY"
+            fresco:placeholderImage="@drawable/background_app_icon" />
+
+        <com.winhearts.arappmarket.view.MarqueeTextView
+            android:id="@+id/tv_rank_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:ellipsize="end"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </com.winhearts.arappmarket.view.RankElementsItemView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/ll_rank_third"
+        android:background="@color/rank_division" />
+
+    <com.winhearts.arappmarket.view.RankElementsItemView
+        android:id="@+id/ll_rank_four"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_below="@+id/ll_rank_third"
+        android:layout_marginTop="1dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="27dp"
+            android:gravity="center"
+            android:src="@drawable/four_place"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sd_rank_four"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="39dp"
+            fresco:actualImageScaleType="fitXY"
+            fresco:placeholderImage="@drawable/background_app_icon" />
+
+        <com.winhearts.arappmarket.view.MarqueeTextView
+            android:id="@+id/tv_rank_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </com.winhearts.arappmarket.view.RankElementsItemView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/ll_rank_four"
+        android:background="@color/rank_division" />
+
+    <com.winhearts.arappmarket.view.RankElementsItemView
+        android:id="@+id/ll_rank_five"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_below="@+id/ll_rank_four"
+        android:layout_marginTop="1dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="27dp"
+            android:gravity="center"
+            android:src="@drawable/five_place"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sd_rank_five"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="39dp"
+            fresco:actualImageScaleType="fitXY"
+            fresco:placeholderImage="@drawable/background_app_icon" />
+
+        <com.winhearts.arappmarket.view.MarqueeTextView
+            android:id="@+id/tv_rank_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:ellipsize="end"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </com.winhearts.arappmarket.view.RankElementsItemView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/ll_rank_five"
+        android:background="@color/rank_division" />
+
+    <com.winhearts.arappmarket.view.RankElementsItemView
+        android:id="@+id/ll_rank_more"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_below="@+id/ll_rank_five"
+        android:layout_marginTop="1dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center">
+
+        <com.winhearts.arappmarket.view.MarqueeTextView
+            android:id="@+id/tv_rank_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/more_app"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </com.winhearts.arappmarket.view.RankElementsItemView>
+
+</RelativeLayout>

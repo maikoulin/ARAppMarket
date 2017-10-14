@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_pop_app_detail_evaluate_container"
+    android:layout_width="match_parent"
+    android:layout_height="520dp"
+    android:layout_margin="15dp"
+    android:background="@drawable/common_bg_dialog"
+    android:focusable="false"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:drawableLeft="@drawable/app_detail_bg_title"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/app_detail_bg_title"
+        android:focusable="false"
+        android:text="全部评论"
+        android:textColor="#ffffff"
+        android:textSize="22sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_pop_app_detail_evaluate"
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:fadeScrollbars="false"
+        android:focusable="false"
+        android:scrollbars="vertical" />
+
+    <ImageView
+        android:id="@+id/iv_app_detail_evaluate_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:focusable="false"
+        android:src="@drawable/morepicture" />
+</LinearLayout>
+
+

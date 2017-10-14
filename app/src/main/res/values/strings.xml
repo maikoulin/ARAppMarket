@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">应用市场</string>
+    <string name="my_app_name">我的应用</string>
+    <string name="more_app">更多</string>
+    <string name="fzlt_zhun_hei">FZLTZHUNHEI_GBK.ttf</string>
+    <string name="fzlt_cu_hei">FZLTHC_GBK.ttf</string>
+    <string name="nav_tab_normal_ttf">@string/fzlt_zhun_hei</string>
+    <string name="nav_tab_focus_ttf">@string/fzlt_cu_hei</string>
+    <string name="search">搜 索</string>
+    <string name="search_hint">"输入软件名称，例如 \"三国\"选择SG"</string>
+    <string name="menu_name">菜单</string>
+    <string name="category_title_ttf">FZLTHC_GBK.ttf</string>
+    <string name="info_ttf">FZLTH_GBK.ttf</string>
+    <string name="empty_data">没有数据</string>
+    <string name="user_tab">用户</string>
+    <string name="mine_info_account_title">账户信息</string>
+    <string name="mine_info_account_summary_none">您还没有登录</string>
+    <string name="mine_info_account_summary_format">%.02f米币</string>
+    <string name="update_hint">可升级为%s</string>
+    <string name="update_lastest">当前为最新版本</string>
+    <string name="update_now">正在升级....</string>
+    <string name="update">立即升级</string>
+    <string name="cancel">取  消</string>
+    <string name="confirm">确  定</string>
+    <string name="setting">设置</string>
+    <string name="present">提交</string>
+    <string name="contact_us">联系我们：easymanager@chinanetcernter.com</string>
+    <string name="app_desc">应用市场为您提供海量电视专属应用和游戏，让您的电视机顶盒成为一个好玩好用的家庭娱乐中心。</string>
+    <string name="phone_helper_desc">网宿电视助手是专为智能电视机顶盒打造的手机端应用。您可以用它遥控电视，更可以变身为游戏手柄，畅玩手柄游戏大作！ </string>
+    <string name="support"> 技术支持：0592-xxxxxxxx</string>
+    <string name="about_04">all Copyrights reserved by Chinanetcenter</string>
+    <string name="exit_hint">"扫码反馈您希望上架的应用"</string>
+
+
+    <!--我的应用-->
+    <string name="update_immediately">马上更新</string>
+    <string name="update_all_application">全部更新</string>
+    <string name="evaluate_application">评价应用</string>
+    <string name="update_my_app">更新</string>
+    <string name="comment_my_app">评论</string>
+    <string name="uninstall_my_app">卸载</string>
+    <string name="retry_my_app">重试</string>
+    <string name="pause_my_app">暂停</string>
+    <string name="continue_my_app">继续</string>
+    <string name="broadband_measure_my_app">测速</string>
+    <string name="hint_my_app1">按菜单键</string>
+    <string name="hint_my_app2">进行应用管理</string>
+    <string name="hint_left_menu">[左键] 进入一键清理</string>
+    <!-- 错误提示-->
+    <string name="connection_fail">加载失败,请检查您的网络连接</string>
+    <string name="request_error">系统繁忙,请稍后重试</string>
+    <string name="request_no_data">没有找到相关应用</string>
+    <string name="loading_error_retry">加载失败,请稍后重试</string>
+    <string name="server_error">服务器给我们提了个小问题，程序猿叔叔正在加紧解决……</string>
+    <!-- 支付-->
+    <string name="guangdian_pay">广电支付</string>
+    <string name="no_CaCard">暂时无法使用广电账户支付\n请使用其他方式支付</string>
+    <string name="balance_deficiency">当前余额不足，请选择其他方式支付</string>
+    <string name="deduction_failure">扣费失败!\n请重新提交订单或使用其他方式支付</string>
+    <string name="pay_hint">请确认已征得此账户户主同意</string>
+    <!-- 初始化-->
+
+    <string name="check_version">版本校验中，请稍候…</string>
+    <string name="check_config">正在初始化数据，请稍候…</string>
+
+    <!--个人中兴-->
+    <string name="manage">个人中心</string>
+    <string name="manage_user">点击登录您的账号</string>
+    <string name="manage_phone_helper">手机助手</string>
+    <string name="manage_info">关于</string>
+    <string name="manage_download">下载管理</string>
+    <string name="sign_in">签到得积分咯</string>
+    <string name="sign_in_message">天天签到，领积分，抽好礼啦！</string>
+
+    <!-- 上报log标题-->
+    <string name="failure_in_link">连接失败</string>
+    <string name="no_response">请求无响应</string>
+    <string name="app_download_error">用户应用下载失败</string>
+    <string name="app_install_error">用户应用安装失败</string>
+    <string name="app_open_error">应用打开失败</string>
+    <string name="appmarket_download_error">升级包下载失败</string>
+    <string name="appmarket_install_error">升级包安装失败</string>
+    <!--packageApp download -->
+    <string name="package_app_install">安装</string>
+    <string name="package_app_no_install">未安装</string>
+    <string name="package_app_dialog_title">请选择打开应用</string>
+
+    <!-- dialog-->
+    <string name="app_immediate_open">立即打开</string>
+    <string name="app_cancel_open">暂不启用</string>
+
+    <!--应用详情-->
+    <string name="app_detail_more_synopsis"><u>更多</u></string>
+    <string name="app_detail_screenshot">截图</string>
+    <string name="app_detail_comment">评论</string>
+    <string name="app_detail_my_comment">我要评论</string>
+    <string name="app_detail_check_comment">查看更多评论</string>
+    <string name="app_detail_other_person_download">其他用户还下载了</string>
+    <string name="app_detail_open">打开</string>
+    <string name="app_detail_download">下载</string>
+    <string name="app_detail_downloading">下载中</string>
+    <string name="app_detail_update">更新</string>
+    <string name="app_detail_install">安装中</string>
+
+    <!--一键清理-->
+    <string name="clear_master">一键清理</string>
+    <string name="storage_space_insufficient">盒子存储空间不足</string>
+    <string name="clear_hint">现在帮您清理盒子存储…</string>
+    <string name="memory_usage">内存占用</string>
+    <string name="cache_garbage">缓存垃圾</string>
+    <string name="invalid_apk">无用安装包</string>
+    <string name="clean_space_finish">已成功清理空间</string>
+    <string name="uninstalling">正在卸载应用…</string>
+    <string name="not_used_apk">您可以卸载以下不常用的软件:</string>
+</resources>

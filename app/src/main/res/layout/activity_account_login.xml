@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/simpleDraweeView_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/mode_account_title" />
+
+    <LinearLayout
+        android:layout_width="470dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_account_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="手机号码:"
+            android:textColor="@color/account_edit_tip"
+            android:textSize="@dimen/text_size_mini"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/edt_account_id"
+            style="@style/AccountEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/com_edit_focus_selector"
+            android:ems="10"
+            android:hint="@string/account_name_hint"
+            android:inputType="phone"
+            android:phoneNumber="true"
+            android:selectAllOnFocus="true">
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:text="密码:"
+            android:textColor="@color/account_edit_tip"
+            android:textSize="@dimen/text_size_mini" />
+
+        <EditText
+            android:id="@+id/edt_account_key"
+            style="@style/AccountEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/com_edit_focus_selector"
+            android:ems="10"
+            android:hint="@string/account_key_hint"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true" />
+
+        <Button
+            android:id="@+id/btn_account_login"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/com_btn_blue_focus_selector"
+            android:text="@string/account_login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_text_size_common" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp">
+
+            <TextView
+                android:id="@+id/tv_account_login_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/com_text_selector"
+                android:focusable="true"
+                android:paddingBottom="3dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:text="@string/account_unit_login"
+                android:textColor="@drawable/com_txt_focus_blue_white_selector"
+                android:textSize="@dimen/text_size_mini" />
+
+            <TextView
+                android:id="@+id/tv_account_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/com_text_selector"
+                android:focusable="true"
+                android:gravity="right"
+                android:paddingBottom="3dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:text="@string/account_sumit"
+                android:textColor="@drawable/com_txt_focus_blue_white_selector"
+                android:textSize="@dimen/text_size_mini" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>

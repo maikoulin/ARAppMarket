@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/simpleDraweeView_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.winhearts.arappmarket.view.CommonTitle xmlns:app="http://schemas.android.com/apk/res/com.winhearts.arappmarket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title_name="@string/search" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="true"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:id="@+id/linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_search_input"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/main_bg_search_n"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/content_text_size" />
+
+
+                    <ImageView
+                        android:id="@+id/backspace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-15dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:nextFocusDown="@+id/cus_grid_search_key_input"
+                        android:nextFocusLeft="@+id/backspace"
+                        android:nextFocusUp="@+id/backspace"
+                        android:src="@drawable/delete_selector" />
+
+
+                    <ImageView
+                        android:id="@+id/clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:nextFocusDown="@+id/cus_grid_search_key_input"
+                        android:nextFocusUp="@+id/clear"
+                        android:src="@drawable/clear_selector" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_search_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="@string/search_hint"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_mini" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipChildren="false"
+                    android:scrollbars="none">
+
+                    <com.winhearts.arappmarket.view.CusGridView
+                        android:id="@+id/cus_grid_search_key_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp" />
+                </ScrollView>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:clipChildren="false">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_search_recommendation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="热门搜索"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+
+                    <com.winhearts.arappmarket.view.SoftwaresRecommentView
+                        android:id="@+id/softRecommentView_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="60dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            fresco:actualImageScaleType="fitXY"
+                            fresco:backgroundImage="@color/white"
+                            fresco:placeholderImage="@drawable/tv_attention"
+                            fresco:placeholderImageScaleType="fitXY" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="微信扫码关注，向小编推荐应用"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_search_result_none"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        fresco:actualImageScaleType="fitXY"
+                        fresco:backgroundImage="@color/white"
+                        fresco:placeholderImage="@drawable/tv_attention"
+                        fresco:placeholderImageScaleType="fitXY" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center_horizontal"
+                        android:text="未找到应用？\n微信扫码关注，向小编推荐应用"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_search_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <include layout="@layout/common_loading" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/result_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:paddingTop="20dp"
+                        android:textColor="@color/text_white_blue_selector"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:paddingBottom="30dp"
+                        android:paddingTop="15dp">
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clipChildren="false"
+                            android:scrollbars="none">
+
+                            <com.winhearts.arappmarket.view.CusGridView
+                                android:id="@id/cus_grid_search_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clipChildren="false" />
+                        </ScrollView>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_net_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="80dp"
+                        android:src="@drawable/disconnect" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/server_error"
+                        android:textSize="22sp" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</merge>

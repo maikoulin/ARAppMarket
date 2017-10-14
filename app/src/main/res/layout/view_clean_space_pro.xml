@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_clean_space_finish"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/icon_recommend_app_select" />
+
+    <ProgressBar
+        android:id="@+id/pbar_clean_space_pro"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerHorizontal="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/progressbar_clear_space"
+        android:indeterminateOnly="true" />
+
+
+</merge>

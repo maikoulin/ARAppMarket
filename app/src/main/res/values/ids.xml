@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="is_first_inflated_key" type="id"></item>
+
+    <!-- menu item id define -->
+    <item name="menu_item_search" type="id"></item>
+    <item name="clear" type="id"></item>
+    <item name="cus_grid_search_result" type="id"></item>
+    <item name="backspace" type="id"></item>
+    <item name="part_verlist" type="id"></item>
+    <item name="tv_search_input" type="id"></item>
+    <item name="id_tag_download" type="id"></item>
+
+</resources>

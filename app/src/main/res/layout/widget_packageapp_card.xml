@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sd_packageapp_download_icon"
+        android:layout_width="113dp"
+        android:layout_height="113dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26.7dp"
+        android:focusable="false"
+        fresco:actualImageScaleType="fitXY"
+        fresco:placeholderImage="@drawable/background_app_icon"
+        fresco:placeholderImageScaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_packageapp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <com.winhearts.arappmarket.view.PackageAppDownloadScrollbar
+            android:id="@+id/progressBar_packageapp_bar"
+            style="@style/ProgressBar_packageApp_download"
+            android:layout_width="123dp"
+            android:layout_height="37.3dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="33.3dp"
+            android:progress="0"
+            android:visibility="gone" />
+
+        <TextView
+
+            android:id="@+id/btn_packageApp_install"
+            android:layout_width="123dp"
+            android:layout_height="37.3dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="33.3dp"
+            android:background="@drawable/package_app_download_btn_selector"
+            android:gravity="center"
+            android:textColor="@color/packageapp_download_install_selector"
+            android:textSize="16sp" />
+    </FrameLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_message_reply_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#c1c1c1"
+        android:textSize="16sp"
+        tools:text="2016-08-28" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_app_broadside_menu_selector"
+        android:duplicateParentState="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_comment_item"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tv_message_replyer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#c1c1c1"
+                android:textSize="20sp"
+                tools:text="李**唐回复我的评论" />
+
+            <TextView
+                android:id="@+id/tv_message_reply_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                tools:text="评论评论随便评论看看效果" />
+
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
