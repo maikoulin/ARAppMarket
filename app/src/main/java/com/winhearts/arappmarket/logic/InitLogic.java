@@ -13,8 +13,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.winhearts.arappmarket.constant.ConfigDefaultValue;
 import com.winhearts.arappmarket.constant.Constant;
 import com.winhearts.arappmarket.download.loader.UpdateAsyncTaskUtil;
 import com.winhearts.arappmarket.model.AppUpdate;
@@ -63,9 +61,9 @@ public class InitLogic {
 
     public void init() {
 
-        appUpdate();
-        queryConfig();
-        getRecommendAppData();
+//        appUpdate();
+//        queryConfig();
+//        getRecommendAppData();
     }
 
     private void appUpdate() {
@@ -220,39 +218,24 @@ public class InitLogic {
         VersionNo versionNo = new VersionNo();
         String terminalCode = layoutCode;
         String versionCode;
-        if (TextUtils.isEmpty(terminalCode)) {
-            String layoutString = Pref.getString(Pref.LAYOUT_STRING, context, "");
-            strFromJson(layoutString, userErrorCode);
-            if (mIsRequestSuccess) {
-                return;
-            }
-            String saveTerminalCode = Pref.getString(Pref.LAYOUT_CODE, context, "");
-            String saveTerminalCodeOld = PrefNormalUtils.getString(context, PrefNormalUtils.LAYOUT_CODE_OLD, "");
-            if (!TextUtils.isEmpty(saveTerminalCode)) {
-                PrefNormalUtils.putString(context, PrefNormalUtils.LAYOUT_CODE_OLD, saveTerminalCode);
-                terminalCode = saveTerminalCode;
-            }
-            //解决不同布局码和布局版本之间的问题
-            if (!TextUtils.isEmpty(saveTerminalCodeOld) && !saveTerminalCode.equals(saveTerminalCodeOld)) {
-                Pref.saveString(Pref.LAYOUT_VERSION, "", context);
-            }
-            versionCode = Pref.getString(Pref.LAYOUT_VERSION, context, "");
-        } else {
-            String layoutCodes = PrefLayoutUtils.getString(context, PrefLayoutUtils.LIST_LAYOUT_CODE, null);
-            if (!TextUtils.isEmpty(layoutCodes)) {
-                LinkedHashMap layoutMap = new Gson().fromJson(layoutCodes, new TypeToken<LinkedHashMap<String, String>>() {
-                }.getType());
-                versionCode = (String) layoutMap.get(layoutCode);
-                String layoutString = PrefLayoutUtils.getString(context, layoutCode, "");
-                strFromJson(layoutString, userErrorCode);
-            } else {
-                strFromJson(null, userErrorCode);
-                versionCode = "";
-            }
-            if (mIsRequestSuccess) {
-                return;
-            }
+
+        String layoutString = Pref.getString(Pref.LAYOUT_STRING, context, "");
+        strFromJson(layoutString, userErrorCode);
+        if (mIsRequestSuccess) {
+            return;
         }
+        String saveTerminalCode = Pref.getString(Pref.LAYOUT_CODE, context, "");
+        String saveTerminalCodeOld = PrefNormalUtils.getString(context, PrefNormalUtils.LAYOUT_CODE_OLD, "");
+        if (!TextUtils.isEmpty(saveTerminalCode)) {
+            PrefNormalUtils.putString(context, PrefNormalUtils.LAYOUT_CODE_OLD, saveTerminalCode);
+            terminalCode = saveTerminalCode;
+        }
+        //解决不同布局码和布局版本之间的问题
+        if (!TextUtils.isEmpty(saveTerminalCodeOld) && !saveTerminalCode.equals(saveTerminalCodeOld)) {
+            Pref.saveString(Pref.LAYOUT_VERSION, "", context);
+        }
+        versionCode = Pref.getString(Pref.LAYOUT_VERSION, context, "");
+
         versionNo.setVersionNo(versionCode);
         versionNo.setTerminalCode(terminalCode);
         ModeLevelAms.queryLayout(context, TAG, versionNo, new ModeUserErrorCode<Layout>() {
@@ -266,30 +249,9 @@ public class InitLogic {
                     ModeLevelFile.saveLoadImageFile(layoutCode, layout.getStartBkgImg());
                     ModeLevelFile.saveBgImageFile(layoutCode, layout.getBg());
                     Util.clearEmptyAndSortScreen(layout);
-                    if (TextUtils.isEmpty(layoutCode)) {
-                        Pref.saveString(Pref.LAYOUT_VERSION, layout.getCurrentVerNo(), context);
-                        Pref.saveString(Pref.LAYOUT_STRING, new Gson().toJson(layout), context);
-                    } else {
-                        PrefLayoutUtils.putString(context, layoutCode, new Gson().toJson(layout));
-                        String layoutCodes = PrefLayoutUtils.getString(context, PrefLayoutUtils.LIST_LAYOUT_CODE, null);
-                        LinkedHashMap<String, String> layoutMap;
-                        if (!TextUtils.isEmpty(layoutCodes)) {
-                            layoutMap = new Gson().fromJson(layoutCodes, new TypeToken<LinkedHashMap<String, String>>() {
-                            }.getType());
-                        } else {
-                            layoutMap = new LinkedHashMap<>();
-                        }
-                        layoutMap.put(layoutCode, layout.getCurrentVerNo());
-                        String layoutCount = Pref.getString(Pref.SAVE_LAYOUT_COUNT, context, ConfigDefaultValue.SAVE_LAYOUT_COUNT).trim();
-                        int count;
-                        try {
-                            count = Integer.valueOf(layoutCount);
-                        } catch (Exception e) {
-                            count = 3;
-                        }
-                        removeRecord(layoutMap, count);
-                        PrefLayoutUtils.putString(PrefLayoutUtils.LIST_LAYOUT_CODE, new Gson().toJson(layoutMap));
-                    }
+
+                    Pref.saveString(Pref.LAYOUT_VERSION, layout.getCurrentVerNo(), context);
+                    Pref.saveString(Pref.LAYOUT_STRING, new Gson().toJson(layout), context);
                     LayoutInfoSubject.onSuccess(layout);
                 } else {
                     LayoutInfoSubject.onFail(NET_LAYOUT_NULL, "queryLayout==null");

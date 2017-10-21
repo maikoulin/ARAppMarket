@@ -542,13 +542,10 @@ public class MyAppFragment extends MovableFragment implements MyAppRecyclerView.
 
                         if (isChild) {
                             if (i == size - 1) {
-                                if (size == 1) {
-                                    ((MainActivity) mContext).focusCurrentTab();
-                                } else {
-                                    mAdapter.getBlowUpUtil().setScaleDown();
-                                    mAdapter.setRequestFocusPosition(i - 1);
-                                    notifyDataSetChanged();
-                                }
+                                mAdapter.getBlowUpUtil().setScaleDown();
+                                mAdapter.setRequestFocusPosition(i - 1);
+                                notifyDataSetChanged();
+
                             } else {
                                 mAdapter.setRequestFocusPosition(i);
                                 mAdapter.getBlowUpUtil().setScaleDown();
@@ -636,9 +633,6 @@ public class MyAppFragment extends MovableFragment implements MyAppRecyclerView.
 
     @Override
     public boolean onKeyTopUp() {
-        if (mContext instanceof MainActivity) {
-            ((MainActivity) mContext).focusCurrentTab();
-        }
         return true;
     }
 

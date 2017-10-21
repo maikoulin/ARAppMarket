@@ -16,7 +16,6 @@ public class Pref {
     public static final String PROJECT_NAME = "project_name";
     public static final String CONFIG_FETCH_CYCLE = "config_fetch_cycle";
     public static final String AMS_URL = "ams_url";
-    public static final String ACT_URL = "act_url";
     public static final String UPDATE_TIME = "update_time";
     public static final String LAYOUT_VERSION = "layout_version";
     public static final String LAYOUT_STRING = "layout_string";
@@ -26,15 +25,12 @@ public class Pref {
     public static final String PACKAGE_LIST = "packageList";
     public static final String APP_REPORT_CYCLE = "appinfo_report_cycle";
     public static final String SHOW_OTHER_APP_SWITCH = "show_other_app_switch";
-    public static final String CLOUD_GAME_URL = "cloud_game_url";
-    public static final String AD_CYCLE = "ad_cycle";
     public static final String LAYOUT_CODE = "layout_code";
     public static final String PHONEHELPER_DOWNLOAD_URL = "phonehelper_download_url";
     public static final String IS_EXIT_DIALOG_SHOW = "is_exit_dialog_show";
     public static final String QQ_GROUP = "qq_group";
     public static final String HASH_TIME = "hashTime";
     public static final String SHOW_INSTALL_HINT = "show_install_hint";
-    public static final String LOCK_PASS = "lock_pass";
     public static final String LOG_LEVEl = "logLevel";
     public static final String NEW_USER_RECOMMEND = "new_user_recommend";
     public static final String SHOW_RECOMMEND = "show_recommend";

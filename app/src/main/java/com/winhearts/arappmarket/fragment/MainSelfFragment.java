@@ -11,8 +11,8 @@ import com.winhearts.arappmarket.R;
 import com.winhearts.arappmarket.model.MenuItem;
 import com.winhearts.arappmarket.model.Screen;
 import com.winhearts.arappmarket.network.VolleyQueueController;
-import com.winhearts.arappmarket.utils.Pref;
 import com.winhearts.arappmarket.utils.ScreenUtil;
+import com.winhearts.arappmarket.utils.cust.PrefNormalUtils;
 import com.winhearts.arappmarket.view.HorizontalLayout;
 import com.winhearts.arappmarket.view.SelfScreenUtil;
 
@@ -30,12 +30,9 @@ public class MainSelfFragment extends MovableFragment {
     private float widthScale;
     private MenuItem mParentMenu;
     private MenuItem mCurrentMenu;
-    private int index;
-    private int tabCount;
     private int mScreenWidth;
     private int mScreenHeight;
     private String layoutId;
-    private boolean isHome;
     private boolean mFlag = false; //用于是否是第一次显示并且非tab切换
 
     @Override
@@ -46,11 +43,8 @@ public class MainSelfFragment extends MovableFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_main_self, container, false);
         }
-        MenuItem item = (MenuItem) this.getArguments().getSerializable("object");
-        index = this.getArguments().getInt("index", 0);
-        tabCount = this.getArguments().getInt("tab_count", 0);
-        layoutId = this.getArguments().getString("layoutId", "");
-        isHome = getArguments().getBoolean("isHome", false);
+        MenuItem item = (MenuItem) this.getArguments().getSerializable("message");
+        layoutId = PrefNormalUtils.getString(mContext, PrefNormalUtils.LAYOUT_ID, "");
         mParentMenu = item;
         initView();
         return rootView;
@@ -107,10 +101,6 @@ public class MainSelfFragment extends MovableFragment {
             SelfScreenUtil.initScreenByElements(mContext, screens, viewWidth, viewHeight, horizontalLayout, mCurrentMenu, layoutId);
         }
         horizontalLayout.setOnBorderListener(mOnBorderListener);
-        if (isHome && Pref.getString(Pref.SHOW_RECOMMEND, mContext, "1").endsWith("1")) {
-            horizontalLayout.addRecommend(screens.size());
-        }
-
     }
 
     //对布局上下左右进行监听
@@ -134,14 +124,11 @@ public class MainSelfFragment extends MovableFragment {
 
         @Override
         public boolean onKeyRightEnd(int page) {
-            if (index == tabCount - 1) {
-                HorizontalLayout child = horizontalLayout;
-                if (child != null) {
-                    child.setScaleUpDown();
-                }
-                return true;
+            HorizontalLayout child = horizontalLayout;
+            if (child != null) {
+                child.setScaleUpDown();
             }
-            return false;
+            return true;
         }
     };
 

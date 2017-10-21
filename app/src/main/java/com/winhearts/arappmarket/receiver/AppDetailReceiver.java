@@ -13,7 +13,6 @@ import com.winhearts.arappmarket.activity.MainActivity;
 import com.winhearts.arappmarket.activity.TopicActivity;
 import com.winhearts.arappmarket.model.SoftwareType;
 import com.winhearts.arappmarket.model.Topic;
-import com.winhearts.arappmarket.modellevel.ModeLevelAmsUpload;
 import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.common.ManagerUtil;
 
@@ -28,7 +27,6 @@ public class AppDetailReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         LogDebugUtil.d("AppDetailReceiver", "-------------");
         String action = intent.getAction();
-        ModeLevelAmsUpload.uploadLaunchClickData(context, intent.getStringExtra("location"), null);
         String type = intent.getStringExtra("type");
         if (action.equals("com.winhearts.APP_DETAIL_RECEIVER") && !TextUtils.isEmpty(type)) {
             switch (type) {

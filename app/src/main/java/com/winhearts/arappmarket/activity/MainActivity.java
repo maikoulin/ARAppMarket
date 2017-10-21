@@ -2,60 +2,55 @@ package com.winhearts.arappmarket.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 import com.winhearts.arappmarket.R;
-import com.winhearts.arappmarket.constant.CommonHierarchy;
 import com.winhearts.arappmarket.constant.Constant;
 import com.winhearts.arappmarket.logic.InitLogic;
-import com.winhearts.arappmarket.logic.LayoutInfoSubject;
 import com.winhearts.arappmarket.logic.PollingLogReportLogic;
 import com.winhearts.arappmarket.model.Layout;
 import com.winhearts.arappmarket.model.MenuItem;
-import com.winhearts.arappmarket.model.SoftwareInfo;
-import com.winhearts.arappmarket.model.Softwares;
-import com.winhearts.arappmarket.model.Topic;
-import com.winhearts.arappmarket.modellevel.ModeLevelAmsMenu;
 import com.winhearts.arappmarket.modellevel.ModeUserErrorCode;
 import com.winhearts.arappmarket.network.VolleyQueueController;
 import com.winhearts.arappmarket.service.InstallHintService;
 import com.winhearts.arappmarket.utils.ActivityStack;
+import com.winhearts.arappmarket.utils.ContainerUtil;
 import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.Pref;
-import com.winhearts.arappmarket.utils.RecordAppWatchUtil;
+import com.winhearts.arappmarket.utils.ScreenUtil;
 import com.winhearts.arappmarket.utils.ViewUtils;
-import com.winhearts.arappmarket.utils.common.PackageUtils;
 import com.winhearts.arappmarket.utils.common.ToastUtils;
-import com.winhearts.arappmarket.utils.cust.LayoutInfoObserver;
 import com.winhearts.arappmarket.utils.cust.PrefNormalUtils;
 import com.winhearts.arappmarket.view.ExitHintDialog;
-import com.winhearts.arappmarket.view.NewUserDialog;
+import com.winhearts.arappmarket.view.HorizontalLayout;
 import com.winhearts.arappmarket.view.NewUserExitDialog;
+import com.winhearts.arappmarket.view.RecommendCardView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 主界面
  */
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity {
     private final static String TAG = "MainActivity";
     private boolean isDebug = false;
     public static String oldMenuId = null;
     public static String oldSubMenuId = null;
     public static boolean isShowMenu = false;
-    private boolean mLayoutSuccess = false;
     private Context mContext;
     private long mExitTime = 0;
     private List<MenuItem> menuItems;
+    private HorizontalLayout mMainLayout;
     private ExitHintDialog exitHintDialog;
     private NewUserExitDialog newUserExitDialog;
-    private LayoutInfoObserver mLayoutInfoObserver;
-    private RecordAppWatchUtil mRecordAppWatchUtil;
+    private TextView tvPersonage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +59,17 @@ public class MainActivity extends BaseActivity{
         Constant.INSTALL_SHOW = false;
         setContentView(R.layout.main_activity);
         setLoadAndErrorView(R.id.view_load_and_error);
+        mMainLayout = (HorizontalLayout) this.findViewById(R.id.vl_main_content);
+        tvPersonage = (TextView) this.findViewById(R.id.tv_main_personage);
         mContext = this;
-        CommonHierarchy.setBgImage((SimpleDraweeView) findViewById(R.id.simpleDraweeView_bg));
-        getNewUserRecommend();
-        initLayout();
-        setUpdateLayout();
         Intent installService = new Intent(mContext, InstallHintService.class);
         mContext.startService(installService);
-
-        if (mRecordAppWatchUtil == null) {
-            mRecordAppWatchUtil = new RecordAppWatchUtil(this);
+        fillContent();
+        String layoutString = Pref.getString(Pref.LAYOUT_STRING, mContext, "");
+        if (!TextUtils.isEmpty(layoutString)) {
+            Layout saveLayout = new Gson().fromJson(layoutString, Layout.class);
+            initFirstLevelMenu(saveLayout);
+            LogDebugUtil.e("Layout", saveLayout.toString());
         }
     }
 
@@ -89,7 +85,6 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected void onDestroy() {
-        unregisterLayoutObserver();
         VpnStoreApplication.getApp().setLayoutCode(null);
         PollingLogReportLogic.logReport();
         InitLogic.mIsRequestSuccess = false;
@@ -117,87 +112,104 @@ public class MainActivity extends BaseActivity{
 
     }
 
+    private void fillContent() {
+        int with = ScreenUtil.dip2px(this, 310);
+        int height = ScreenUtil.dip2px(this, 260);
+        mMainLayout.setClipChildren(false);
+        mMainLayout.setSize(with, height, 3, 2);
+        RecommendCardView boutiqueView = new RecommendCardView(this)
+                .bindData("res://drawable/" + R.drawable.ic_main_boutique_n, with, height / 3);
+        mMainLayout.addItemView(boutiqueView, 0, 0, 0, 2, 1, 0, 6);
+        RecommendCardView categoryView = new RecommendCardView(this)
+                .bindData("res://drawable/" + R.drawable.ic_main_category_n, with, height / 3);
+        mMainLayout.addItemView(categoryView, 0, 0, 1, 2, 2, 0, 6);
+        RecommendCardView leftView = new RecommendCardView(this)
+                .bindData("res://drawable/" + R.drawable.tv_main_other_menu, with / 2, height / 3);
+        mMainLayout.addItemView(leftView, 0, 0, 2, 1, 3, 0, 6);
+        RecommendCardView rightView = new RecommendCardView(this)
+                .bindData("res://drawable/" + R.drawable.tv_main_other_menu, with / 2, height / 3);
+        mMainLayout.addItemView(rightView, 0, 1, 2, 2, 3, 0, 6);
 
-    private void unregisterLayoutObserver() {
-        if (mLayoutInfoObserver == null) {
-            return;
-        }
-        LayoutInfoSubject.unregisterObserve(mLayoutInfoObserver);
+        boutiqueView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContainerUtil.isEmptyOrNull(menuItems)) {
+                    queryLayout();
+                } else {
+                    Intent boutiqueIntent = new Intent(mContext, BoutiqueActivity.class);
+                    MenuItem menuItem = menuItems.get(0);
+                    Bundle args = new Bundle();
+                    args.putSerializable("message", menuItem);
+                    boutiqueIntent.putExtras(args);
+                    startActivity(boutiqueIntent);
+                }
+
+
+            }
+        });
+        categoryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContainerUtil.isEmptyOrNull(menuItems)) {
+                    queryLayout();
+                } else {
+
+                }
+            }
+
+        });
+        tvPersonage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, SettingActivity.class));
+            }
+        });
+        mMainLayout.setOnBorderListener(new HorizontalLayout.OnBorderListener() {
+            @Override
+            public boolean onKeyBottomDown(int page, int pageCount, RectF rect) {
+                return true;
+            }
+
+            @Override
+            public boolean onKeyTopUp(int page, RectF rect) {
+                return true;
+            }
+
+            @Override
+            public boolean onKeyLeftEnd(int page) {
+                tvPersonage.requestFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onKeyRightEnd(int page) {
+                return true;
+            }
+        });
+
+
     }
+
 
     @Override
     protected void onReTryClicked() {
-        initLayout();
-    }
-
-    private void setUpdateLayout() {
-        //更新布局
-        mLayoutInfoObserver = new LayoutInfoObserver() {
-            @Override
-            public void onSuccess(final Layout layout) {
-                mLayoutSuccess = true;
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        initFirstLevelMenu(layout);
-                    }
-                });
-
-            }
-
-            @Override
-            public void onFail(final int code, String description) {
-                if (!mLayoutSuccess) {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            showError(code);
-                        }
-                    });
-                }
-
-            }
-        };
-        LayoutInfoSubject.registerObserve(mLayoutInfoObserver);
-    }
-
-    private void initLayout() {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                new InitLogic(getApplicationContext()).init();
-            }
-        }).start();
-        queryLayout(mContext);
 
     }
+
 
     private Handler mHandler = new Handler();
 
-    private void queryLayout(Context context) {
+    private void queryLayout() {
         showLoading();
         String layoutCode = VpnStoreApplication.getApp().getLayoutCode();
-        InitLogic.queryLayout(context, layoutCode, new ModeUserErrorCode<Layout>() {
+        InitLogic.queryLayout(mContext, layoutCode, new ModeUserErrorCode<Layout>() {
             @Override
             public void onJsonSuccess(final Layout layout) {
                 if (layout != null) {
-                    mLayoutSuccess = true;
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            if (Build.VERSION.SDK_INT < 19) {
-                                //延迟加载，让背景先出来，而不是黑屏
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        initFirstLevelMenu(layout);
-                                    }
-                                }, 500);
-                            } else {
-                                initFirstLevelMenu(layout);
-
-                            }
+                            initFirstLevelMenu(layout);
                         }
                     });
                 } else {
@@ -212,80 +224,13 @@ public class MainActivity extends BaseActivity{
         });
     }
 
-    //新用户推荐
-    private void getNewUserRecommend() {
-        if (PrefNormalUtils.getString(MainActivity.this, PrefNormalUtils.IS_NEW_USER, "1").equals("1")) {
-            PrefNormalUtils.putString(MainActivity.this, PrefNormalUtils.IS_NEW_USER, "0");
-            String topicCode = Pref.getString(Pref.NEW_USER_RECOMMEND, this, "NEW");
-            if (topicCode.equals("")) {
-                return;
-            }
-            Topic topic = new Topic();
-            topic.setCode(topicCode);
-            ModeLevelAmsMenu.queryTopocSoftWareList(this, TAG, 1, 10, topic,
-                    new ModeUserErrorCode<Softwares>() {
-
-                        @Override
-                        public void onRequestFail(int errorCode, Throwable e) {
-                            LogDebugUtil.d(TAG, "onRequestFail: " + e.getMessage());
-                        }
-
-                        @Override
-                        public void onJsonSuccess(Softwares t) {
-                            List<SoftwareInfo> softwareInfos = filterInstalledApp(t.getSoftwares());
-                            if (softwareInfos.size() > 0) {
-                                new NewUserDialog(MainActivity.this, softwareInfos).show();
-                            }
-                        }
-                    });
-        }
-
-    }
-
-    private List<SoftwareInfo> filterInstalledApp(List<SoftwareInfo> softwareInfos) {
-        List<SoftwareInfo> softwareInfoNew = new ArrayList<>();
-        for (int i = 0; i < softwareInfos.size(); i++) {
-            boolean isInstall = PackageUtils.isAppInstalled(mContext, softwareInfos.get(i).getPackageName());
-            if (!isInstall) {
-                softwareInfoNew.add(softwareInfos.get(i));
-            }
-        }
-        if (softwareInfoNew.size() > 8) {
-            return softwareInfoNew.subList(0, 8);
-        }
-        return softwareInfoNew;
-    }
-
     private void initFirstLevelMenu(Layout layout) {
         hideLoading();
         menuItems = layout.getMenuInfos();
         String layoutId = layout.getLayoutId();
         PrefNormalUtils.putString(mContext, PrefNormalUtils.LAYOUT_ID, layoutId);
-        for (int i = 0; i < menuItems.size(); i++) {
-            MenuItem menuItem = menuItems.get(i);
-            String name = menuItem.getName();
-            Bundle args = new Bundle();
-            args.putInt("index", i);
-            args.putInt("tab_count", menuItems.size());
-            args.putString("typeName", name);
-            args.putString("layoutId", layoutId);
-            if (menuItem.getHasChild() == 1) {
-                MenuItem chileMenuItem = menuItem.getChild().get(0);
-                args.putSerializable("object", menuItem.getChild());
-                menuItem.setMenuDataType(chileMenuItem.getMenuDataType());
-                menuItem.setScreens(chileMenuItem.getScreens());
-            } else {
-                args.putSerializable("object", menuItem);
-            }
-
-            if ("SELF_DEFINE".equals(menuItem.getMenuDataType())) {
-
-            } else {
-
-            }
-        }
-
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK

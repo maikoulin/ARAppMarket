@@ -9,7 +9,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.text.TextUtils;
 
-import com.winhearts.arappmarket.logic.CheckLoginLogic;
 import com.winhearts.arappmarket.logic.PollingLogReportLogic;
 import com.winhearts.arappmarket.model.ConfigInfo;
 import com.winhearts.arappmarket.modellevel.ModeLevelAms;
@@ -50,15 +49,16 @@ public class PollingService extends Service {
         super.onCreate();
         LoggerUtil.d("服务开启", "startService");
         mContext = this;
-        start(mContext);
-        pollingLogReportLogic.set(new PollingLogReportLogic(this));
+//        start(mContext);
+//        pollingLogReportLogic.set(new PollingLogReportLogic(this));
 
-        CheckLoginLogic.getInstance().checkLogin(true);
+//        CheckLoginLogic.getInstance().checkLogin(true);
     }
 
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        pollingLogReportLogic.get().cancelTimer();
+//        pollingLogReportLogic.get().cancelTimer();
         stop();
     }
 

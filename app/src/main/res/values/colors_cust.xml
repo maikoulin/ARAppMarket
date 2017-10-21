@@ -5,10 +5,7 @@
 
     <color name="account_edit_tip">@color/comm_hint</color>
     <color name="account_edit_hint">#999999</color>
-    <!-- 支付sdk -->
-    <color name="pay_txt_dialog_title">#9fffffff</color>
-    <color name="pay_txt_dialog_btn">#ffffff</color>
-    <color name="pay_txt_amount">#e1aa57</color>
+
     <color name="sign_text">#333333</color>
     <color name="app_detail_stroke">#3392bde8</color>
 </resources>

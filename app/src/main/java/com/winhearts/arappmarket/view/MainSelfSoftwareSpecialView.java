@@ -9,7 +9,6 @@ import android.widget.ViewFlipper;
 
 import com.google.gson.Gson;
 import com.winhearts.arappmarket.R;
-import com.winhearts.arappmarket.constant.Constant;
 import com.winhearts.arappmarket.model.DisplayItem;
 import com.winhearts.arappmarket.model.Element;
 import com.winhearts.arappmarket.model.SoftwareInfo;
@@ -60,9 +59,8 @@ public class MainSelfSoftwareSpecialView extends RelativeLayout {
     private void setSpecialMessage(List<SoftwareInfo> softwareInfos, boolean isLoop) {
         int size = softwareInfos.size();
         for (int i = 0; i < size; i++) {
-            DisplayItem item = new DisplayItem();
-            item.imageUrl = softwareInfos.get(i).getIcon();
-            RecommendCardView recommendCardView = new RecommendCardView(getContext(), Constant.Horizontal, 0, 0).bindData(item, width, height);
+
+            RecommendCardView recommendCardView = new RecommendCardView(getContext()).bindData(softwareInfos.get(i).getIcon(), width, height);
             vfIcon.addView(recommendCardView);
         }
         vfIcon.setFlipInterval(10000);

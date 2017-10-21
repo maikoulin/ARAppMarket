@@ -3,15 +3,14 @@ package com.winhearts.arappmarket.modellevel;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.winhearts.arappmarket.network.SubVolleyResponseHandler;
-import com.winhearts.arappmarket.network.UIDataListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.winhearts.arappmarket.constant.ConstInfo;
 import com.winhearts.arappmarket.model.AppInfo;
 import com.winhearts.arappmarket.model.DownloadPath;
 import com.winhearts.arappmarket.model.UploadClick;
-import com.winhearts.arappmarket.model.UploadFuncUsedEntity;
+import com.winhearts.arappmarket.network.SubVolleyResponseHandler;
+import com.winhearts.arappmarket.network.UIDataListener;
 import com.winhearts.arappmarket.utils.AppManager;
 import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.LoggerUtil;
@@ -217,90 +216,6 @@ public class ModeLevelAmsUpload {
             public void onErrorHappened(int errorCode, Exception errorMessage) {
                 if (user != null) {
                     user.onRequestFail(errorCode, errorMessage);
-                }
-            }
-
-            @Override
-            public void onVolleyError(int errorCode, Exception errorMessage) {
-                onErrorHappened(errorCode, errorMessage);
-            }
-        });
-    }
-
-    /**
-     * 上报launch点击跳转情况
-     */
-
-    public static void uploadLaunchClickData(Context context, String position, final ModeUserErrorCode<String> user) {
-        final String url = Util.getUrl(context, ModeUrl.UPLOAD_LAUNCH_CLICK_DATA);
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("packageName", context.getPackageName());
-        map.put("mac", MacUtil.getMacAddress());
-        map.put("versionName", Util.getVersionName(context));
-        map.put("wsId", ConstInfo.accountWsId);
-        map.put("boxCode", Util.getBox());
-        map.put("position", position);
-        final Map<String, String> mRequestParams = RequestUtil.getRequestParam(new Gson().toJson(map));
-        Type type = new TypeToken<String>() {
-        }.getType();
-        SubVolleyResponseHandler<String> subVolleyResponseHandler = new SubVolleyResponseHandler<String>(type, context);
-        subVolleyResponseHandler.setRetrytime(2);
-        subVolleyResponseHandler.setTimeOut(8000, 2);
-        subVolleyResponseHandler.sendAsyncPostRequest(url, mRequestParams, false, new UIDataListener<String>() {
-            @Override
-            public void onDataChanged(String data) {
-                if (user != null) {
-                    user.onJsonSuccess(data);
-                }
-            }
-
-            @Override
-            public void onErrorHappened(int errorCode, Exception errorMessage) {
-                if (user != null) {
-                    user.onRequestFail(errorCode, errorMessage);
-                }
-            }
-
-            @Override
-            public void onVolleyError(int errorCode, Exception errorMessage) {
-                onErrorHappened(errorCode, errorMessage);
-            }
-        });
-
-    }
-
-    /**
-     * 功能使用记录上报
-     */
-
-    public static void uploadFuncUsed(final Context context, List<UploadFuncUsedEntity> list,
-                                      final ModeUser<String> user) {
-
-        String url = Util.getUrl(context, ModeUrl.UPLOAD_FUNC_USED);
-        String accountWsId = ConstInfo.accountWsId;
-        HashMap map = new HashMap();
-        map.put("mac", MacUtil.getMacAddress());
-        map.put("wsId", accountWsId);
-        map.put("clickLog", list);
-        final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(map));
-        Type type = new TypeToken<String>() {
-        }.getType();
-        SubVolleyResponseHandler<String> subVolleyResponseHandler = new SubVolleyResponseHandler<String>(type, context);
-        subVolleyResponseHandler.setRetrytime(2);
-        subVolleyResponseHandler.setTimeOut(8000, 2);
-        subVolleyResponseHandler.sendAsyncPostRequest(url, params, false, new UIDataListener<String>() {
-            @Override
-            public void onDataChanged(String data) {
-                if (user != null) {
-                    user.onJsonSuccess(data);
-                }
-            }
-
-            @Override
-            public void onErrorHappened(int errorCode, Exception errorMessage) {
-                LogDebugUtil.d(TAG, "--------code----" + errorCode + "--e----" + errorMessage.getMessage());
-                if (user != null) {
-                    user.onRequestFail(errorMessage);
                 }
             }
 

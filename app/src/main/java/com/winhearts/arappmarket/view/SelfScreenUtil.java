@@ -8,20 +8,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ViewFlipper;
 
+import com.google.gson.Gson;
 import com.winhearts.arappmarket.R;
 import com.winhearts.arappmarket.activity.ActActivity;
 import com.winhearts.arappmarket.activity.AppCategoryActivity;
 import com.winhearts.arappmarket.activity.AppDetailActivity;
 import com.winhearts.arappmarket.activity.MainActivity;
-
-
 import com.winhearts.arappmarket.activity.RankListActivity;
 import com.winhearts.arappmarket.activity.TopicActivity;
 import com.winhearts.arappmarket.activity.TopicListActivity;
-import com.google.gson.Gson;
 import com.winhearts.arappmarket.constant.Constant;
 import com.winhearts.arappmarket.model.ActivityInfo;
-import com.winhearts.arappmarket.model.DisplayItem;
 import com.winhearts.arappmarket.model.DownloadPath;
 import com.winhearts.arappmarket.model.Element;
 import com.winhearts.arappmarket.model.MenuItem;
@@ -67,7 +64,6 @@ public class SelfScreenUtil {
             ArrayList<Element> elements = screen.getElementResInfoList();
 
             if (elements != null) {
-                int count = elements.size();
                 for (int i = 0; i < elements.size(); i++) {
                     final Element element = elements.get(i);
                     int left = element.getpLeft();
@@ -76,21 +72,11 @@ public class SelfScreenUtil {
                     int width = element.getColSpan();
                     final int bottom = top + height;
                     int right = left + width;
-                    final DisplayItem item = new DisplayItem();
+                    String imageUrl = null;
                     int realWidth = width * (screenWidth / screen.getCol());
                     int realHeight = height * (screenHeight / screen.getRow());
-
-                    int type = Constant.Vertical;
-                    if (height > width) {
-                        type = Constant.Vertical;
-                    } else if (width > height) {
-                        type = Constant.Horizontal;
-                    } else {
-                        type = Constant.Normal;
-                    }
                     View.OnFocusChangeListener oldOnFocusChangeListener;
-
-                    View view = null;
+                    View view;
                     String resInfo = element.getResInfo();
                     if (element.getResType().equals("RANK_TYPE") && resInfo != null) {
                         SoftwareType softwareType = new Gson().fromJson(resInfo, SoftwareType.class);
@@ -112,10 +98,10 @@ public class SelfScreenUtil {
                             } else {
                                 SoftwareInfo softwareInfo = SoftwareUtil.getShowSoftware(mContext, softwareInfos);
                                 if (softwareInfo != null) {
-                                    item.imageUrl = softwareInfo.getIcon();
+                                    imageUrl = softwareInfo.getIcon();
                                 }
                                 view = new RecommendCardView(
-                                        mContext, type, 0, 0).bindData(item, realWidth, realHeight);
+                                        mContext).bindData(imageUrl, realWidth, realHeight);
                                 view.setTag(R.integer.tag_record_software, softwareInfo);
                             }
 
@@ -123,9 +109,9 @@ public class SelfScreenUtil {
                             view = new MainSelfSoftwareView(mContext, height).bindData(element);
                         }
                     } else {
-                        item.imageUrl = element.getResIcon();
+                        imageUrl = element.getResIcon();
                         view = new RecommendCardView(
-                                mContext, type, 0, 0).bindData(item, realWidth, realHeight);
+                                mContext).bindData(imageUrl, realWidth, realHeight);
                     }
                     view.setTag(element);
                     layout.addItemView(view, 0, left - 1, top - 1, right - 1, bottom - 1, HorizontalLayout.DIVIDE_SIZE, HorizontalLayout.DIVIDE_SIZE, countScreen, screen.getCol(), screen.getRow());
@@ -159,7 +145,7 @@ public class SelfScreenUtil {
                                 String specialRecom = softwareResInfo.getSpecialRecom();
                                 String loop = softwareResInfo.getLoop();
                                 String packageName;
-                                SoftwareInfo softwareInfo = null;
+                                SoftwareInfo softwareInfo;
                                 if (softwareInfos != null && specialRecom != null && loop != null) {
                                     Intent intent = new Intent(mContext,
                                             AppDetailActivity.class);

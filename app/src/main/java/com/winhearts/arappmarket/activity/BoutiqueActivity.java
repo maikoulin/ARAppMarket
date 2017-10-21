@@ -16,7 +16,7 @@ public class BoutiqueActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boutique);
         MainSelfFragment fragment= new MainSelfFragment();
-        fragment.setArguments(getIntent().getBundleExtra("message"));
+        fragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commitAllowingStateLoss();
 
     }

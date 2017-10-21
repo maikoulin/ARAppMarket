@@ -8,14 +8,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.SystemClock;
-import android.text.TextUtils;
 
-import com.winhearts.arappmarket.network.VolleyResponseHandler;
 import com.winhearts.arappmarket.constant.ConstVersionUrl;
 import com.winhearts.arappmarket.model.Element;
 import com.winhearts.arappmarket.model.Layout;
 import com.winhearts.arappmarket.model.MenuItem;
 import com.winhearts.arappmarket.model.Screen;
+import com.winhearts.arappmarket.network.VolleyResponseHandler;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -31,7 +30,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- *  常用方法
+ * 常用方法
  */
 public class Util {
 
@@ -46,21 +45,6 @@ public class Util {
      * AMS 的 URL
      *
      * @param context
-     * @return
-     */
-    public static String getAMSUrl(Context context) {
-        String amsUrl = Pref.getString(Pref.AMS_URL, context, null);
-        if (TextUtils.isEmpty(amsUrl)) {
-            return ConstVersionUrl.AMS;
-        } else {
-            return amsUrl;
-        }
-    }
-
-    /**
-     * AMS 的 URL
-     *
-     * @param context
      * @param stringUrl
      * @return
      */
@@ -68,27 +52,10 @@ public class Util {
         String amsUrl = Pref.getString(Pref.AMS_URL, context, "");
         if (amsUrl.equals("")) {
 
-            return ConstVersionUrl.AMS + stringUrl;
+            return ConstVersionUrl.ARMS + stringUrl;
         } else {
 
             return amsUrl + stringUrl;
-        }
-    }
-
-    /**
-     * Act 的 URL
-     *
-     * @param context
-     * @param stringUrl
-     * @return
-     */
-    public static String getActUrl(Context context, String stringUrl) {
-        String actUrl = Pref.getString(Pref.ACT_URL, context, "");
-        if (actUrl.equals("")) {
-            return ConstVersionUrl.ACT + stringUrl;
-        } else {
-            return actUrl + stringUrl;
-
         }
     }
 

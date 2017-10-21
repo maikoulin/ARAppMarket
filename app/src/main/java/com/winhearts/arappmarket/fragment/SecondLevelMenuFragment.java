@@ -416,12 +416,10 @@ public class SecondLevelMenuFragment extends MovableFragment implements OnPageCh
                 }
                 mViewPager.setCurrentItem(page - 1);
             } else {
-                if (mContext instanceof MainActivity) {
-                    ((MainActivity) mContext).focusCurrentTab();
-                } else {
-                    HorizontalLayout child = (HorizontalLayout) mViewPager.getChildAt(0);
-                    child.setScaleUpDown();
-                }
+
+                HorizontalLayout child = (HorizontalLayout) mViewPager.getChildAt(0);
+                child.setScaleUpDown();
+
             }
             return true;
         }
@@ -451,10 +449,7 @@ public class SecondLevelMenuFragment extends MovableFragment implements OnPageCh
 
         @Override
         public boolean onKeyLeftEnd(int page) {
-            if (index == 0) {
-                ((MainActivity) mContext).setSelectPage(0);
-                return true;
-            }
+
             return false;
         }
 
@@ -869,12 +864,7 @@ public class SecondLevelMenuFragment extends MovableFragment implements OnPageCh
 
     @Override
     protected void onReTryClicked() {
-        if (mContext instanceof MainActivity) {
-            ((MainActivity) mContext).focusCurrentTab();
-            refreshIfError();
-        } else {
-            initContent(mCurrentMenu);
-        }
+        initContent(mCurrentMenu);
     }
 
     @Override

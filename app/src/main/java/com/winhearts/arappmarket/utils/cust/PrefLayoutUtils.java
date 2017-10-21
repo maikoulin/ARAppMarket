@@ -13,8 +13,6 @@ import com.winhearts.arappmarket.activity.VpnStoreApplication;
 public class PrefLayoutUtils {
 
     private static String PREFERENCE_NAME = "pref_layout";
-    //保存的布局码列表，和对应的版本，使用LinkedHashMap
-    public static String LIST_LAYOUT_CODE = "list_layout_code";
 
     private PrefLayoutUtils() {
         throw new AssertionError();

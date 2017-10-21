@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 import com.winhearts.arappmarket.R;
 import com.winhearts.arappmarket.logic.CheckLoginLogic;
 import com.winhearts.arappmarket.model.Layout;
-import com.winhearts.arappmarket.modellevel.ModeLevelAmsUpload;
 import com.winhearts.arappmarket.modellevel.ModeLevelFile;
 import com.winhearts.arappmarket.utils.Pref;
 import com.winhearts.arappmarket.utils.Util;
@@ -43,7 +42,6 @@ public class LoadActivity1 extends BaseActivity {
         initView();
         updateLayout(null);
         CheckLoginLogic.getInstance().checkLogin(false);
-        ModeLevelAmsUpload.uploadLaunchClickData(getApplicationContext(), Util.getBox() + "-MyApp", null);
         delayIntent();
     }
 

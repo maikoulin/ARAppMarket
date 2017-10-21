@@ -3,8 +3,6 @@ package com.winhearts.arappmarket.modellevel;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.winhearts.arappmarket.network.SubVolleyResponseHandler;
-import com.winhearts.arappmarket.network.UIDataListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.winhearts.arappmarket.model.ClientInfoForRecommendApp;
@@ -18,6 +16,8 @@ import com.winhearts.arappmarket.model.SoftwareInfo;
 import com.winhearts.arappmarket.model.Softwares;
 import com.winhearts.arappmarket.model.Topic;
 import com.winhearts.arappmarket.model.VersionNo;
+import com.winhearts.arappmarket.network.SubVolleyResponseHandler;
+import com.winhearts.arappmarket.network.UIDataListener;
 import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.Pref;
 import com.winhearts.arappmarket.utils.RequestUtil;
@@ -182,12 +182,13 @@ public class ModeLevelAms {
         final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(versionNo));
         Type type = new TypeToken<Layout>() {
         }.getType();
-        SubVolleyResponseHandler<Layout> subVolleyResponseHandler = new SubVolleyResponseHandler<Layout>(type, mContext);
+        SubVolleyResponseHandler<Layout> subVolleyResponseHandler = new SubVolleyResponseHandler<>(type, mContext);
         subVolleyResponseHandler.setRetrytime(2);
         subVolleyResponseHandler.setRequestTag(tag);
         subVolleyResponseHandler.sendAsyncPostRequest(url, params, false, new UIDataListener<Layout>() {
             @Override
             public void onDataChanged(Layout data) {
+                LogDebugUtil.e("layoutDate", data.toString());
                 if (modeUserErrorCode != null) {
                     modeUserErrorCode.onJsonSuccess(data);
                 }
@@ -195,20 +196,16 @@ public class ModeLevelAms {
 
             @Override
             public void onErrorHappened(int errorCode, Exception errorMessage) {
+                LogDebugUtil.e("onErrorHappened", errorMessage.getMessage());
                 if (modeUserErrorCode != null) {
                     modeUserErrorCode.onRequestFail(errorCode, errorMessage);
                 }
             }
 
-//            @Override
-//            public void onStringChanged(String src) {
-////                File file = new File(Environment.getExternalStorageDirectory() + "/layout.text");
-////                try {
-////                    FileUtils.write(file, src);
-////                } catch (IOException e) {
-////                    e.printStackTrace();
-////                }
-//            }
+            @Override
+            public void onStringChanged(String src) {
+                LogDebugUtil.e("layoutStr", src);
+            }
 
             @Override
             public void onVolleyError(int errorCode, Exception errorMessage) {

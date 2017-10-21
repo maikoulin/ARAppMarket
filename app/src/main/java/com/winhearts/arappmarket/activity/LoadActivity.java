@@ -8,18 +8,17 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
-import com.winhearts.arappmarket.R;
-import com.winhearts.arappmarket.network.VolleyQueueController;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.core.ImagePipelineFactory;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.google.gson.Gson;
+import com.winhearts.arappmarket.R;
 import com.winhearts.arappmarket.constant.CommonHierarchy;
 import com.winhearts.arappmarket.logic.CheckLoginLogic;
 import com.winhearts.arappmarket.model.Layout;
-import com.winhearts.arappmarket.modellevel.ModeLevelAmsUpload;
 import com.winhearts.arappmarket.modellevel.ModeLevelFile;
+import com.winhearts.arappmarket.network.VolleyQueueController;
 import com.winhearts.arappmarket.utils.LoggerUtil;
 import com.winhearts.arappmarket.utils.Pref;
 import com.winhearts.arappmarket.utils.Util;
@@ -64,7 +63,6 @@ public class LoadActivity extends BaseActivity {
         updateLayout(mLayoutCode);
         int showTime;
         if (TextUtils.isEmpty(mLayoutCode)) {
-            ModeLevelAmsUpload.uploadLaunchClickData(getApplicationContext(), Util.getBox(), null);
             CheckLoginLogic.getInstance().checkLogin(false);
             String layoutString = Pref.getString(Pref.LAYOUT_STRING, mContext, "");
             if (!TextUtils.isEmpty(layoutString)) {

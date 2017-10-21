@@ -43,9 +43,8 @@ android {
     productFlavors {
 
         apptest {
-            buildConfigField "String", "AMS", "\"https://172.16.13.36:9912\""
+            buildConfigField "String", "ARMS", "\"http://125.77.197.117:9001\""
             buildConfigField "String", "VMS", "\"http://172.16.13.36:9001\""
-            buildConfigField "String", "ACT", "\"https://172.16.13.36:9927\""
             buildConfigField "String", "PROJECT", "\"apptest\""
         }
     }

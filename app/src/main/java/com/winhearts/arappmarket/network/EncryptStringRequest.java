@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class EncryptStringRequest extends StringRequest {
     private Priority mPriority = Priority.HIGH;
-    public static final String prefix = "281031764343127189610010480095250822367";
+    public static final String prefix = "61919538434965145604794060779633385472";
     public static final int safeCode = 1;
     private Map<String, String> params;
 
