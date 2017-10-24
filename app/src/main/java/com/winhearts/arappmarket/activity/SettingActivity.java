@@ -14,16 +14,13 @@ import com.winhearts.arappmarket.R;
 import com.winhearts.arappmarket.constant.CommonHierarchy;
 import com.winhearts.arappmarket.constant.ConstInfo;
 import com.winhearts.arappmarket.model.AccountUserInfo;
-import com.winhearts.arappmarket.model.ActivityInfo;
 import com.winhearts.arappmarket.modellevel.ModeLevelAccount;
 import com.winhearts.arappmarket.modellevel.ModeUser;
-import com.winhearts.arappmarket.utils.Pref;
 import com.winhearts.arappmarket.utils.ScreenUtil;
 import com.winhearts.arappmarket.utils.ViewUtils;
-import com.winhearts.arappmarket.utils.common.ToastUtils;
+import com.winhearts.arappmarket.view.HorizontalLayout;
 import com.winhearts.arappmarket.view.SettingItemView;
 import com.winhearts.arappmarket.view.SettingPopwindow;
-import com.winhearts.arappmarket.view.HorizontalLayout;
 
 /**
  * @author hedy 应用分类 ，进来后需要跳转到 指定
@@ -32,7 +29,7 @@ import com.winhearts.arappmarket.view.HorizontalLayout;
 public class SettingActivity extends BaseActivity {
     private final static String TAG = "SettingActivity";
     private HorizontalLayout mAdvertLayout;
-    private SettingItemView managerUser, phoneHelper, info, lottery;
+    private SettingItemView managerUser, phoneHelper, info;
     private boolean isFirst = true;
 
     @Override
@@ -48,36 +45,17 @@ public class SettingActivity extends BaseActivity {
         managerUser = new SettingItemView(this).bindData(R.drawable.manager_backgroud, R.drawable.manager_head_portrait, R.string.manage_user);
         phoneHelper = new SettingItemView(this).bindData(R.drawable.phone_helper_backgroud, R.drawable.setting_phone_helper, R.string.manage_phone_helper);
         info = new SettingItemView(this).bindData(R.drawable.info_backgroud, R.drawable.info, R.string.manage_info);
-        lottery = new SettingItemView(this).bindData(R.drawable.lottery_backgroud);
 
-        mAdvertLayout.setSize(viewWidth, viewHeight, 1, 4);
+        mAdvertLayout.setSize(viewWidth, viewHeight, 1, 3);
 
-        mAdvertLayout.addItemView(managerUser, 0, 0, 0, 1, 1, 0, 4);
-        mAdvertLayout.addItemView(lottery, 0, 1, 0, 2, 1, 0, 4);
-        mAdvertLayout.addItemView(phoneHelper, 0, 2, 0, 3, 1, 0, 4);
-        mAdvertLayout.addItemView(info, 0, 3, 0, 4, 1, 0, 4);
+        mAdvertLayout.addItemView(managerUser, 0, 0, 0, 1, 1, 0, 3);
+        mAdvertLayout.addItemView(phoneHelper, 0, 1, 0, 2, 1, 0, 3);
+        mAdvertLayout.addItemView(info, 0, 2, 0, 3, 1, 0, 3);
 
         managerUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 jumpAccountManager();
-            }
-        });
-        lottery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                String url = Pref.getString(Pref.LOTTERY_URL, SettingActivity.this, "");
-                if (TextUtils.isEmpty(url)) {
-                    ToastUtils.show(SettingActivity.this, "活动暂时下架啦");
-                } else {
-                    Intent intent = new Intent(SettingActivity.this, ActActivity.class);
-                    ActivityInfo activityInfo = new ActivityInfo();
-                    activityInfo.setUrl(url);
-                    intent.putExtra("actInfo", activityInfo);
-                    startActivity(intent);
-                }
             }
         });
         phoneHelper.setOnClickListener(new View.OnClickListener() {

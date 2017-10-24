@@ -87,7 +87,6 @@ public class AppCategoryActivity extends BaseActivity implements View.OnClickLis
     private String initOrderType;
     private String orderType;
     private String defaultIndex;
-    private boolean isClickedRecord = true;
     private View view;
     ArrayList<SoftwareType> softwareTypes = null;
     List<RankElements> rankElements = null;
@@ -286,7 +285,6 @@ public class AppCategoryActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onFocusChange(View view, boolean focus) {
                 if (focus) {
-                    isClickedRecord = true;
                     if (tvCurrentLeftItem != null) {
                         tvCurrentLeftItem.setSelected(false);
                     }

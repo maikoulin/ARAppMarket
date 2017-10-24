@@ -188,7 +188,6 @@ public class ModeLevelAms {
         subVolleyResponseHandler.sendAsyncPostRequest(url, params, false, new UIDataListener<Layout>() {
             @Override
             public void onDataChanged(Layout data) {
-                LogDebugUtil.e("layoutDate", data.toString());
                 if (modeUserErrorCode != null) {
                     modeUserErrorCode.onJsonSuccess(data);
                 }
@@ -196,16 +195,15 @@ public class ModeLevelAms {
 
             @Override
             public void onErrorHappened(int errorCode, Exception errorMessage) {
-                LogDebugUtil.e("onErrorHappened", errorMessage.getMessage());
                 if (modeUserErrorCode != null) {
                     modeUserErrorCode.onRequestFail(errorCode, errorMessage);
                 }
             }
 
-            @Override
-            public void onStringChanged(String src) {
-                LogDebugUtil.e("layoutStr", src);
-            }
+//            @Override
+//            public void onStringChanged(String src) {
+//                LogDebugUtil.e("layoutStr", src);
+//            }
 
             @Override
             public void onVolleyError(int errorCode, Exception errorMessage) {

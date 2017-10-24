@@ -69,7 +69,6 @@ public class MainActivity extends BaseActivity {
         if (!TextUtils.isEmpty(layoutString)) {
             Layout saveLayout = new Gson().fromJson(layoutString, Layout.class);
             initFirstLevelMenu(saveLayout);
-            LogDebugUtil.e("Layout", saveLayout.toString());
         }
     }
 
@@ -129,7 +128,7 @@ public class MainActivity extends BaseActivity {
         RecommendCardView rightView = new RecommendCardView(this)
                 .bindData("res://drawable/" + R.drawable.tv_main_other_menu, with / 2, height / 3);
         mMainLayout.addItemView(rightView, 0, 1, 2, 2, 3, 0, 6);
-
+        boutiqueView.requestFocus();
         boutiqueView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +143,6 @@ public class MainActivity extends BaseActivity {
                     startActivity(boutiqueIntent);
                 }
 
-
             }
         });
         categoryView.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +151,17 @@ public class MainActivity extends BaseActivity {
                 if (ContainerUtil.isEmptyOrNull(menuItems)) {
                     queryLayout();
                 } else {
-
+                    if (menuItems.size() < 2) {
+                        ToastUtils.show(mContext, "没有相应内容");
+                        LogDebugUtil.e("menuItems", menuItems.toString());
+                    } else {
+                        Intent boutiqueIntent = new Intent(mContext, CategoryActivity.class);
+                        MenuItem menuItem = menuItems.get(1);
+                        Bundle args = new Bundle();
+                        args.putSerializable("message", menuItem);
+                        boutiqueIntent.putExtras(args);
+                        startActivity(boutiqueIntent);
+                    }
                 }
             }
 

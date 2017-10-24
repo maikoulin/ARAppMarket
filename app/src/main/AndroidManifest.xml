@@ -80,6 +80,9 @@
             android:name=".activity.BoutiqueActivity"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".activity.CategoryActivity"
+            android:screenOrientation="landscape" />
+        <activity
             android:name="com.winhearts.arappmarket.activity.AppDetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape">

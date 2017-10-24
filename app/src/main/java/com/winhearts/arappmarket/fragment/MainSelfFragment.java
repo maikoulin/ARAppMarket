@@ -91,7 +91,7 @@ public class MainSelfFragment extends MovableFragment {
         horizontalLayout = (HorizontalLayout) rootView.findViewById(R.id.metrolayout);
         horizontalLayout.setIsAutoScrollPage(true);
         horizontalLayout.setVisibility(View.VISIBLE);
-        horizontalLayout.setLeftPadding(70);
+        horizontalLayout.setLeftPadding(50);
         final Screen screen = screens.get(0);
         int viewWidth = (int) (mScreenWidth * widthScale);
         int viewHeight = mScreenHeight * 8 / 13;
@@ -101,13 +101,17 @@ public class MainSelfFragment extends MovableFragment {
             SelfScreenUtil.initScreenByElements(mContext, screens, viewWidth, viewHeight, horizontalLayout, mCurrentMenu, layoutId);
         }
         horizontalLayout.setOnBorderListener(mOnBorderListener);
+        horizontalLayout.requestFirstChildFocus();
     }
 
     //对布局上下左右进行监听
     HorizontalLayout.OnBorderListener mOnBorderListener = new HorizontalLayout.OnBorderListener() {
         @Override
         public boolean onKeyTopUp(int page, RectF rect) {
-
+            HorizontalLayout child = horizontalLayout;
+            if (child != null) {
+                child.setScaleUpDown();
+            }
             return true;
         }
 
@@ -118,8 +122,11 @@ public class MainSelfFragment extends MovableFragment {
 
         @Override
         public boolean onKeyLeftEnd(int page) {
-
-            return false;
+            HorizontalLayout child = horizontalLayout;
+            if (child != null) {
+                child.setScaleUpDown();
+            }
+            return true;
         }
 
         @Override
