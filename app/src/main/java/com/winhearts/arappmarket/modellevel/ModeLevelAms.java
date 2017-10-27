@@ -202,6 +202,12 @@ public class ModeLevelAms {
 
 //            @Override
 //            public void onStringChanged(String src) {
+//                File file = new File(Environment.getExternalStorageDirectory() + "/layout.text");
+//                try {
+//                    FileUtils.write(file, src);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 //                LogDebugUtil.e("layoutStr", src);
 //            }
 

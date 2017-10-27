@@ -37,6 +37,7 @@ public class Element implements Serializable {
 
     //分类内容
     private String resInfo;
+    private SoftwareInfo softwareInfo;
 
     private String elementId;
     private String menuId;
@@ -153,6 +154,14 @@ public class Element implements Serializable {
         this.resInfo = resInfo;
     }
 
+    public SoftwareInfo getSoftwareInfo() {
+        return softwareInfo;
+    }
+
+    public void setSoftwareInfo(SoftwareInfo softwareInfo) {
+        this.softwareInfo = softwareInfo;
+    }
+
     @Override
     public String toString() {
         return "Element{" +
@@ -165,6 +174,7 @@ public class Element implements Serializable {
                 ", resName='" + resName + '\'' +
                 ", resType='" + resType + '\'' +
                 ", resInfo='" + resInfo + '\'' +
+                ", softwareInfo=" + softwareInfo +
                 ", elementId='" + elementId + '\'' +
                 ", menuId='" + menuId + '\'' +
                 ", parentMenuId='" + parentMenuId + '\'' +

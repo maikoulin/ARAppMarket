@@ -227,6 +227,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onRequestFail(final int code, Throwable e) {
+                showOtherError("屏幕获取失败"+e.getMessage());
                 LogDebugUtil.i("onReQuestFail", code + e.getMessage());
             }
         });

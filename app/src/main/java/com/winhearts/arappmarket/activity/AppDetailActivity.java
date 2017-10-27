@@ -390,9 +390,9 @@ public class AppDetailActivity extends BaseActivity implements View.OnClickListe
         ModelevelEvaluate.getEvaluateList(this, map, new ModeUserErrorCode<EvaluateEntity>() {
             @Override
             public void onJsonSuccess(EvaluateEntity response) {
-                if (isFirst) {
-                    queryRecommendSoftwores();
-                }
+//                if (isFirst) {
+//                    queryRecommendSoftwores();
+//                }
                 if (mEvaluateListDialog != null) {
                     mEvaluateListDialog.setRequesting(false);
                 }
@@ -417,7 +417,7 @@ public class AppDetailActivity extends BaseActivity implements View.OnClickListe
             public void onRequestFail(int code, Throwable e) {
                 if (isFirst) {
                     llEvaluate.setVisibility(View.GONE);
-                    queryRecommendSoftwores();
+//                    queryRecommendSoftwores();
                 }
             }
         });

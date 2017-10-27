@@ -67,8 +67,12 @@ public class ModeUrl {
     //获取应用详情
     public static final String QUERY_SOFTWATE_INFO = "/arms/is/software/querySoftwareInfo";
 
-    //通过多个软件类型获取软件列表
+       //通过多个软件类型获取软件列表
     public static final String QUERY_SOFTWATES_BY_MULTI_TYPE = "/arms/is/software/querySoftwaresByMultiType";
+
+    //通过多个软件类型获取软件列表
+    public static final String QUERY_SOFTWATES_BY_TYPE = "/arms/is/software/querySoftwaresByType";
+
 
     //获取专题列表
     public static final String QUERY_TOPIC_LIST = "/arms/is/topic/list";

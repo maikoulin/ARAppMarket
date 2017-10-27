@@ -500,8 +500,8 @@ public class SecondLevelMenuFragment extends MovableFragment implements OnPageCh
         } else {
             SoftwareTypeInfo softwareTypeInfo = (SoftwareTypeInfo) object;
 
-            return softwareTypeInfo.getFirstTypeCode() + "_" + softwareTypeInfo.getChildTypeCode() + "_"
-                    + softwareTypeInfo.getOrderType() + "_" + softwareTypeInfo.getDeviceType() + "_" + offset;
+            return softwareTypeInfo.getRootTypeCode() + "_" + softwareTypeInfo.getSubTypeCode() + "_"
+                    + softwareTypeInfo.getOrderType() + "_" + softwareTypeInfo.getHandlerType() + "_" + offset;
 
         }
     }

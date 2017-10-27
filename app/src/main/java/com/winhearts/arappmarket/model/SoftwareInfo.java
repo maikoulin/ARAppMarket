@@ -30,6 +30,7 @@ public class SoftwareInfo implements Serializable {
     private String firstTypeCode;
     private String deviceType;
     private String deviceTypeName;
+    private String cover;
     private boolean isWhite;
 
     private boolean isInstalled;
@@ -284,6 +285,14 @@ public class SoftwareInfo implements Serializable {
         this.installTime = installTime;
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
     @Override
     public String toString() {
         return "SoftwareInfo{" +
@@ -309,6 +318,7 @@ public class SoftwareInfo implements Serializable {
                 ", firstTypeCode='" + firstTypeCode + '\'' +
                 ", deviceType='" + deviceType + '\'' +
                 ", deviceTypeName='" + deviceTypeName + '\'' +
+                ", cover='" + cover + '\'' +
                 ", isWhite=" + isWhite +
                 ", isInstalled=" + isInstalled +
                 ", mode=" + mode +

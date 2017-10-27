@@ -2,9 +2,9 @@ package com.winhearts.arappmarket.view;
 
 import android.content.Context;
 import android.support.annotation.StyleRes;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.widget.TextView;
-
 
 import com.winhearts.arappmarket.R;
 import com.winhearts.arappmarket.model.SoftwareInfo;
@@ -47,7 +47,13 @@ public class AppDetailSynopsisDialog extends BaseDialog {
     public void setData(SoftwareInfo softwareInfo) {
         this.softwareInfo = softwareInfo;
         tvPopVersion.setText(String.format("版本： %s", softwareInfo.getVersionName().intern()));
-        long time = Long.valueOf(softwareInfo.getUpdateTime());
+        String updateTime = softwareInfo.getUpdateTime();
+        long time;
+        if (TextUtils.isEmpty(updateTime)) {
+            time = System.currentTimeMillis();
+        } else {
+            time = Long.valueOf(updateTime);
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         tvPopUpdateTime.setText(String.format("更新日期： %s", sdf.format(new Date(time))));
         tvPopDeveloper.setText(String.format("开发者： %s", softwareInfo.getDevelopor()));

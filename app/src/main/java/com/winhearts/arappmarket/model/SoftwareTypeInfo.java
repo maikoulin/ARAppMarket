@@ -9,36 +9,40 @@ public class SoftwareTypeInfo implements Serializable {
 
 
     private static final long serialVersionUID = 3061560909303466526L;
-    private String firstTypeCode;
-    private String childTypeCode;
-    private String deviceType;
+    private String rootTypeCode;
+    private String subTypeCode;
+    private String handlerType;
     private String orderType;
     private String resName;
-    private String firstTypeName;
-    private String childTypeName;
+    private String rootTypeName;
+    private String subTypeName;
 
-    public String getFirstTypeCode() {
-        return firstTypeCode;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setFirstTypeCode(String firstTypeCode) {
-        this.firstTypeCode = firstTypeCode;
+    public String getRootTypeCode() {
+        return rootTypeCode;
     }
 
-    public String getChildTypeCode() {
-        return childTypeCode;
+    public void setRootTypeCode(String rootTypeCode) {
+        this.rootTypeCode = rootTypeCode;
     }
 
-    public void setChildTypeCode(String childTypeCode) {
-        this.childTypeCode = childTypeCode;
+    public String getSubTypeCode() {
+        return subTypeCode;
     }
 
-    public String getDeviceType() {
-        return deviceType;
+    public void setSubTypeCode(String subTypeCode) {
+        this.subTypeCode = subTypeCode;
     }
 
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType;
+    public String getHandlerType() {
+        return handlerType;
+    }
+
+    public void setHandlerType(String handlerType) {
+        this.handlerType = handlerType;
     }
 
     public String getOrderType() {
@@ -57,32 +61,32 @@ public class SoftwareTypeInfo implements Serializable {
         this.resName = resName;
     }
 
-    public String getFirstTypeName() {
-        return firstTypeName;
+    public String getRootTypeName() {
+        return rootTypeName;
     }
 
-    public void setFirstTypeName(String firstTypeName) {
-        this.firstTypeName = firstTypeName;
+    public void setRootTypeName(String rootTypeName) {
+        this.rootTypeName = rootTypeName;
     }
 
-    public String getChildTypeName() {
-        return childTypeName;
+    public String getSubTypeName() {
+        return subTypeName;
     }
 
-    public void setChildTypeName(String childTypeName) {
-        this.childTypeName = childTypeName;
+    public void setSubTypeName(String subTypeName) {
+        this.subTypeName = subTypeName;
     }
 
     @Override
     public String toString() {
         return "SoftwareTypeInfo{" +
-                "firstTypeCode='" + firstTypeCode + '\'' +
-                ", childTypeCode='" + childTypeCode + '\'' +
-                ", deviceType='" + deviceType + '\'' +
+                "rootTypeCode='" + rootTypeCode + '\'' +
+                ", subTypeCode='" + subTypeCode + '\'' +
+                ", handlerType='" + handlerType + '\'' +
                 ", orderType='" + orderType + '\'' +
                 ", resName='" + resName + '\'' +
-                ", firstTypeName='" + firstTypeName + '\'' +
-                ", childTypeName='" + childTypeName + '\'' +
+                ", rootTypeName='" + rootTypeName + '\'' +
+                ", subTypeName='" + subTypeName + '\'' +
                 '}';
     }
 }

@@ -2,16 +2,17 @@ package com.winhearts.arappmarket.modellevel;
 
 import android.content.Context;
 
-import com.winhearts.arappmarket.network.SubVolleyResponseHandler;
-import com.winhearts.arappmarket.network.UIDataListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.winhearts.arappmarket.model.QuerysoftwareListByTopicCode;
 import com.winhearts.arappmarket.model.SoftwareTypeInfo;
 import com.winhearts.arappmarket.model.Softwares;
 import com.winhearts.arappmarket.model.SoftwaresByMultiTypeEntity;
+import com.winhearts.arappmarket.model.SoftwaresByTypeEntity;
 import com.winhearts.arappmarket.model.Topic;
 import com.winhearts.arappmarket.model.TopicList;
+import com.winhearts.arappmarket.network.SubVolleyResponseHandler;
+import com.winhearts.arappmarket.network.UIDataListener;
 import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.RequestUtil;
 import com.winhearts.arappmarket.utils.Util;
@@ -75,10 +76,10 @@ public class ModeLevelAmsMenu {
         softwaresByMultiTypeEntity.setEnd(String.valueOf(offset * limit));
 
         if (info != null) {
-            softwaresByMultiTypeEntity.setFirstTypeCodes(info.getFirstTypeCode());
-            softwaresByMultiTypeEntity.setChildTypeCodes(info.getChildTypeCode());
+            softwaresByMultiTypeEntity.setFirstTypeCodes(info.getRootTypeCode());
+            softwaresByMultiTypeEntity.setChildTypeCodes(info.getSubTypeCode());
             softwaresByMultiTypeEntity.setOrderType(info.getOrderType());
-            softwaresByMultiTypeEntity.setDeviceTypes(info.getDeviceType());
+            softwaresByMultiTypeEntity.setDeviceTypes(info.getHandlerType());
         }
         LogDebugUtil.d(TAG, "querySoftWareList: " + softwaresByMultiTypeEntity.toString());
         querySoftwaresByMultiType(context, tag, softwaresByMultiTypeEntity, userBySoftwares);
@@ -113,6 +114,42 @@ public class ModeLevelAmsMenu {
                 if (user != null) {
                     user.onRequestFail(errorCode, errorMessage);
                 }
+            }
+
+            @Override
+            public void onVolleyError(int errorCode, Exception errorMessage) {
+                onErrorHappened(errorCode, errorMessage);
+            }
+        });
+    }
+
+    public static void querySoftwaresByType(Context context, Object tag, SoftwaresByTypeEntity softwaresByTypeEntity, final ModeUserErrorCode<Softwares> user) {
+
+        final String url = Util.getUrl(context, ModeUrl.QUERY_SOFTWATES_BY_TYPE);
+        final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(softwaresByTypeEntity));
+        Type type = new TypeToken<Softwares>() {
+        }.getType();
+        SubVolleyResponseHandler<Softwares> subVolleyResponseHandler = new SubVolleyResponseHandler<>(type, context);
+        subVolleyResponseHandler.setRetrytime(2);
+        subVolleyResponseHandler.setRequestTag(tag);
+        subVolleyResponseHandler.sendPostRequest(url, params, false, new UIDataListener<Softwares>() {
+            @Override
+            public void onDataChanged(Softwares data) {
+                if (user != null) {
+                    user.onJsonSuccess(data);
+                }
+            }
+
+            @Override
+            public void onErrorHappened(int errorCode, Exception errorMessage) {
+                if (user != null) {
+                    user.onRequestFail(errorCode, errorMessage);
+                }
+            }
+
+            @Override
+            public void onStringChanged(String src) {
+                LogDebugUtil.e("onStringChanged", src);
             }
 
             @Override

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ViewFlipper;
 
 import com.google.gson.Gson;
 import com.winhearts.arappmarket.R;
@@ -19,14 +18,12 @@ import com.winhearts.arappmarket.activity.TopicActivity;
 import com.winhearts.arappmarket.activity.TopicListActivity;
 import com.winhearts.arappmarket.constant.Constant;
 import com.winhearts.arappmarket.model.ActivityInfo;
-import com.winhearts.arappmarket.model.DownloadPath;
 import com.winhearts.arappmarket.model.Element;
 import com.winhearts.arappmarket.model.MenuItem;
 import com.winhearts.arappmarket.model.RankListInfo;
 import com.winhearts.arappmarket.model.ResInfoEntity;
 import com.winhearts.arappmarket.model.Screen;
 import com.winhearts.arappmarket.model.SoftwareInfo;
-import com.winhearts.arappmarket.model.SoftwareResInfo;
 import com.winhearts.arappmarket.model.SoftwareType;
 import com.winhearts.arappmarket.model.SoftwareTypesResInfo;
 import com.winhearts.arappmarket.model.Topic;
@@ -34,7 +31,6 @@ import com.winhearts.arappmarket.model.TopicListInfo;
 import com.winhearts.arappmarket.utils.ContainerUtil;
 import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.ReflectUtil;
-import com.winhearts.arappmarket.utils.SoftwareUtil;
 import com.winhearts.arappmarket.utils.common.ManagerUtil;
 import com.winhearts.arappmarket.utils.common.ToastUtils;
 import com.winhearts.arappmarket.utils.cust.ThirdAppOpenUtil;
@@ -86,28 +82,10 @@ public class SelfScreenUtil {
                         ((RankElementsView) view).setTitleName(element.getResName());
                         ((RankElementsView) view).setElementId(element.getElementId());
                         ((RankElementsView) view).setUploadDownPath(layoutId, mCurrentMenu);
-                    } else if (element.getResType().equals("SOFTWARE") && resInfo != null) {
-                        SoftwareResInfo softwareResInfo = new Gson().fromJson(resInfo, SoftwareResInfo.class);
-                        String specialRecom = softwareResInfo.getSpecialRecom();
-                        String loop = softwareResInfo.getLoop();
-                        List<SoftwareInfo> softwareInfos = softwareResInfo.getSoftwareInfos();
-                        //根据需求加载不同布局，减少加载复杂布局
-                        if (!ContainerUtil.isEmptyOrNull(softwareInfos) && specialRecom != null && specialRecom.equals("1")) {
-                            if (!TextUtils.isEmpty(loop) && loop.equals("1") && softwareInfos.size() > 1) {
-                                view = new MainSelfSoftwareSpecialView(mContext).bindData(element, realWidth, realHeight);
-                            } else {
-                                SoftwareInfo softwareInfo = SoftwareUtil.getShowSoftware(mContext, softwareInfos);
-                                if (softwareInfo != null) {
-                                    imageUrl = softwareInfo.getIcon();
-                                }
-                                view = new RecommendCardView(
-                                        mContext).bindData(imageUrl, realWidth, realHeight);
-                                view.setTag(R.integer.tag_record_software, softwareInfo);
-                            }
-
-                        } else {
-                            view = new MainSelfSoftwareView(mContext, height).bindData(element);
-                        }
+                    } else if (element.getResType().equals("SOFTWARE")) {
+                        imageUrl = element.getResIcon();
+                        view = new RecommendCardView(
+                                mContext).bindData(imageUrl, realWidth, realHeight);
                     } else {
                         imageUrl = element.getResIcon();
                         view = new RecommendCardView(
@@ -128,49 +106,21 @@ public class SelfScreenUtil {
                                 return;
                             }
                             String resInfo = element.getResInfo();
-                            //上报促成下载时用
-                            DownloadPath downloadPath = new DownloadPath();
-                            downloadPath.setLayoutId(layoutId);
-                            if (mCurrentMenu.getParentMenuId() != null) {
-                                downloadPath.setMenuId(mCurrentMenu.getParentMenuId());
-                                downloadPath.setSubMenuId(mCurrentMenu.getMenuId());
-                            } else {
-                                downloadPath.setMenuId(mCurrentMenu.getMenuId());
-                            }
-                            downloadPath.setModuleId(String.valueOf(element.getElementId()));
                             //跳到普通软件
-                            if (element.getResType().equals("SOFTWARE") && resInfo != null) {
-                                SoftwareResInfo softwareResInfo = new Gson().fromJson(resInfo, SoftwareResInfo.class);
-                                List<SoftwareInfo> softwareInfos = softwareResInfo.getSoftwareInfos();
-                                String specialRecom = softwareResInfo.getSpecialRecom();
-                                String loop = softwareResInfo.getLoop();
+                            if (element.getResType().equals("SOFTWARE")) {
                                 String packageName;
                                 SoftwareInfo softwareInfo;
-                                if (softwareInfos != null && specialRecom != null && loop != null) {
-                                    Intent intent = new Intent(mContext,
-                                            AppDetailActivity.class);
-                                    if (specialRecom.equals("1") && loop.equals("1") && softwareInfos.size() > 1) {
-                                        ViewFlipper viewFlipper = (ViewFlipper) view.findViewById(R.id.vf_self_software_icon);
-                                        int i = viewFlipper.getDisplayedChild();
-                                        softwareInfo = softwareInfos.get(i);
-                                    } else if (specialRecom.equals("1")) {
-                                        softwareInfo = (SoftwareInfo) view.getTag(R.integer.tag_record_software);
-                                    } else {
-                                        softwareInfo = (SoftwareInfo) view.getTag(R.integer.tag_record_software);
-                                    }
-                                    if (softwareInfo != null) {
-                                        packageName = softwareInfo.getPackageName();
-                                    } else {
-                                        ToastUtils.show(mContext, "软件不存在");
-                                        return;
-                                    }
-                                    intent.putExtra("packageName", packageName);
-                                    downloadPath.setModulePath(packageName);
-                                    intent.putExtra("downloadPath", downloadPath);
-                                    mContext.startActivity(intent);
+                                Intent intent = new Intent(mContext,
+                                        AppDetailActivity.class);
+                                softwareInfo = element.getSoftwareInfo();
+                                if (softwareInfo != null) {
+                                    packageName = softwareInfo.getPackageName();
                                 } else {
                                     ToastUtils.show(mContext, "软件不存在");
+                                    return;
                                 }
+                                intent.putExtra("packageName", packageName);
+                                mContext.startActivity(intent);
                             }
                             //跳到专题
                             else if (element.getResType().equals("TOPIC") && resInfo != null) {
@@ -181,7 +131,6 @@ public class SelfScreenUtil {
                                     Bundle bundle = new Bundle();
                                     bundle.putSerializable("topic", topic);
                                     intent.putExtras(bundle);
-                                    intent.putExtra("downloadPath", downloadPath);
                                     LogDebugUtil.d(DEBUG, TAG, "---------TopicActivity------------");
                                     mContext.startActivity(intent);
                                 } else {
@@ -204,7 +153,6 @@ public class SelfScreenUtil {
                                     intent.putExtra("orderType", softwareTypesResInfo.getOrderType());
                                     intent.putExtra("defaultIndex", softwareTypesResInfo.getDefaultIndex());
                                     intent.putExtras(bundle);
-                                    intent.putExtra("downloadPath", downloadPath);
                                     mContext.startActivity(intent);
                                 } else {
                                     ToastUtils.show(mContext, "软件类型不存在");
@@ -217,7 +165,6 @@ public class SelfScreenUtil {
                                 Intent intent = new Intent(mContext, TopicListActivity.class);
                                 intent.putExtra("titleName", element.getResName());
                                 intent.putExtra("topicListInfo", topicListInfo);
-                                intent.putExtra("downloadPath", downloadPath);
                                 mContext.startActivity(intent);
 
                             }
@@ -227,7 +174,6 @@ public class SelfScreenUtil {
                                 Intent intent = new Intent(mContext, RankListActivity.class);
                                 intent.putExtra("titleName", element.getResName());
                                 intent.putExtra("rankListInfo", rankListInfo);
-                                intent.putExtra("downloadPath", downloadPath);
                                 mContext.startActivity(intent);
                             } else if (element.getResType().equals("ACTION")) {
                                 //执行父activity定义的某个方法。。。。
@@ -266,7 +212,6 @@ public class SelfScreenUtil {
 
                                             PackageAppOpenDialog dialog = new PackageAppOpenDialog(mContext);
                                             dialog.setContent(resInfo);
-                                            dialog.setDownloadBundle(downloadPath);
                                             dialog.show();
 
                                         }

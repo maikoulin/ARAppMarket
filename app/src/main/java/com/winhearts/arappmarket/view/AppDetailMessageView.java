@@ -222,7 +222,14 @@ public class AppDetailMessageView extends LinearLayout implements AppDownloadUi<
         }
         tvSize.setText(String.format("应用大小： %s", response.getSize()));
         tvVersion.setText(String.format("版本： %s", response.getVersionName().intern()));
-        long time = Long.valueOf(response.getUpdateTime());
+        String updateTime = response.getUpdateTime();
+        long time;
+        if (TextUtils.isEmpty(updateTime)) {
+            time = System.currentTimeMillis();
+        } else {
+            time = Long.valueOf(updateTime);
+        }
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         tvDate.setText(String.format("更新日期： %s", sdf.format(new Date(time))));
         tvDeveloper.setText(String.format("开发者： %s", response.getDevelopor()));
