@@ -16,21 +16,12 @@ public abstract class BaseHeaderRecyclerAdapter<T> extends RecyclerView.Adapter<
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_NORMAL = 1;
     ArrayList<T> mDatas = null;
-    private View mHeaderView;
     private OnItemClickListener<T> mListener;
 
     public void setOnItemClickListener(OnItemClickListener<T> li) {
         mListener = li;
     }
 
-    public void setHeaderView(View headerView) {
-        mHeaderView = headerView;
-        notifyItemInserted(0);
-    }
-
-    View getHeaderView() {
-        return mHeaderView;
-    }
 
     public void addDatas(ArrayList<T> datas) {
         mDatas = datas;
@@ -39,16 +30,13 @@ public abstract class BaseHeaderRecyclerAdapter<T> extends RecyclerView.Adapter<
 
     @Override
     public int getItemViewType(int position) {
-        if (mHeaderView == null) {
-            return TYPE_NORMAL;
-        } else {
-            return position == 0 ? TYPE_HEADER : TYPE_NORMAL;
-        }
+
+        return TYPE_NORMAL;
+
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
-        if (mHeaderView != null && viewType == TYPE_HEADER) return new Holder(mHeaderView);
         return onCreate(parent, viewType);
     }
 
@@ -100,13 +88,12 @@ public abstract class BaseHeaderRecyclerAdapter<T> extends RecyclerView.Adapter<
     }
 
     public int getRealPosition(RecyclerView.ViewHolder holder) {
-        int position = holder.getLayoutPosition();
-        return mHeaderView == null ? position : position - 1;
+        return holder.getLayoutPosition();
     }
 
     @Override
     public int getItemCount() {
-        return mHeaderView == null ? mDatas.size() : mDatas.size() + 1;
+        return mDatas.size();
     }
 
     public abstract RecyclerView.ViewHolder onCreate(ViewGroup parent, final int viewType);

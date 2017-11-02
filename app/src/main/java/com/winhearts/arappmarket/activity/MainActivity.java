@@ -153,10 +153,9 @@ public class MainActivity extends BaseActivity {
                 } else {
                     if (menuItems.size() < 2) {
                         ToastUtils.show(mContext, "没有相应内容");
-                        LogDebugUtil.e("menuItems", menuItems.toString());
                     } else {
-                        Intent boutiqueIntent = new Intent(mContext, CategoryActivity.class);
                         MenuItem menuItem = menuItems.get(1);
+                        Intent boutiqueIntent = new Intent(mContext, CategoryActivity.class);
                         Bundle args = new Bundle();
                         args.putSerializable("message", menuItem);
                         boutiqueIntent.putExtras(args);
@@ -227,7 +226,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onRequestFail(final int code, Throwable e) {
-                showOtherError("屏幕获取失败"+e.getMessage());
+                showOtherError("屏幕获取失败" + e.getMessage());
                 LogDebugUtil.i("onReQuestFail", code + e.getMessage());
             }
         });

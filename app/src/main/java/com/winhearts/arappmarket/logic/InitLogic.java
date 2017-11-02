@@ -30,15 +30,10 @@ import com.winhearts.arappmarket.utils.LoggerUtil;
 import com.winhearts.arappmarket.utils.Pref;
 import com.winhearts.arappmarket.utils.Util;
 import com.winhearts.arappmarket.utils.common.ToastUtils;
-import com.winhearts.arappmarket.utils.cust.PrefLayoutUtils;
 import com.winhearts.arappmarket.utils.cust.PrefNormalUtils;
 import com.winhearts.arappmarket.view.UpdateHintDialog;
 
 import java.lang.ref.WeakReference;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * 应用初始化逻辑
@@ -270,19 +265,6 @@ public class InitLogic {
         });
 
 
-    }
-
-    private static void removeRecord(LinkedHashMap<String, String> layoutMap, int count) {
-        if (layoutMap.size() > count) {
-            Set<Map.Entry<String, String>> set = layoutMap.entrySet();
-            Iterator<Map.Entry<String, String>> iterator = set.iterator();
-            String key = iterator.next().getKey();
-            layoutMap.remove(key);
-            PrefLayoutUtils.remove(key);
-            ModeLevelFile.deleteOldFile(key + "_" + PrefNormalUtils.URL_BG_IMG, key);
-            ModeLevelFile.deleteOldFile(key + "_" + PrefNormalUtils.URL_START_BKG_IMG, key);
-            removeRecord(layoutMap, count);
-        }
     }
 
     private static void strFromJson(String layoutStr, ModeUserErrorCode<Layout> userErrorCode) {

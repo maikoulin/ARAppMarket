@@ -48,7 +48,7 @@ import com.winhearts.arappmarket.utils.cust.PrefNormalUtils;
 import com.winhearts.arappmarket.view.MyAPPGridItemDecoration;
 import com.winhearts.arappmarket.view.MyAppCardView;
 import com.winhearts.arappmarket.view.MyAppGridLayoutManager;
-import com.winhearts.arappmarket.view.MyAppRecyclerView;
+import com.winhearts.arappmarket.view.BorderRecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,7 +65,7 @@ import rx.subscriptions.CompositeSubscription;
  * 我的应用
  * Created by lmh on 2016/8/11.
  */
-public class MyAppFragment extends MovableFragment implements MyAppRecyclerView.BorderListener {
+public class MyAppFragment extends MovableFragment implements BorderRecyclerView.BorderListener {
     private final static String TAG = "MyAppFragment";
     private boolean isDebug = false;
     private ArrayList<SoftwareInfo> mApps = new ArrayList<>(); // 显示的应用 。
@@ -73,7 +73,7 @@ public class MyAppFragment extends MovableFragment implements MyAppRecyclerView.
     private ArrayList<SoftwareInfo> mOtherApps = new ArrayList<>(); //非平台已安装应用
     private ArrayList<SoftwareInfo> downloadApps = new ArrayList<>(); //需要更新但还没更新的应用
 
-    private MyAppRecyclerView mRecyclerView;
+    private BorderRecyclerView mRecyclerView;
     private View more;
     private GridLayoutManager mLayoutManager;
     private MyAppRecyclerAdapter mAdapter;
@@ -116,7 +116,7 @@ public class MyAppFragment extends MovableFragment implements MyAppRecyclerView.
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mRecyclerView = (MyAppRecyclerView) view.findViewById(R.id.rv_my_app_content);
+        mRecyclerView = (BorderRecyclerView) view.findViewById(R.id.rv_my_app_content);
 
         more = view.findViewById(R.id.iv_my_app_more);
         initFuncItem(view);

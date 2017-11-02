@@ -19,13 +19,13 @@
         <LinearLayout
             android:id="@+id/ll_category_left_menu"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:layout_weight="2"
             android:descendantFocusability="afterDescendants"
             android:orientation="vertical"
             android:paddingBottom="25dp"
-            android:paddingRight="25dp"
+            android:paddingRight="10dp"
             android:paddingTop="25dp">
 
         </LinearLayout>
@@ -34,9 +34,7 @@
             android:id="@+id/rl_category_content_wrap"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_weight="9"
-            android:paddingBottom="20dp">
+            android:layout_weight="8">
 
             <TextView
                 android:id="@+id/tv_category_page_number"
@@ -60,23 +58,18 @@
                 android:src="@drawable/down_pull"
                 android:visibility="invisible" />
 
-            <RelativeLayout
-                android:id="@+id/rl_category_content"
+            <com.winhearts.arappmarket.view.BorderRecyclerView
+                android:id="@+id/rv_category_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/iv_app_category_more">
-
-                <com.winhearts.arappmarket.view.VerticalViewPager
-                    android:id="@+id/vp_category_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:focusable="false"
-                    android:visibility="visible" />
-            </RelativeLayout>
-
-
+                android:layout_height="410dp"
+                android:layout_centerVertical="true"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:focusable="false"
+                android:paddingBottom="25dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp" />
         </RelativeLayout>
     </LinearLayout>
 </FrameLayout>
