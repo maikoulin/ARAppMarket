@@ -28,9 +28,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:paddingLeft="60dp"
-            android:paddingRight="60dp"
-            android:paddingTop="60dp">
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
 
             <com.winhearts.arappmarket.view.AppDetailMessageView
                 android:id="@+id/message_view"

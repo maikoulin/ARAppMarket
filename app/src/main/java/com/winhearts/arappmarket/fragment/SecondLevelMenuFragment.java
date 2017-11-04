@@ -742,7 +742,7 @@ public class SecondLevelMenuFragment extends MovableFragment implements OnPageCh
 
 //获取主题关联软件列表和获取软件列表
         if (queryType == TOPIC || queryType == TOPIC_COUNT) {
-            ModeLevelAmsMenu.queryTopocSoftWareList(mContext, TAG, offset, limit, mTopic,
+            ModeLevelAmsMenu.queryTopicSoftWareList(mContext, TAG, offset, limit, mTopic,
                     new ModeUserErrorCode<Softwares>() {
 
                         @Override

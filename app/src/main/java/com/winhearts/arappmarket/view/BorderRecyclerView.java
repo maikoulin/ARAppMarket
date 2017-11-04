@@ -109,6 +109,9 @@ public class BorderRecyclerView extends RecyclerView {
                     case KeyEvent.KEYCODE_DPAD_RIGHT:
                         if (span == spanCount) {
                             return borderListener.onKeyRightEnd();
+                        } else if (layoutManager.getChildCount() == focusPos
+                                + 1) {
+                            return borderListener.onKeyRightEnd();
                         }
                         break;
                     case KeyEvent.KEYCODE_DPAD_LEFT:

@@ -2,11 +2,13 @@ package com.winhearts.arappmarket.utils.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.winhearts.arappmarket.R;
+import com.winhearts.arappmarket.activity.AppDetailActivity;
 import com.winhearts.arappmarket.constant.CommonHierarchy;
 import com.winhearts.arappmarket.model.SoftwareInfo;
 import com.winhearts.arappmarket.view.BlowUpUtil;
@@ -43,7 +45,7 @@ public class CategoryAdapter extends BaseRecyclerAdapter<SoftwareInfo> {
         CommonHierarchy.setHierarchyAppIcon(appIcon);
         TextView appName = holder.getView(R.id.tv_category_item_name);
         TextView appDescription = holder.getView(R.id.tv_category_item_description);
-
+        holder.itemView.setTag(data);
         bgView.setImageURI(data.getCover());
         appIcon.setImageURI(data.getIcon());
         appName.setText(data.getName());
@@ -56,6 +58,15 @@ public class CategoryAdapter extends BaseRecyclerAdapter<SoftwareInfo> {
                 } else {
                     blowUpUtil.setScaleDown(v);
                 }
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SoftwareInfo softwareInfo = (SoftwareInfo) v.getTag();
+                Intent intent = new Intent(mContext, AppDetailActivity.class);
+                intent.putExtra("packageName", softwareInfo.getPackageName());
+                mContext.startActivity(intent);
             }
         });
     }

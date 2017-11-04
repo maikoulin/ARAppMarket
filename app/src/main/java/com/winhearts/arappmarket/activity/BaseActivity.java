@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.winhearts.arappmarket.R;
+import com.winhearts.arappmarket.logic.InitLogic;
 import com.winhearts.arappmarket.model.ConfigInfo;
 import com.winhearts.arappmarket.model.ReturnMessage;
 import com.winhearts.arappmarket.modellevel.ModeLevelVms;
@@ -287,7 +288,7 @@ public class BaseActivity extends BaseMostActivity {
     }
 
     protected void queryLayout(final String layoutCode) {
-//        InitLogic.queryLayout(getApplicationContext(), layoutCode, null);
+        InitLogic.queryLayout(getApplicationContext(), layoutCode, null);
     }
 
 //    /**

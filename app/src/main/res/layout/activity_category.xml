@@ -66,10 +66,10 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:focusable="false"
-                android:paddingBottom="25dp"
+                android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingTop="25dp" />
+                android:paddingTop="12dp" />
         </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

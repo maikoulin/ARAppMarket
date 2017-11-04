@@ -45,9 +45,7 @@ public class InitLogic {
     private Context mContext;
     private boolean focusUpdate;
     private UpdateHintDialog dialog;
-    private boolean askUpdate = false;
     private static final int LOCAL_LAYOUT_NULL = 111;
-    public static boolean mIsRequestSuccess = false;
     private static final int NET_LAYOUT_NULL = 112;
 
     public InitLogic(Context context) {
@@ -194,7 +192,6 @@ public class InitLogic {
             if (initLogic != null) {
                 switch (msg.what) {
                     case Constant.DOWNLOAD_SUCCESS:
-                        initLogic.askUpdate = true;
                         break;
                     case Constant.DOWNLOAD_FAIL:
                         ToastUtils.show(initLogic.mContext, "安装包下载失败", Toast.LENGTH_LONG);
@@ -213,12 +210,6 @@ public class InitLogic {
         VersionNo versionNo = new VersionNo();
         String terminalCode = layoutCode;
         String versionCode;
-
-        String layoutString = Pref.getString(Pref.LAYOUT_STRING, context, "");
-        strFromJson(layoutString, userErrorCode);
-        if (mIsRequestSuccess) {
-            return;
-        }
         String saveTerminalCode = Pref.getString(Pref.LAYOUT_CODE, context, "");
         String saveTerminalCodeOld = PrefNormalUtils.getString(context, PrefNormalUtils.LAYOUT_CODE_OLD, "");
         if (!TextUtils.isEmpty(saveTerminalCode)) {
@@ -236,11 +227,7 @@ public class InitLogic {
         ModeLevelAms.queryLayout(context, TAG, versionNo, new ModeUserErrorCode<Layout>() {
             @Override
             public void onJsonSuccess(Layout layout) {
-                if (mIsRequestSuccess) {
-                    return;
-                }
                 if (layout != null) {
-                    mIsRequestSuccess = true;
                     ModeLevelFile.saveLoadImageFile(layoutCode, layout.getStartBkgImg());
                     ModeLevelFile.saveBgImageFile(layoutCode, layout.getBg());
                     Util.clearEmptyAndSortScreen(layout);

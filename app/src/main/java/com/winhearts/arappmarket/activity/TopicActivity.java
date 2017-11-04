@@ -80,7 +80,7 @@ public class TopicActivity extends BaseActivity implements HorizontalLayout.OnBo
 
     private void queryTopicSoftWareList() {
         showLoading();
-        ModeLevelAmsMenu.queryTopocSoftWareList(mContext, TAG, 1, 30, topic,
+        ModeLevelAmsMenu.queryTopicSoftWareList(mContext, TAG, 1, 30, topic,
                 new ModeUserErrorCode<Softwares>() {
 
                     @Override

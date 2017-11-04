@@ -12,8 +12,8 @@ import android.view.View;
  */
 public class MyAppGridLayoutManager extends GridLayoutManager {
 
-    private double speedDownRatio = 1.11; //向下滑动时多移动的距离倍数
-    private double speedUpRatio = 1.05; // 向上滑动时多移动的距离倍数
+    private double speedDownRatio = 1.06; //向下滑动时多移动的距离倍数
+    private double speedUpRatio = 1.06; // 向上滑动时多移动的距离倍数
 
     public MyAppGridLayoutManager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);

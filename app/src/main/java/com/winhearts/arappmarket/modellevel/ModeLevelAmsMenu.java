@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.winhearts.arappmarket.model.QuerysoftwareListByTopicCode;
+import com.winhearts.arappmarket.model.QuerySoftwareListByTopicCode;
 import com.winhearts.arappmarket.model.SoftwareTypeInfo;
 import com.winhearts.arappmarket.model.Softwares;
 import com.winhearts.arappmarket.model.SoftwaresByMultiTypeEntity;
@@ -25,19 +25,18 @@ import java.util.Map;
  * AMS请求：专辑类
  */
 public class ModeLevelAmsMenu {
-    // type :1.topic topic_count softwareTYPE SOFTWARETYOECOUNT
     private static final String TAG = "ModeLevelAmsMenu";
     private static final boolean DEBUG = true;
 
-    public static void queryTopocSoftWareList(final Context mContext, Object tag, final int offset, final int limit, final Topic mTopic,
+    public static void queryTopicSoftWareList(final Context mContext, Object tag, final int offset, final int limit, final Topic mTopic,
                                               final ModeUserErrorCode<Softwares> userByTopicSoftwareList) {
 
         final String url = Util.getUrl(mContext, ModeUrl.QUERY_SOFTWAREList);
-        QuerysoftwareListByTopicCode mQuerysoftwareListByTopicCode = new QuerysoftwareListByTopicCode();
-        mQuerysoftwareListByTopicCode.setCode(mTopic.getCode());
-        mQuerysoftwareListByTopicCode.setPageNo(String.valueOf(offset));
-        mQuerysoftwareListByTopicCode.setPageSize(String.valueOf(limit));
-        final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(mQuerysoftwareListByTopicCode));
+        QuerySoftwareListByTopicCode mQuerySoftwareListByTopicCode = new QuerySoftwareListByTopicCode();
+        mQuerySoftwareListByTopicCode.setCode(mTopic.getCode());
+        mQuerySoftwareListByTopicCode.setPageNo(String.valueOf(offset));
+        mQuerySoftwareListByTopicCode.setPageSize(String.valueOf(limit));
+        final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(mQuerySoftwareListByTopicCode));
         Type type = new TypeToken<Softwares>() {
         }.getType();
         SubVolleyResponseHandler<Softwares> subVolleyResponseHandler = new SubVolleyResponseHandler<Softwares>(type, mContext);
@@ -146,11 +145,11 @@ public class ModeLevelAmsMenu {
                     user.onRequestFail(errorCode, errorMessage);
                 }
             }
-
-            @Override
-            public void onStringChanged(String src) {
-                LogDebugUtil.e("onStringChanged", src);
-            }
+//
+//            @Override
+//            public void onStringChanged(String src) {
+//                LogDebugUtil.e("onStringChanged", src);
+//            }
 
             @Override
             public void onVolleyError(int errorCode, Exception errorMessage) {

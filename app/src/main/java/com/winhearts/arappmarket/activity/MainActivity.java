@@ -86,7 +86,6 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         VpnStoreApplication.getApp().setLayoutCode(null);
         PollingLogReportLogic.logReport();
-        InitLogic.mIsRequestSuccess = false;
         ActivityStack.getActivityStack().clearOtherActivity(this);
         super.onDestroy();
         if (exitHintDialog != null) {

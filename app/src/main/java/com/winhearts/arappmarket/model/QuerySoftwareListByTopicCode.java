@@ -3,7 +3,7 @@ package com.winhearts.arappmarket.model;
 /**
  * 查询软件，通过专辑code
  */
-public class QuerysoftwareListByTopicCode {
+public class QuerySoftwareListByTopicCode {
     private String pageNo;
     private String pageSize;
     private String code;

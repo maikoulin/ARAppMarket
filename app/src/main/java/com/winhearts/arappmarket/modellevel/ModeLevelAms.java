@@ -11,7 +11,7 @@ import com.winhearts.arappmarket.model.PackageList;
 import com.winhearts.arappmarket.model.QuerySoftwareInfoByPackageName;
 import com.winhearts.arappmarket.model.QuerySoftwares;
 import com.winhearts.arappmarket.model.QuerySoftwaresRecomment;
-import com.winhearts.arappmarket.model.QuerysoftwareListByTopicCode;
+import com.winhearts.arappmarket.model.QuerySoftwareListByTopicCode;
 import com.winhearts.arappmarket.model.SoftwareInfo;
 import com.winhearts.arappmarket.model.Softwares;
 import com.winhearts.arappmarket.model.Topic;
@@ -81,9 +81,9 @@ public class ModeLevelAms {
 
     public static void querysoftwareDetailByTopicCode(final Context mContext, Object tag, Topic topic, final ModeUserErrorCode<Topic> modeUserErrorCode) {
         String url = Util.getUrl(mContext, ModeUrl.TOPIC_DETAIL);
-        QuerysoftwareListByTopicCode mQuerysoftwareListByTopicCode = new QuerysoftwareListByTopicCode();
-        mQuerysoftwareListByTopicCode.setCode(topic.getCode());
-        final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(mQuerysoftwareListByTopicCode));
+        QuerySoftwareListByTopicCode mQuerySoftwareListByTopicCode = new QuerySoftwareListByTopicCode();
+        mQuerySoftwareListByTopicCode.setCode(topic.getCode());
+        final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(mQuerySoftwareListByTopicCode));
         Type type = new TypeToken<Topic>() {
         }.getType();
         SubVolleyResponseHandler<Topic> subVolleyResponseHandler = new SubVolleyResponseHandler<Topic>(type, mContext);
