@@ -294,10 +294,10 @@ public class AccountSubmit2Activity extends BaseActivity implements OnClickListe
     private void login2jump(AccountIDToken t, int fromType) {
         // 注销
         ConstInfo.setAccountId2Pref(mContext, "", "");
-        ModeLevelAccount.exit(this, ConstInfo.accountWsId, ConstInfo.accountTokenId, null);
+        ModeLevelAccount.exit(this, ConstInfo.accountWinId, ConstInfo.accountTokenId, null);
 
         // 保存
-        ConstInfo.setAccountId2Pref(mContext, t.getWsId(), t.getLoginToken());
+        ConstInfo.setAccountId2Pref(mContext, t.getWinId(), t.getLoginToken());
         ToastUtils.show(mContext, "登录成功");
 
         if (fromType == Constant.FROM_NORMAL) {

@@ -5,24 +5,20 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.winhearts.arappmarket.event.LoginEvent;
 import com.winhearts.arappmarket.constant.ConstInfo;
+import com.winhearts.arappmarket.event.LoginEvent;
 import com.winhearts.arappmarket.model.AccountIDToken;
 import com.winhearts.arappmarket.model.AccountUserInfo;
-import com.winhearts.arappmarket.model.RegisterThirdEntity;
-import com.winhearts.arappmarket.utils.ContainerUtil;
+import com.winhearts.arappmarket.network.SubVolleyResponseHandler;
+import com.winhearts.arappmarket.network.UIDataListener;
 import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.MacUtil;
 import com.winhearts.arappmarket.utils.RequestUtil;
 import com.winhearts.arappmarket.utils.Util;
 import com.winhearts.arappmarket.utils.common.RxBus;
-import com.winhearts.arappmarket.utils.cust.GetThirdPartyInfoUtil;
-import com.winhearts.arappmarket.network.SubVolleyResponseHandler;
-import com.winhearts.arappmarket.network.UIDataListener;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -167,14 +163,14 @@ public class ModeLevelAccount {
      * 账号注销
      *
      * @param context
-     * @param wsId
+     * @param winId
      * @param user
      */
-    static public void exit(final Context context, String wsId, String loginToken, final ModeUser<String> user) {
+    static public void exit(final Context context, String winId, String loginToken, final ModeUser<String> user) {
         final String url = Util.getUrl(context, ModeUrl.ACCOUNT_EXIT);
 
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("wsId", wsId);
+        map.put("winId", winId);
         map.put("loginToken", loginToken);
         final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(map));
         Type type = new TypeToken<String>() {
@@ -231,9 +227,8 @@ public class ModeLevelAccount {
             public void onDataChanged(AccountIDToken data) {
                 if (user != null) {
                     user.onJsonSuccess(data);
-                    postLoinEvent(new LoginEvent(data.getWsId(), data.getLoginToken(), direct));
+                    postLoinEvent(new LoginEvent(data.getWinId(), data.getLoginToken(), direct));
                 }
-                ModeLevelAmsNewReply.getNewReplyList(context, context.getClass().getName());
             }
 
             @Override
@@ -260,16 +255,16 @@ public class ModeLevelAccount {
      * 获取登录用户信息
      *
      * @param context
-     * @param wsId
+     * @param winId
      * @param loginToken
      * @param user
      */
-    static public void getUserInfo(final Context context, String wsId, String loginToken,
+    static public void getUserInfo(final Context context, String winId, String loginToken,
                                    final ModeUser<AccountUserInfo> user) {
         final String url = Util.getUrl(context, ModeUrl.ACCOUNT_GET_USER_INFO);
 
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("wsId", wsId);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("winId", winId);
         params.put("loginToken", loginToken);
         Type type = new TypeToken<AccountUserInfo>() {
         }.getType();
@@ -281,8 +276,7 @@ public class ModeLevelAccount {
                 if (user != null) {
                     user.onJsonSuccess(data);
                 }
-                if (data != null && !TextUtils.isEmpty(data.getWsId())) {
-//                    LogDebugUtil.w("lee", "AccountUserInfo = " + data.toString());
+                if (data != null && !TextUtils.isEmpty(data.getwinId())) {
                     ConstInfo.setAccountInfo2Pref(context, data);
                 }
             }
@@ -309,11 +303,11 @@ public class ModeLevelAccount {
      * @param phone
      * @param email
      * @param nickName
-     * @param wsId
+     * @param winId
      * @param loginToken
      * @param user
      */
-    static public void updateUserInfo(final Context context, String phone, String email, String nickName, String wsId,
+    static public void updateUserInfo(final Context context, String phone, String email, String nickName, String winId,
                                       String loginToken, final ModeUser<String> user) {
         final String url = Util.getUrl(context, ModeUrl.ACCOUNT_UPDATE_USER_INFO);
 
@@ -322,7 +316,7 @@ public class ModeLevelAccount {
         map.put("email", email);
         map.put("nickName", nickName);
         map.put("loginToken", loginToken);
-        map.put("wsId", wsId);
+        map.put("winId", winId);
         map.put("loginToken", loginToken);
         final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(map));
         Type type = new TypeToken<String>() {
@@ -354,55 +348,6 @@ public class ModeLevelAccount {
         });
     }
 
-    /**
-     * 2.52	多方式联合登录
-     *
-     * @param context
-     */
-    public static void registerByThirds(final Context context, final ModeUserErrorCode<AccountIDToken> modeUserErrorCode) {
-        final String url = Util.getUrl(context, ModeUrl.ACCOUNT_THIRD_PARTY_LOGINS);
-        HashMap map = new HashMap();
-        List<RegisterThirdEntity> registerThirdEntities = GetThirdPartyInfoUtil.getThirdPartyInfos();
-
-        if (ContainerUtil.isEmptyOrNull(registerThirdEntities)) {
-            if (modeUserErrorCode != null) {
-                modeUserErrorCode.onRequestFail(1000, new Throwable("联合登录信息获取失败！"));
-            }
-            return;
-        }
-        String macAddress = MacUtil.getMacAddress();
-        map.put("thirdPartyInfos", registerThirdEntities);
-        map.put("mac", macAddress);
-
-        final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(map));
-        Type type = new TypeToken<AccountIDToken>() {
-        }.getType();
-        SubVolleyResponseHandler<AccountIDToken> subVolleyResponseHandler = new SubVolleyResponseHandler<AccountIDToken>(type, context);
-        subVolleyResponseHandler.setRetrytime(2);
-        subVolleyResponseHandler.setTimeOut(8000, 2);
-        subVolleyResponseHandler.sendPostRequest(url, params, false, new UIDataListener<AccountIDToken>() {
-            @Override
-            public void onDataChanged(AccountIDToken data) {
-                if (modeUserErrorCode != null) {
-                    modeUserErrorCode.onJsonSuccess(data);
-                }
-                ModeLevelAmsNewReply.getNewReplyList(context, context.getClass().getName());
-            }
-
-            @Override
-            public void onErrorHappened(int errorCode, Exception errorMessage) {
-                if (modeUserErrorCode != null) {
-                    modeUserErrorCode.onRequestFail(errorCode, errorMessage);
-                }
-            }
-
-            @Override
-            public void onVolleyError(int errorCode, Exception errorMessage) {
-                onErrorHappened(errorCode, errorMessage);
-            }
-        });
-    }
-
     static public void bindPhone(final Context context, String phoneNum, String password, String securityCode,
                                  final ModeUserErrorCode<String> user) {
         final String url = Util.getUrl(context, ModeUrl.BIND_PHONE);
@@ -411,7 +356,7 @@ public class ModeLevelAccount {
         map.put("code", securityCode);
         map.put("password", password);
         final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(map));
-        params.put("wsId", ConstInfo.accountWsId);
+        params.put("winId", ConstInfo.accountWinId);
         params.put("loginToken", ConstInfo.accountTokenId);
         Type type = new TypeToken<String>() {
         }.getType();

@@ -20,8 +20,6 @@ public class ModeUrl {
     // 手机登陆
     public static final String ACCOUNT_LOGIN = "/arms/is/account/login";
 
-    // 第三方登陆
-    public static final String ACCOUNT_LOGIN_THIRD = "/arms/is/account/thirdPartyLogin";
     // 验证登陆状态
     public static final String ACCOUNT_CHECK_LOGIN_STATUS = "/arms/is/account/checkLogin";
 
@@ -31,10 +29,6 @@ public class ModeUrl {
     // 更新用户信息
     public static final String ACCOUNT_UPDATE_USER_INFO = "/arms/is/user/updateUserInfo";
 
-    public static final String ACCOUNT_REGISTER_BY_THIRD_PARTY = "/arms/is/account/registerByThirdParty";
-
-    //2.52	多方式联合登录
-    public static final String ACCOUNT_THIRD_PARTY_LOGINS = "/arms/is/account/thirdPartyLogins";
     // 2.51	绑定手机
     public static final String BIND_PHONE = "/arms/is/account/bindPhone";
 
@@ -67,7 +61,7 @@ public class ModeUrl {
     //获取应用详情
     public static final String QUERY_SOFTWATE_INFO = "/arms/is/software/querySoftwareInfo";
 
-       //通过多个软件类型获取软件列表
+    //通过多个软件类型获取软件列表
     public static final String QUERY_SOFTWATES_BY_MULTI_TYPE = "/arms/is/software/querySoftwaresByMultiType";
 
     //通过多个软件类型获取软件列表
@@ -151,7 +145,5 @@ public class ModeUrl {
     //2.52	获取定制推荐
     public static final String RECOMMEND_APP = "/arms/is/software/queryCustomizedRecommend";
 
-    //3.8 获取用户新消息（回复的消息）
-    public static final String GET_NEW_REPLY = "/arms/is/comment/getNewReply";
 
 }

@@ -8,7 +8,7 @@ public class LoginEvent {
 //	public static final int FROM_NORMAL = 0;
 //	public static final int FROM_PAY = 1;
 
-    private String wsId;
+    private String winId;
     private String loginToken;
     private int direct;
     private boolean isError = false;
@@ -52,28 +52,28 @@ public class LoginEvent {
 //		this.isError = error;
 //	}
 
-    public LoginEvent(String wsId, String loginToken, int code) {
+    public LoginEvent(String winId, String loginToken, int code) {
         // TODO Auto-generated constructor stub
-        this.wsId = wsId;
+        this.winId = winId;
         this.loginToken = loginToken;
         this.direct = code;
         this.error = null;
     }
 
-    public LoginEvent(String wsId, String loginToken, int code, int errorCode, String errorMsg) {
+    public LoginEvent(String winId, String loginToken, int code, int errorCode, String errorMsg) {
         // TODO Auto-generated constructor stub
-        this.wsId = wsId;
+        this.winId = winId;
         this.loginToken = loginToken;
         this.direct = code;
         this.error = new AccountError(errorCode, errorMsg);
     }
 
-    public String getWsId() {
-        return wsId;
+    public String getwinId() {
+        return winId;
     }
 
-    public void setWsId(String wsId) {
-        this.wsId = wsId;
+    public void setwinId(String winId) {
+        this.winId = winId;
     }
 
     public String getLoginToken() {
@@ -112,7 +112,7 @@ public class LoginEvent {
 
     @Override
     public String toString() {
-        return "LoginEvent [wsId=" + wsId + ", loginToken=" + loginToken + ", direct=" + direct + ", isError="
+        return "LoginEvent [winId=" + winId + ", loginToken=" + loginToken + ", direct=" + direct + ", isError="
                 + isError + ", error=" + error + "]";
     }
 

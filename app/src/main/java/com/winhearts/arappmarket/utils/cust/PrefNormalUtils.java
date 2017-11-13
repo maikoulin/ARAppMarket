@@ -18,7 +18,7 @@ public class PrefNormalUtils {
     public static String URL_BG_IMG = "backgroud";//背景图的url
     public static String URL_BG_IMG_IS_CHANGE = "backgroud_is_change";//背景图的url是否改变
     public static String ACCOUNT_TOKEN = "accountTokenId";
-    public static String ACCOUNT_WSID = "accountWsId";
+    public static String ACCOUNT_WinID = "accountWinId";
     public static String ACCOUNT_INFO = "accountInfo";
 
     public static String AD_IMAGE_HOME = "ad_image_home";

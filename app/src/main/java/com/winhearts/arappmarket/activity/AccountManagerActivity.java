@@ -39,7 +39,6 @@ public class AccountManagerActivity extends BaseActivity {
     private View tvHint;
 
     private Button changeAccountTv;
-    private ImageView childrenLockImg;
 
     private View loadView;
     private View stubView;
@@ -106,7 +105,7 @@ public class AccountManagerActivity extends BaseActivity {
 
         } else {
             AccountUserInfo accountUserInfo = ConstInfo.updateAccountInfo7Pref(this);
-            if (accountUserInfo == null || TextUtils.isEmpty(accountUserInfo.getWsId())) {
+            if (accountUserInfo == null || TextUtils.isEmpty(accountUserInfo.getwinId())) {
                 requestUserInf();
             } else {
                 loadView.setVisibility(View.GONE);
@@ -118,7 +117,7 @@ public class AccountManagerActivity extends BaseActivity {
     }
 
     private void requestUserInf() {
-        ModeLevelAccount.getUserInfo(this, ConstInfo.accountWsId, ConstInfo.accountTokenId,
+        ModeLevelAccount.getUserInfo(this, ConstInfo.accountWinId, ConstInfo.accountTokenId,
                 new ModeUser<AccountUserInfo>() {
 
                     @Override
@@ -156,7 +155,7 @@ public class AccountManagerActivity extends BaseActivity {
 
     private void showAccountInfo(AccountUserInfo info) {
         LogDebugUtil.d("lee", "info = " + info.toString());
-        String wsId = "网宿账号:  " + (TextUtils.isEmpty(info.getWsId()) ? "--" : info.getWsId());
+        String winId = "账号:  " + (TextUtils.isEmpty(info.getwinId()) ? "--" : info.getwinId());
         String nickname = "昵称:  " + (TextUtils.isEmpty(info.getNickName()) ? "--" : info.getNickName());
         tvPhoneNum.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         if (TextUtils.isEmpty(info.getPhoneNum())) {
@@ -180,7 +179,7 @@ public class AccountManagerActivity extends BaseActivity {
         }
 
         tvNickname.setText(nickname);
-        tvWsNum.setText(wsId);
+        tvWsNum.setText(winId);
 
     }
 
@@ -200,7 +199,6 @@ public class AccountManagerActivity extends BaseActivity {
         loadView = findViewById(R.id.mode_load);
         loadView.setVisibility(View.VISIBLE);
         changeAccountTv = (Button) findViewById(R.id.btn_account_changes);
-        childrenLockImg = (ImageView) findViewById(R.id.iv_account_lock_icon);
         llContent = (LinearLayout) findViewById(R.id.ll_account_content);
         llContent.setVisibility(View.INVISIBLE);
         changeAccountTv.setOnClickListener(onClickListener);

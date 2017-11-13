@@ -7,20 +7,17 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 
-import com.winhearts.arappmarket.event.LoginEvent;
-import com.winhearts.arappmarket.constant.ConstInfo;
-import com.winhearts.arappmarket.constant.Constant;
-import com.winhearts.arappmarket.model.AccountIDToken;
-import com.winhearts.arappmarket.model.ConfigInfo;
-import com.winhearts.arappmarket.modellevel.ModeLevelAccount;
-import com.winhearts.arappmarket.modellevel.ModeLevelAmsNewReply;
-import com.winhearts.arappmarket.modellevel.ModeLevelVms;
-import com.winhearts.arappmarket.modellevel.ModeUser;
-import com.winhearts.arappmarket.modellevel.ModeUserErrorCode;
-import com.winhearts.arappmarket.utils.Pref;
-import com.winhearts.arappmarket.utils.common.RxBus;
 import com.winhearts.arappmarket.activity.AccountLoginActivity;
 import com.winhearts.arappmarket.activity.VpnStoreApplication;
+import com.winhearts.arappmarket.constant.ConstInfo;
+import com.winhearts.arappmarket.constant.Constant;
+import com.winhearts.arappmarket.event.LoginEvent;
+import com.winhearts.arappmarket.model.ConfigInfo;
+import com.winhearts.arappmarket.modellevel.ModeLevelAccount;
+import com.winhearts.arappmarket.modellevel.ModeLevelVms;
+import com.winhearts.arappmarket.modellevel.ModeUser;
+import com.winhearts.arappmarket.utils.Pref;
+import com.winhearts.arappmarket.utils.common.RxBus;
 
 import java.util.Map;
 import java.util.Random;
@@ -125,61 +122,20 @@ public class CheckLoginLogic {
      */
     public void loginCheck(final Context context, final boolean isJumpLoginGui, final int direct) {
         ConstInfo.update(context);
-        if (TextUtils.isEmpty(ConstInfo.accountTokenId)) {
-            ModeLevelAccount.registerByThirds(context, new ModeUserErrorCode<AccountIDToken>() {
-                @Override
-                public void onJsonSuccess(AccountIDToken accountIDToken) {
-                    if (accountIDToken != null) {
-                        ConstInfo.setAccountId2Pref(context, accountIDToken.getWsId(), accountIDToken.getLoginToken());
-                        RxBus.getDefault().post(
-                                new LoginEvent(ConstInfo.accountWsId, ConstInfo.accountTokenId, direct));
-                        ModeLevelAccount.getUserInfo(context, accountIDToken.getWsId(), accountIDToken.getLoginToken(), null);
-                    }
-                }
 
-                @Override
-                public void onRequestFail(int code, Throwable e) {
-                    if (isJumpLoginGui) {
-                        Intent intent = new Intent(context, AccountLoginActivity.class);
-                        intent.putExtra(Constant.FROM_TYPE, direct);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
+        ModeLevelAccount.checkLoginStatue(context, direct, ConstInfo.accountTokenId,
+                new ModeUser<Map<String, String>>() {
 
-                }
-            });
-        } else {
-            ModeLevelAccount.checkLoginStatue(context, direct, ConstInfo.accountTokenId,
-                    new ModeUser<Map<String, String>>() {
-
-                        @Override
-                        public void onJsonSuccess(Map<String, String> map) {
-                            if (map == null) {
-                                return;
-                            }
-                            String status = map.get("status");
-                            if ("1".equals(status)) {// 已经登录
-                                ModeLevelAmsNewReply.getNewReplyList(context, context.getClass().getName());
-                                RxBus.getDefault().post(
-                                        new LoginEvent(ConstInfo.accountWsId, ConstInfo.accountTokenId, direct));
-                            } else if ("0".equals(status)) {// 未登录
-                                ConstInfo.setAccountId2Pref(context, null, null);
-                                ConstInfo.setAccountInfo2Pref(context, null);
-                                if (isJumpLoginGui) {
-                                    Intent intent = new Intent(context, AccountLoginActivity.class);
-                                    intent.putExtra(Constant.FROM_TYPE, direct);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    context.startActivity(intent);
-                                } else {
-                                    loginCheck(context, false, direct);
-                                }
-
-                            }
-
+                    @Override
+                    public void onJsonSuccess(Map<String, String> map) {
+                        if (map == null) {
+                            return;
                         }
-
-                        @Override
-                        public void onRequestFail(Throwable e) {
+                        String status = map.get("status");
+                        if ("1".equals(status)) {// 已经登录
+                            RxBus.getDefault().post(
+                                    new LoginEvent(ConstInfo.accountWinId, ConstInfo.accountTokenId, direct));
+                        } else if ("0".equals(status)) {// 未登录
                             ConstInfo.setAccountId2Pref(context, null, null);
                             ConstInfo.setAccountInfo2Pref(context, null);
                             if (isJumpLoginGui) {
@@ -187,10 +143,25 @@ public class CheckLoginLogic {
                                 intent.putExtra(Constant.FROM_TYPE, direct);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 context.startActivity(intent);
+                            } else {
+                                loginCheck(context, false, direct);
                             }
-                        }
-                    });
-        }
 
+                        }
+
+                    }
+
+                    @Override
+                    public void onRequestFail(Throwable e) {
+                        ConstInfo.setAccountId2Pref(context, null, null);
+                        ConstInfo.setAccountInfo2Pref(context, null);
+                        if (isJumpLoginGui) {
+                            Intent intent = new Intent(context, AccountLoginActivity.class);
+                            intent.putExtra(Constant.FROM_TYPE, direct);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                        }
+                    }
+                });
     }
 }

@@ -46,7 +46,7 @@ public class MessageCenterView extends RelativeLayout {
     private TextView mNewMessageNumberTv;
     private VerticalRollTextView mMessagePreviewTv;
     private ViewGroup mPreviewLayout;
-    private String mAccountWsId;
+    private String mAccountwinId;
     private boolean mIsPreview;
 
     public MessageCenterView(@NonNull Context context) {
@@ -105,10 +105,10 @@ public class MessageCenterView extends RelativeLayout {
      * 根据消息的未读/已读状态更新相应view
      */
     public void updateViewVisitity() {
-        if (!TextUtils.isEmpty(mAccountWsId) && !mAccountWsId.equals(ConstInfo.accountWsId)) {
+        if (!TextUtils.isEmpty(mAccountwinId) && !mAccountwinId.equals(ConstInfo.accountWinId)) {
             mLatestReply = null;
         }
-        mAccountWsId = ConstInfo.accountWsId;
+        mAccountwinId = ConstInfo.accountWinId;
         if (mLatestReply != null) {
             post(updateViewTask());
         } else {

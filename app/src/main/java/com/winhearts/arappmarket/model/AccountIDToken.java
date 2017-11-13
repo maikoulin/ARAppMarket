@@ -12,17 +12,17 @@ public class AccountIDToken implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
-    private String wsId;
+    private String winId;
     private String loginToken;
     private String loginType;
 
 
-    public String getWsId() {
-        return wsId;
+    public String getWinId() {
+        return winId;
     }
 
-    public void setWsId(String wsId) {
-        this.wsId = wsId;
+    public void setWinId(String winId) {
+        this.winId = winId;
     }
 
     public String getLoginToken() {
@@ -44,7 +44,7 @@ public class AccountIDToken implements Serializable {
     @Override
     public String toString() {
         return "AccountIDToken{" +
-                "wsId='" + wsId + '\'' +
+                "winId='" + winId + '\'' +
                 ", loginToken='" + loginToken + '\'' +
                 ", loginType='" + loginType + '\'' +
                 '}';

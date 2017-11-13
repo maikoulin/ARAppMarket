@@ -42,7 +42,7 @@ public class ActActivity extends BaseActivity {
         activityInfo = (ActivityInfo) getIntent().getSerializableExtra("actInfo");
         loadView = findViewById(R.id.progress_act);
         initWebView();
-        if (TextUtils.isEmpty(ConstInfo.accountWsId)) {
+        if (TextUtils.isEmpty(ConstInfo.accountWinId)) {
             startActivityForResult(new Intent(this, AccountLoginActivity.class), REQUEST_LOGIN);
         } else {
             webView.loadUrl(initUrl());
@@ -70,8 +70,8 @@ public class ActActivity extends BaseActivity {
         stringBuilder.append(ConstInfo.accountTokenId);
         stringBuilder.append("&");
 
-        stringBuilder.append("wsId=");
-        stringBuilder.append(ConstInfo.accountWsId);
+        stringBuilder.append("winId=");
+        stringBuilder.append(ConstInfo.accountWinId);
         stringBuilder.append("&");
 
         stringBuilder.append("mac=");

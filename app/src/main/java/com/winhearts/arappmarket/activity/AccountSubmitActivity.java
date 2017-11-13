@@ -130,15 +130,15 @@ public class AccountSubmitActivity extends BaseActivity implements OnClickListen
         isAcceptCheckBox.setChecked(true);
         final Spannable spannable = new SpannableString(getResources().getString(R.string.account_accept_protol));
         //根据是否有交点改变协议字体颜色
-        spannable.setSpan(new UnderlineSpan(), 4, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new UnderlineSpan(), 2, 10, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         agreementTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
-                    spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.blue_drak)), 4, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.blue_drak)), 2, 10, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                 } else {
-                    spannable.setSpan(new ForegroundColorSpan(Color.WHITE), 4, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spannable.setSpan(new ForegroundColorSpan(Color.WHITE), 2, 10, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
                 agreementTextView.setText(spannable);
             }

@@ -47,6 +47,12 @@ android {
             buildConfigField "String", "VMS", "\"http://172.16.13.36:9001\""
             buildConfigField "String", "PROJECT", "\"apptest\""
         }
+
+        applocal {
+            buildConfigField "String", "ARMS", "\"http://192.168.1.109:8180\""
+            buildConfigField "String", "VMS", "\"http://172.16.13.36:9001\""
+            buildConfigField "String", "PROJECT", "\"apptest\""
+        }
     }
 
     buildTypes {

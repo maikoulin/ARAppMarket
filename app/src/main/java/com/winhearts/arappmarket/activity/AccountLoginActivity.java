@@ -12,11 +12,10 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.winhearts.arappmarket.R;
-import com.winhearts.arappmarket.event.LoginEvent;
-import com.winhearts.arappmarket.event.SubmitCompletedEvent;
 import com.winhearts.arappmarket.constant.CommonHierarchy;
 import com.winhearts.arappmarket.constant.ConstInfo;
 import com.winhearts.arappmarket.constant.Constant;
+import com.winhearts.arappmarket.event.SubmitCompletedEvent;
 import com.winhearts.arappmarket.model.AccountIDToken;
 import com.winhearts.arappmarket.modellevel.ModeLevelAccount;
 import com.winhearts.arappmarket.modellevel.ModeUser;
@@ -99,19 +98,13 @@ public class AccountLoginActivity extends BaseActivity implements OnClickListene
 
     private void initView() {
         findViewById(R.id.tv_account_submit).setOnClickListener(this);
-        findViewById(R.id.tv_account_login_third).setOnClickListener(this);
         findViewById(R.id.btn_account_login).setOnClickListener(this);
 
         idEditText = (EditText) findViewById(R.id.edt_account_id);
+        idEditText.setText("18050012583");
         keyEditText = (EditText) findViewById(R.id.edt_account_key);
+        keyEditText.setText("kkkkkk");
     }
-
-    // protected void dialog(String tip) {
-    // AlertDialog.Builder builder = new Builder(this);
-    // builder.setMessage(tip);
-    // builder.setTitle("提示");
-    //
-    // }
 
     private void requestLogin() {
         dialog = new LoadDialog(this);
@@ -143,49 +136,20 @@ public class AccountLoginActivity extends BaseActivity implements OnClickListene
         });
     }
 
-    private void requestThirdLogin() {
-        dialog = new LoadDialog(this);
-        dialog.show();
-        dialog.setInfo("登录中...");
-
-        ModeLevelAccount.registerByThirds(this, new ModeUserErrorCode<AccountIDToken>() {
-            @Override
-            public void onJsonSuccess(AccountIDToken accountIDToken) {
-                dialog.dismiss();
-                if (accountIDToken != null) {
-                    login2jump(accountIDToken);
-                    postLoinEvent(new LoginEvent(accountIDToken.getWsId(), accountIDToken.getLoginToken(), fromType));
-
-                }
-            }
-
-            @Override
-            public void onRequestFail(int code, Throwable e) {
-                dialog.dismiss();
-                ToastUtils.show(mContext, code, e);
-                postLoinEvent(new LoginEvent(ConstInfo.accountWsId, ConstInfo.accountTokenId, fromType, -1, e.getMessage()));
-
-            }
-        });
-    }
-
-    private void postLoinEvent(LoginEvent event) {
-        RxBus.getDefault().post(event);
-    }
-
-    private void exitOld(String oldWsID, String oldTokenId) {
+    private void exitOld(String oldWinId, String oldTokenId) {
         ConstInfo.setAccountId2Pref(mContext, "", "");
-        ModeLevelAccount.exit(this, oldWsID, oldTokenId, new ModeUser<String>() {
+        if (TextUtils.isEmpty(oldWinId) || TextUtils.isEmpty(oldTokenId)) {
+            return;
+        }
+        ModeLevelAccount.exit(this, oldWinId, oldTokenId, new ModeUser<String>() {
 
             @Override
             public void onJsonSuccess(String t) {
-                // TODO Auto-generated method stub
                 // ToastUtils.show(mContext, "注销成功");
             }
 
             @Override
             public void onRequestFail(Throwable e) {
-                // TODO Auto-generated method stub
                 // ToastUtils.show(mContext, "注销失败");
             }
         });
@@ -193,13 +157,13 @@ public class AccountLoginActivity extends BaseActivity implements OnClickListene
 
     private void login2jump(AccountIDToken t) {
         // 注销
-        exitOld(ConstInfo.accountWsId, ConstInfo.accountTokenId);
+        exitOld(ConstInfo.accountWinId, ConstInfo.accountTokenId);
 
         // 保存
-        ConstInfo.setAccountId2Pref(mContext, t.getWsId(), t.getLoginToken());
+        ConstInfo.setAccountId2Pref(mContext, t.getWinId(), t.getLoginToken());
         ToastUtils.show(mContext, "登录成功");
 
-        setResult(com.winhearts.arappmarket.activity.AccountManagerActivity.ACK_LOGIN_COMPLETED);
+        setResult(AccountManagerActivity.ACK_LOGIN_COMPLETED);
         finish();
 
     }
@@ -240,20 +204,13 @@ public class AccountLoginActivity extends BaseActivity implements OnClickListene
         switch (v.getId()) {
             case R.id.tv_account_submit:
 
-                Intent submitIntent = new Intent(mContext, com.winhearts.arappmarket.activity.AccountSubmitActivity.class);
+                Intent submitIntent = new Intent(mContext, AccountSubmitActivity.class);
                 int fromType = getIntent().getIntExtra(Constant.FROM_TYPE, Constant.FROM_NORMAL);
                 submitIntent.putExtra(Constant.FROM_TYPE, fromType);
                 submitIntent.putExtra(Constant.PHONE_TYPE, Constant.REGIESTER);
                 mContext.startActivity(submitIntent);
 
                 break;
-
-            case R.id.tv_account_login_third:
-
-                requestThirdLogin();
-
-                break;
-
             case R.id.btn_account_login:
                 if (checkPhone()) {
                     requestLogin();

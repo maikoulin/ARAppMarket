@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class AccountUserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String wsId;// "网宿id",
+    private String winId;// "网宿id",
     private String nickName;// "昵称",
     private String phoneNum;// "手机号",
     private String email;// "邮箱",
@@ -21,14 +21,14 @@ public class AccountUserInfo implements Serializable {
     private String custId;//客户ID
     private String credits;//客户积分
 
-    public String getWsId() {
+    public String getwinId() {
 
 
-        return wsId;
+        return winId;
     }
 
-    public void setWsId(String wsId) {
-        this.wsId = wsId;
+    public void setwinId(String winId) {
+        this.winId = winId;
     }
 
     public String getNickName() {
@@ -146,7 +146,7 @@ public class AccountUserInfo implements Serializable {
     @Override
     public String toString() {
         return "AccountUserInfo{" +
-                "wsId='" + wsId + '\'' +
+                "winId='" + winId + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", email='" + email + '\'' +

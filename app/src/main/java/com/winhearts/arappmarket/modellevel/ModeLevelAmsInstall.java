@@ -80,10 +80,10 @@ public class ModeLevelAmsInstall {
     public static void queryInstallPres(final Context context, String version, final ModeUser<InstallPresEntity> user) {
         final String url = Util.getUrl(context, ModeUrl.INSTALL_PRE);
         String macAddress = MacUtil.getMacAddress();
-        String accountWsId = ConstInfo.accountWsId;
+        String accountwinId = ConstInfo.accountWinId;
         final HashMap<String, String> map = new HashMap<String, String>();
         map.put("mac", macAddress);
-        map.put("wsId", accountWsId);
+        map.put("winId", accountwinId);
         if (!TextUtils.isEmpty(version)) {
             map.put("version", version);
         }
@@ -125,10 +125,10 @@ public class ModeLevelAmsInstall {
     public static void queryInstallUrls(final Context context, List<String> list, final ModeUser<InstallUrlEntity> user) {
         final String url = Util.getUrl(context, ModeUrl.INSTALL_URLS);
         String macAddress = MacUtil.getMacAddress();
-        String accountWsId = ConstInfo.accountWsId;
+        String accountwinId = ConstInfo.accountWinId;
         final InstallBatsEntity entity = new InstallBatsEntity();
         entity.setMac(macAddress);
-        entity.setWsId(accountWsId);
+        entity.setwinId(accountwinId);
         entity.setPackageNames(list);
         final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(entity));
         Type type = new TypeToken<InstallUrlEntity>() {
@@ -168,11 +168,11 @@ public class ModeLevelAmsInstall {
     public static void queryAbleUninstall(final Context context, String packageName, final ModeUser<String> user) {
         String url = Util.getUrl(context, ModeUrl.INSTALL_CHECKABLE_UNINSTALL);
         String macAddress = MacUtil.getMacAddress();
-        String accountWsId = ConstInfo.accountWsId;
+        String accountwinId = ConstInfo.accountWinId;
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("packageName", packageName);
         map.put("mac", macAddress);
-        map.put("wsId", accountWsId);
+        map.put("winId", accountwinId);
         final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(map));
         Type type = new TypeToken<HashMap<String, String>>() {
         }.getType();

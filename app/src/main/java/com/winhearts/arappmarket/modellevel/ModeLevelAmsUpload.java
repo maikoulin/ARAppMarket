@@ -47,9 +47,9 @@ public class ModeLevelAmsUpload {
         final String url = Util.getUrl(context, ModeUrl.UPLOAD_DOWNLOAD_PATH);
         long currentTime = Util.getAmendCurrentTime(url);// 获取修正后的当前时间
         String macAddress = MacUtil.getMacAddress();
-        String accountWsId = ConstInfo.accountWsId;
+        String accountwinId = ConstInfo.accountWinId;
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("wsId", accountWsId);
+        map.put("winId", accountwinId);
         map.put("mac", macAddress);
         String verNo = Pref.getString(Pref.LAYOUT_VERSION, context, "");
         map.put("verNo", verNo);
@@ -108,10 +108,10 @@ public class ModeLevelAmsUpload {
     public static void queryUploadClick(final Context context, List<UploadClick> list,
                                         String layoutId, final ModeUser<String> user) {
         final String url = Util.getUrl(context, ModeUrl.UPLOAD_CLICK);
-        String accountWsId = ConstInfo.accountWsId;
+        String accountwinId = ConstInfo.accountWinId;
         HashMap map = new HashMap();
         map.put("mac", MacUtil.getMacAddress());
-        map.put("wsId", accountWsId);
+        map.put("winId", accountwinId);
         map.put("layoutId", layoutId);
         String verNo = Pref.getString(Pref.LAYOUT_VERSION, context, "");
         map.put("verNo", verNo);
@@ -184,7 +184,7 @@ public class ModeLevelAmsUpload {
         }
         map.put("versionName", versionName);
         map.put("mac", MacUtil.getMacAddress());
-        map.put("wsId", ConstInfo.accountWsId);
+        map.put("winId", ConstInfo.accountWinId);
         map.put("type", type);
         ModeLevelAmsUpload.uploadOperateData(context, map, null);
     }
@@ -253,10 +253,10 @@ public class ModeLevelAmsUpload {
         //----end---
 
         final String url = Util.getUrl(context, ModeUrl.UPLOAD_APP_LIST);
-        String accountWsId = ConstInfo.accountWsId;
+        String accountwinId = ConstInfo.accountWinId;
         HashMap map = new HashMap();
         map.put("mac", MacUtil.getMacAddress());
-        map.put("wsId", accountWsId);
+        map.put("winId", accountwinId);
         map.put("packageNames", packageNames);
 
         final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(map));
@@ -303,9 +303,9 @@ public class ModeLevelAmsUpload {
 
         final String url = Util.getUrl(context, ModeUrl.UPLOAD_UNINSTALL_App);
         Map<String, String> map = new HashMap<String, String>();
-        String accountWsId = ConstInfo.accountWsId;
+        String accountwinId = ConstInfo.accountWinId;
         map.put("mac", MacUtil.getMacAddress());
-        map.put("wsId", accountWsId);
+        map.put("winId", accountwinId);
         map.put("packageName", packageName);
         final Map<String, String> params = RequestUtil.getRequestParam(new Gson().toJson(map));
         Type type = new TypeToken<String>() {

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class InstallBatsEntity {
     private String mac;
-    private String wsId;
+    private String winId;
     private List<String> packageNames;
 
     public String getMac() {
@@ -19,12 +19,12 @@ public class InstallBatsEntity {
         this.mac = mac;
     }
 
-    public String getWsId() {
-        return wsId;
+    public String getwinId() {
+        return winId;
     }
 
-    public void setWsId(String wsId) {
-        this.wsId = wsId;
+    public void setwinId(String winId) {
+        this.winId = winId;
     }
 
     public List<String> getPackageNames() {
@@ -39,7 +39,7 @@ public class InstallBatsEntity {
     public String toString() {
         return "InstallBatsEntity{" +
                 "mac='" + mac + '\'' +
-                ", wsId='" + wsId + '\'' +
+                ", winId='" + winId + '\'' +
                 ", packageNames=" + packageNames +
                 '}';
     }

@@ -78,8 +78,8 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void getManagerInfo() {
-        if (!TextUtils.isEmpty(ConstInfo.accountWsId) && !TextUtils.isEmpty(ConstInfo.accountTokenId)) {
-            ModeLevelAccount.getUserInfo(this, ConstInfo.accountWsId, ConstInfo.accountTokenId, new ModeUser<AccountUserInfo>() {
+        if (!TextUtils.isEmpty(ConstInfo.accountWinId) && !TextUtils.isEmpty(ConstInfo.accountTokenId)) {
+            ModeLevelAccount.getUserInfo(this, ConstInfo.accountWinId, ConstInfo.accountTokenId, new ModeUser<AccountUserInfo>() {
                 @Override
                 public void onJsonSuccess(AccountUserInfo accountUserInfo) {
                     String credits = accountUserInfo.getCredits();
@@ -87,7 +87,7 @@ public class SettingActivity extends BaseActivity {
                     numberSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.white)), 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     managerUser.setCredits(numberSpannable);
                     if (TextUtils.isEmpty(accountUserInfo.getNickName())) {
-                        managerUser.setNickname(accountUserInfo.getWsId());
+                        managerUser.setNickname(accountUserInfo.getwinId());
                     } else {
                         managerUser.setNickname(accountUserInfo.getNickName());
                     }

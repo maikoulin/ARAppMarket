@@ -9,11 +9,11 @@ import com.winhearts.arappmarket.utils.MacUtil;
 public class QuerySoftwareDownload {
     private String packageName;
     private String mac;
-    private String wsId;
+    private String winId;
 
     public QuerySoftwareDownload() {
         mac = MacUtil.getMacAddress();
-        wsId = ConstInfo.accountWsId;
+        winId = ConstInfo.accountWinId;
     }
 
     public String getPackageName() {
@@ -32,12 +32,12 @@ public class QuerySoftwareDownload {
         this.mac = mac;
     }
 
-    public String getWsId() {
-        return wsId;
+    public String getwinId() {
+        return winId;
     }
 
-    public void setWsId(String wsId) {
-        this.wsId = wsId;
+    public void setwinId(String winId) {
+        this.winId = winId;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class QuerySoftwareDownload {
         return "QuerySoftwareDownload{" +
                 "packageName='" + packageName + '\'' +
                 ", mac='" + mac + '\'' +
-                ", wsId='" + wsId + '\'' +
+                ", winId='" + winId + '\'' +
                 '}';
     }
 }

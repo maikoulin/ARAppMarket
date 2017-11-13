@@ -5,7 +5,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.winhearts.arappmarket.model.AccountUserInfo;
-import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.cust.PrefNormalUtils;
 
 /**
@@ -13,13 +12,9 @@ import com.winhearts.arappmarket.utils.cust.PrefNormalUtils;
  */
 public class ConstInfo {
 
-    public static String accountWsId;
+    public static String accountWinId;
     public static String accountTokenId;
     public static AccountUserInfo accountInfo;
-
-//	static{
-//		ConstInfo.updateAccountId7Pref(VpnStoreApplication.getApp());
-//	}
 
     public static void setAccountInfo2Pref(Context context, AccountUserInfo info) {
         accountInfo = info;
@@ -42,18 +37,17 @@ public class ConstInfo {
         updateAccountInfo7Pref(context);
     }
 
-    public static void setAccountId2Pref(Context context, String wsId, String tokenId) {
-        accountWsId = wsId;
+    public static void setAccountId2Pref(Context context, String winId, String tokenId) {
+        accountWinId = winId;
         accountTokenId = tokenId;
         PrefNormalUtils.putString(context, PrefNormalUtils.ACCOUNT_TOKEN, tokenId);
-        PrefNormalUtils.putString(context, PrefNormalUtils.ACCOUNT_WSID, wsId);
-        LogDebugUtil.d("lee", "wsid = " + accountWsId + "  accountTokenId" + accountTokenId);
+        PrefNormalUtils.putString(context, PrefNormalUtils.ACCOUNT_WinID, winId);
     }
 
     public static void updateAccountId7Pref(Context context) {
-        accountWsId = null;
+        accountWinId = null;
         accountTokenId = null;
-        accountWsId = PrefNormalUtils.getString(context, PrefNormalUtils.ACCOUNT_WSID, "");
+        accountWinId = PrefNormalUtils.getString(context, PrefNormalUtils.ACCOUNT_WinID, "");
         accountTokenId = PrefNormalUtils.getString(context, PrefNormalUtils.ACCOUNT_TOKEN, "");
     }
 }

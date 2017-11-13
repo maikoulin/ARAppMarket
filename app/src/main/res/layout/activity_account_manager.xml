@@ -115,13 +115,6 @@
                 android:text="切换用户"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/iv_account_lock_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:src="@drawable/children_lock_icon_bg_selector" />
         </LinearLayout>
     </LinearLayout>
 
