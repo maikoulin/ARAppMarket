@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.orbbec.astrakernel.AstraContext;
+import com.orbbec.astrakernel.PermissionCallbacks;
 import com.winhearts.arappmarket.R;
 import com.winhearts.arappmarket.constant.Constant;
 import com.winhearts.arappmarket.logic.InitLogic;
@@ -38,7 +40,7 @@ import java.util.List;
 /**
  * 主界面
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements PermissionCallbacks {
     private final static String TAG = "MainActivity";
     private boolean isDebug = false;
     public static String oldMenuId = null;
@@ -51,6 +53,7 @@ public class MainActivity extends BaseActivity {
     private ExitHintDialog exitHintDialog;
     private NewUserExitDialog newUserExitDialog;
     private TextView tvPersonage;
+    private AstraContext astraContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,12 @@ public class MainActivity extends BaseActivity {
         mMainLayout = (HorizontalLayout) this.findViewById(R.id.vl_main_content);
         tvPersonage = (TextView) this.findViewById(R.id.tv_main_personage);
         mContext = this;
+//        try {
+////            astraContext = new AstraContext(mContext, this);
+//        } catch (Exception e) {
+//            LogDebugUtil.e("AstraContext", e.getMessage());
+//        }
+
         Intent installService = new Intent(mContext, InstallHintService.class);
         mContext.startService(installService);
         fillContent();
@@ -243,19 +252,20 @@ public class MainActivity extends BaseActivity {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0 && !isShowMenu) {
 
-            if (PrefNormalUtils.getString(PrefNormalUtils.IS_NEW_USER_exit, "1").equals("1")) {
-                if (newUserExitDialog == null) {
-                    newUserExitDialog = new NewUserExitDialog(this);
-                }
-                newUserExitDialog.show();
-                return true;
-            }
-            if (Pref.getString(Pref.IS_EXIT_DIALOG_SHOW, this, "0").equals("1")) {
-                if (exitHintDialog == null) {
-                    exitHintDialog = new ExitHintDialog(this);
-                }
-                exitHintDialog.show();
-            } else if ((System.currentTimeMillis() - mExitTime) > 2000) {
+//            if (PrefNormalUtils.getString(PrefNormalUtils.IS_NEW_USER_exit, "1").equals("1")) {
+//                if (newUserExitDialog == null) {
+//                    newUserExitDialog = new NewUserExitDialog(this);
+//                }
+//                newUserExitDialog.show();
+//                return true;
+//            }
+//            if (Pref.getString(Pref.IS_EXIT_DIALOG_SHOW, this, "0").equals("1")) {
+//                if (exitHintDialog == null) {
+//                    exitHintDialog = new ExitHintDialog(this);
+//                }
+//                exitHintDialog.show();
+//            } else
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
                 ToastUtils.show(this, "再按一次退出程序");
                 mExitTime = System.currentTimeMillis();
             } else {
@@ -272,5 +282,16 @@ public class MainActivity extends BaseActivity {
 
 
         return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    public void onDevicePermissionGranted() {
+        LogDebugUtil.e("PermissionCallbacks", "=======onDevicePermissionGranted");
+
+    }
+
+    @Override
+    public void onDevicePermissionDenied() {
+        LogDebugUtil.e("PermissionCallbacks", "+++++++onDevicePermissionDenied");
     }
 }

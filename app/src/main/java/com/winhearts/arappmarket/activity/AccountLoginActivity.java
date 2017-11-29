@@ -101,9 +101,7 @@ public class AccountLoginActivity extends BaseActivity implements OnClickListene
         findViewById(R.id.btn_account_login).setOnClickListener(this);
 
         idEditText = (EditText) findViewById(R.id.edt_account_id);
-        idEditText.setText("18050012583");
         keyEditText = (EditText) findViewById(R.id.edt_account_key);
-        keyEditText.setText("kkkkkk");
     }
 
     private void requestLogin() {
