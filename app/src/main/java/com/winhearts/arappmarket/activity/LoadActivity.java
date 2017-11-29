@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -22,6 +23,7 @@ import com.winhearts.arappmarket.logic.CheckLoginLogic;
 import com.winhearts.arappmarket.model.Layout;
 import com.winhearts.arappmarket.modellevel.ModeLevelFile;
 import com.winhearts.arappmarket.network.VolleyQueueController;
+import com.winhearts.arappmarket.utils.LogDebugUtil;
 import com.winhearts.arappmarket.utils.LoggerUtil;
 import com.winhearts.arappmarket.utils.Pref;
 import com.winhearts.arappmarket.utils.Util;
@@ -49,8 +51,15 @@ public class LoadActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        verifyStoragePermissions(this);
         mContext = this;
+        verifyStoragePermissions(this);
+        //初始化界面
+        initView();
+
+    }
+
+
+    private void initData() {
         String versionCode = PrefNormalUtils.getString(mContext, PrefNormalUtils.APP_UPDATE, "");
         if (!TextUtils.isEmpty(versionCode)) {
             String code = Util.getVersionCode(mContext);
@@ -91,14 +100,12 @@ public class LoadActivity extends BaseActivity {
         if (showTime == 0) {
             intentMain();
         } else {
-            setContentView(R.layout.activity_load);
-            //初始化界面
-            initView();
             delayIntent(showTime);
         }
     }
 
     private void initView() {
+        setContentView(R.layout.activity_load);
         TextView versionView = (TextView) findViewById(R.id.tv_version);
         versionView.setText(Util.getVersionName(this));
         SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.simpleDraweeView_load_bg);
@@ -180,9 +187,7 @@ public class LoadActivity extends BaseActivity {
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE"};
 
-
-    public static void verifyStoragePermissions(Activity activity) {
-
+    private void verifyStoragePermissions(Activity activity) {
         try {
             //检测是否有写的权限
             int permission = ActivityCompat.checkSelfPermission(activity,
@@ -190,9 +195,30 @@ public class LoadActivity extends BaseActivity {
             if (permission != PackageManager.PERMISSION_GRANTED) {
                 // 没有写的权限，去申请写的权限，会弹出对话框
                 ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+            } else {
+                initData();
             }
         } catch (Exception e) {
+            LogDebugUtil.e("==========",e.getMessage());
             e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_EXTERNAL_STORAGE:
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    initData();
+                } else {
+                    finish();
+                    System.exit(0);
+                }
+                break;
         }
     }
 }
