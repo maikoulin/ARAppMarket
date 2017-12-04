@@ -18,6 +18,5 @@ public class BoutiqueActivity extends BaseActivity {
         MainSelfFragment fragment= new MainSelfFragment();
         fragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commitAllowingStateLoss();
-         // 修改提交测试 注释
     }
 }
