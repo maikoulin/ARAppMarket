@@ -94,7 +94,7 @@ public class MainSelfFragment extends MovableFragment {
         horizontalLayout.setLeftPadding(50);
         final Screen screen = screens.get(0);
         int viewWidth = (int) (mScreenWidth * widthScale);
-        int viewHeight = mScreenHeight * 8 / 13;
+        int viewHeight = mScreenHeight * 9 / 12;
         horizontalLayout.setSize(viewWidth, viewHeight, screen.getRow(), screen.getCol());
         horizontalLayout.setPageCount(pageCount);
         if (isAdded() && mContext != null) {
