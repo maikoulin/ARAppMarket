@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements PermissionCallbacks {
         setContentView(R.layout.main_activity);
         setLoadAndErrorView(R.id.view_load_and_error);
         mMainLayout = (HorizontalLayout) this.findViewById(R.id.vl_main_content);
-        tvPersonage = (FrameLayout) this.findViewById(R.id.tv_main_personage);
+        tvPersonage = (FrameLayout) this.findViewById(R.id.fl_main_personage);
         mContext = this;
         blowUpUtil = new BlowUpUtil(mContext);
 //        try {
