@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import com.google.gson.Gson;
 import com.orbbec.astrakernel.AstraContext;
@@ -30,6 +30,7 @@ import com.winhearts.arappmarket.utils.ScreenUtil;
 import com.winhearts.arappmarket.utils.ViewUtils;
 import com.winhearts.arappmarket.utils.common.ToastUtils;
 import com.winhearts.arappmarket.utils.cust.PrefNormalUtils;
+import com.winhearts.arappmarket.view.BlowUpUtil;
 import com.winhearts.arappmarket.view.ExitHintDialog;
 import com.winhearts.arappmarket.view.HorizontalLayout;
 import com.winhearts.arappmarket.view.NewUserExitDialog;
@@ -50,9 +51,10 @@ public class MainActivity extends BaseActivity implements PermissionCallbacks {
     private long mExitTime = 0;
     private List<MenuItem> menuItems;
     private HorizontalLayout mMainLayout;
+    private BlowUpUtil blowUpUtil;
     private ExitHintDialog exitHintDialog;
     private NewUserExitDialog newUserExitDialog;
-    private TextView tvPersonage;
+    private FrameLayout tvPersonage;
     private AstraContext astraContext;
 
     @Override
@@ -63,8 +65,9 @@ public class MainActivity extends BaseActivity implements PermissionCallbacks {
         setContentView(R.layout.main_activity);
         setLoadAndErrorView(R.id.view_load_and_error);
         mMainLayout = (HorizontalLayout) this.findViewById(R.id.vl_main_content);
-        tvPersonage = (TextView) this.findViewById(R.id.tv_main_personage);
+        tvPersonage = (FrameLayout) this.findViewById(R.id.tv_main_personage);
         mContext = this;
+        blowUpUtil = new BlowUpUtil(mContext);
 //        try {
 ////            astraContext = new AstraContext(mContext, this);
 //        } catch (Exception e) {
@@ -179,9 +182,22 @@ public class MainActivity extends BaseActivity implements PermissionCallbacks {
                 startActivity(new Intent(mContext, SettingActivity.class));
             }
         });
+
+        tvPersonage.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    blowUpUtil.setScaleUp(v);
+                } else {
+                    blowUpUtil.setScaleUp(v);
+                }
+            }
+        });
+
         mMainLayout.setOnBorderListener(new HorizontalLayout.OnBorderListener() {
             @Override
             public boolean onKeyBottomDown(int page, int pageCount, RectF rect) {
+                tvPersonage.requestFocus();
                 return true;
             }
 

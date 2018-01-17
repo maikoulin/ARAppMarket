@@ -48,15 +48,21 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_main_personage"
+    <FrameLayout
+        android:id="@+id/fl_main_personage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="230dp"
-        android:background="@drawable/main_personage_selector"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_personage_selector"
+            android:duplicateParentState="true" />
+    </FrameLayout>
 
 
     <com.winhearts.arappmarket.view.LoadAndErrorView
