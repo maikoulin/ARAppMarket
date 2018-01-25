@@ -234,9 +234,13 @@ public class InitLogic {
 
                     Pref.saveString(Pref.LAYOUT_VERSION, layout.getCurrentVerNo(), context);
                     Pref.saveString(Pref.LAYOUT_STRING, new Gson().toJson(layout), context);
-                    LayoutInfoSubject.onSuccess(layout);
+                    if (userErrorCode != null) {
+                        userErrorCode.onJsonSuccess(layout);
+                    }
                 } else {
-                    LayoutInfoSubject.onFail(NET_LAYOUT_NULL, "queryLayout==null");
+                    if (userErrorCode != null) {
+                        userErrorCode.onRequestFail(NET_LAYOUT_NULL, new Throwable("布局为null"));
+                    }
                     LoggerUtil.i("queryLayout", "null");
                 }
 
@@ -244,7 +248,9 @@ public class InitLogic {
 
             @Override
             public void onRequestFail(int code, Throwable e) {
-                LayoutInfoSubject.onFail(code, e.getMessage());
+                if (userErrorCode != null) {
+                    userErrorCode.onRequestFail(code, e);
+                }
                 if (code != 2) {
                     LoggerUtil.i("queryLayout", "onRequestFail" + code + e.getMessage());
                 }

@@ -94,6 +94,19 @@ public class BlowUpUtil {
         }
     }
 
+    public void setUpNoBg(View view) {
+        if (isBringToFront) {
+            view.bringToFront();
+        }
+        view.setAnimation(mAnimation);
+        view.startAnimation(mAnimation);
+    }
+
+    public void setDownNoBg(View view) {
+        view.clearAnimation();
+    }
+
+
     public void setScaleDown() {
 
         if (lastView != null) {

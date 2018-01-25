@@ -1,7 +1,6 @@
 package com.winhearts.arappmarket.view;
 
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Rect;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
-
 
 import com.winhearts.arappmarket.R;
 import com.winhearts.arappmarket.logic.RecommendAppLogic;
@@ -48,7 +46,7 @@ public class HorizontalLayout extends FrameLayout implements
 
     private View mLeftView;//其实这个就是第一个视图firstAddView  后续删除
     private View mRightView;
-    private List<View> screenFirstView = new ArrayList<View>();//记录每个屏幕的第一个item
+    private List<View> screenFirstView = new ArrayList<>();//记录每个屏幕的第一个item
     private int currentScreen = 0; //当前的屏幕位置
     private int screenWidth;
     private int screenHeight;
@@ -422,8 +420,7 @@ public class HorizontalLayout extends FrameLayout implements
         }
     }
 
-
-    @SuppressLint("NewApi")
+    @Override
     public void onFocusChange(final View v, boolean hasFocus) {
         simulateScale(v, hasFocus);
     }
@@ -456,7 +453,7 @@ public class HorizontalLayout extends FrameLayout implements
         }
     }
 
-    private boolean scrollNextView(final View view) {
+    private void scrollNextView(final View view) {
 
         Rect visibleRect = new Rect();
         getGlobalVisibleRect(visibleRect);
@@ -476,7 +473,7 @@ public class HorizontalLayout extends FrameLayout implements
             playScaleAnimator(view);
 
 
-            return false;
+            return;
         }
 
         //view 在可视范围右边  -->>
@@ -498,7 +495,7 @@ public class HorizontalLayout extends FrameLayout implements
         else if ((focusL[0]) < visibleRect.left) {
             if (getChildAt(getChildCount() - 1) == view) {
                 LogDebugUtil.d(IS_DEBUG, TAG2, "getChildAt(getChildCount() - 1) == view");
-                return false;
+                return;
             }
 
             int focusPRight = focusL[0];
@@ -514,10 +511,8 @@ public class HorizontalLayout extends FrameLayout implements
         } else {
             playScaleAnimator(view);
 
-            return false;
         }
 
-        return true;
     }
 
     public Boolean getIsAutoScrollPage() {
@@ -822,11 +817,6 @@ public class HorizontalLayout extends FrameLayout implements
                     } else {
                         if (pageNow < mPageCount - 1) {
                             if (mOnBorderListener != null) {
-                                if (currentClass == RankElementsItemView.class) {
-                                    View view = (View) currentView.getParent().getParent();
-                                    recordRect = (RectF) view.getTag(R.integer.tag_record_rect);
-                                }
-
                                 mOnBorderListener.onKeyBottomDown(pageNow,
                                         mPageCount, recordRect);
                             }
@@ -868,17 +858,10 @@ public class HorizontalLayout extends FrameLayout implements
                 } else if (direction == View.FOCUS_LEFT) {
                     focusNext = currentView.focusSearch(direction);
                     if (focusNext != null) {
-                        nextClass = focusNext.getClass();
                         if (!isChild(focusNext) && mOnBorderListener != null) {
                             if (mOnBorderListener.onKeyLeftEnd(pageNow)) {
                                 return true;
                             }
-                        }
-                        if (nextClass == RankElementsItemView.class) {
-                            RankElementsView rankElementsView = (RankElementsView) focusNext.getParent().getParent();
-                            rankElementsView.focusMoveToTop();
-                            lastFocusedView = null;
-                            return true;
                         }
                     } else {
                         if (mOnBorderListener != null && mOnBorderListener.onKeyLeftEnd(pageNow)) {
@@ -889,17 +872,10 @@ public class HorizontalLayout extends FrameLayout implements
                 } else if (direction == View.FOCUS_RIGHT) {
                     focusNext = currentView.focusSearch(direction);
                     if (focusNext != null) {
-                        nextClass = focusNext.getClass();
                         if (!isChild(focusNext) && mOnBorderListener != null) {
                             if (mOnBorderListener.onKeyRightEnd(pageNow)) {
                                 return true;
                             }
-                        }
-                        if (nextClass == RankElementsItemView.class) {
-                            RankElementsView rankElementsView = (RankElementsView) focusNext.getParent().getParent();
-                            rankElementsView.focusMoveToTop();
-                            lastFocusedView = null;
-                            return true;
                         }
                     } else {
                         if (mOnBorderListener != null && mOnBorderListener.onKeyRightEnd(pageNow)) {
@@ -991,6 +967,8 @@ public class HorizontalLayout extends FrameLayout implements
         this.lastFocusedView = null;
 
     }
+
+
 
     public interface OnBorderListener {
         boolean onKeyBottomDown(int page, int pageCount, RectF rect);

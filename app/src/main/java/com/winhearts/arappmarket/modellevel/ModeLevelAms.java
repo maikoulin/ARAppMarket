@@ -185,7 +185,7 @@ public class ModeLevelAms {
         SubVolleyResponseHandler<Layout> subVolleyResponseHandler = new SubVolleyResponseHandler<>(type, mContext);
         subVolleyResponseHandler.setRetrytime(2);
         subVolleyResponseHandler.setRequestTag(tag);
-        subVolleyResponseHandler.sendAsyncPostRequest(url, params, false, new UIDataListener<Layout>() {
+        subVolleyResponseHandler.sendPostRequest(url, params, false, new UIDataListener<Layout>() {
             @Override
             public void onDataChanged(Layout data) {
                 if (modeUserErrorCode != null) {

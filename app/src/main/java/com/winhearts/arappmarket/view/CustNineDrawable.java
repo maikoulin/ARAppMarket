@@ -6,6 +6,7 @@ import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
 import com.winhearts.arappmarket.R;
 
@@ -22,12 +23,12 @@ public class CustNineDrawable extends Drawable {
         mScaleFocusDrawable = context.getResources().getDrawable(R.drawable.item_shadow_v);
     }
 
-    public void setFocusDrawable(Context context, int drawableId) {
+    void setFocusDrawable(Context context, int drawableId) {
         mScaleFocusDrawable = context.getResources().getDrawable(drawableId);
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         mScaleFocusDrawable.setBounds(getBounds());
         mScaleFocusDrawable.draw(canvas);
     }
@@ -60,13 +61,13 @@ public class CustNineDrawable extends Drawable {
         super.setBounds(l, t, r, b);
     }
 
-    public int getSrcLeftPadding() {
+    int getSrcLeftPadding() {
         Rect padding = new Rect();
         mScaleFocusDrawable.getPadding(padding);
         return padding.left;
     }
 
-    public int getSrcRightPadding() {
+    int getSrcRightPadding() {
         Rect padding = new Rect();
         mScaleFocusDrawable.getPadding(padding);
         return padding.right;

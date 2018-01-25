@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 import com.orbbec.astrakernel.AstraContext;
@@ -43,7 +43,6 @@ import java.util.List;
  */
 public class MainActivity extends BaseActivity implements PermissionCallbacks {
     private final static String TAG = "MainActivity";
-    private boolean isDebug = false;
     public static String oldMenuId = null;
     public static String oldSubMenuId = null;
     public static boolean isShowMenu = false;
@@ -54,8 +53,10 @@ public class MainActivity extends BaseActivity implements PermissionCallbacks {
     private BlowUpUtil blowUpUtil;
     private ExitHintDialog exitHintDialog;
     private NewUserExitDialog newUserExitDialog;
-    private FrameLayout tvPersonage;
+    private RelativeLayout tvPersonage;
     private AstraContext astraContext;
+
+    private RecommendCardView leftView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,15 +65,11 @@ public class MainActivity extends BaseActivity implements PermissionCallbacks {
         Constant.INSTALL_SHOW = false;
         setContentView(R.layout.main_activity);
         setLoadAndErrorView(R.id.view_load_and_error);
-        mMainLayout = (HorizontalLayout) this.findViewById(R.id.vl_main_content);
-        tvPersonage = (FrameLayout) this.findViewById(R.id.fl_main_personage);
+        mMainLayout = this.findViewById(R.id.vl_main_content);
+        tvPersonage = this.findViewById(R.id.fl_main_personage);
         mContext = this;
         blowUpUtil = new BlowUpUtil(mContext);
-//        try {
-////            astraContext = new AstraContext(mContext, this);
-//        } catch (Exception e) {
-//            LogDebugUtil.e("AstraContext", e.getMessage());
-//        }
+
 
         Intent installService = new Intent(mContext, InstallHintService.class);
         mContext.startService(installService);
@@ -133,7 +130,7 @@ public class MainActivity extends BaseActivity implements PermissionCallbacks {
         RecommendCardView categoryView = new RecommendCardView(this)
                 .bindData("res://drawable/" + R.drawable.ic_main_category_n, with, height / 3);
         mMainLayout.addItemView(categoryView, 0, 0, 1, 2, 2, 0, 6);
-        RecommendCardView leftView = new RecommendCardView(this)
+        leftView = new RecommendCardView(this)
                 .bindData("res://drawable/" + R.drawable.tv_main_other_menu, with / 2, height / 3);
         mMainLayout.addItemView(leftView, 0, 0, 2, 1, 3, 0, 6);
         RecommendCardView rightView = new RecommendCardView(this)
@@ -183,13 +180,15 @@ public class MainActivity extends BaseActivity implements PermissionCallbacks {
             }
         });
 
+
+
         tvPersonage.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    blowUpUtil.setScaleUp(v);
+                    blowUpUtil.setUpNoBg(v);
                 } else {
-                    blowUpUtil.setScaleUp(v);
+                    blowUpUtil.setDownNoBg(v);
                 }
             }
         });
